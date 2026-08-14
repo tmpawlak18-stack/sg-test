@@ -1,11 +1,10 @@
 {
-  "name": "SG Test Wiedzy — 200 pytań",
-  "short_name": "SG Test",
-  "start_url": "./",
-  "scope": "./",
-  "display": "standalone",
-  "background_color": "#0b1020",
-  "theme_color": "#0b1020",
-  "description": "Test wiedzy do Straży Granicznej — 200 pytań, nauka, egzamin 10 pytań i powtórka błędów.",
-  "icons": []
+  "name":"SG Test Wiedzy — 200 pytań",
+  "short_name":"SG Test",
+  "start_url":"./",
+  "scope":"./",
+  "display":"standalone",
+  "background_color":"#0b1020",
+  "theme_color":"#0b1020",
+  "description":"Test wiedzy do Straży Granicznej — 200 pytań."
 }

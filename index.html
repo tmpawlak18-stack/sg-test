@@ -2,12 +2,13 @@
 <html lang="pl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0b1020">
-<meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="SG Test">
 <link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
 <title>SG — Test wiedzy 200 pytań</title>
 <style>
 :root{--bg:#0b1020;--card:#151c30;--card2:#1b2540;--text:#f4f7fb;--muted:#aab5c8;--accent:#4da3ff;--good:#35c98a;--bad:#ff5d6c}
@@ -42,7 +43,7 @@ document.getElementById("app").innerHTML=`<div class="card">
 <div class="small">Zestaw 200 pytań z oficjalnej strony Straży Granicznej.</div>
 <div class="menu">
 <button onclick="startLearn()">📚 Nauka — wszystkie 200</button>
-<button onclick="startExam()">🎯 Egzamin — 10 losowych</button>
+<button onclick="startExam()">🎯 Egzamin — 20 losowych</button>
 <button onclick="startWrong()">🔴 Tylko błędne (${state.history.length})</button>
 <button class="secondary" onclick="resetWrong()">🗑 Wyczyść błędy</button>
 </div>
@@ -92,10 +93,4 @@ document.getElementById("app").innerHTML=`<div class="card">
 ${state.wrong.length?`<div class="list">${state.wrong.map(id=>{let q=QUESTIONS.find(x=>x.id===id);return `<div class="row"><b>${id}.</b> ${esc(q.q)} <span class="tag">błąd</span></div>`}).join("")}</div>`:""}
 </div>`}
 menu();
-</script>
-<script>
-if ("serviceWorker" in navigator && location.protocol !== "file:") {
-  window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(()=>{}));
-}
-</script>
-</body></html>
+</script></body></html>
