@@ -1,7 +1,8 @@
 {
   "name": "SG Test Wiedzy — 200 pytań",
   "short_name": "SG Test",
-  "start_url": "./SG_test_wiedzy_200_pytan.html",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#0b1020",
   "theme_color": "#0b1020",
