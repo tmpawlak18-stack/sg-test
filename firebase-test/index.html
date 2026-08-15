@@ -54,18 +54,30 @@ let activationCode = localStorage.getItem("sgAccessCode") || "";
 async function initFirebase() {
   try {
     await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
-    currentUser = auth.currentUser;
+
+    // Firebase potrzebuje chwili na odtworzenie zapisanej sesji.
+    // Nie wolno odczytywać auth.currentUser od razu po setPersistence(),
+    // bo może być jeszcze null i aplikacja utworzy wtedy nowego anonimowego użytkownika.
+    currentUser = await new Promise((resolve, reject) => {
+      const unsubscribe = auth.onAuthStateChanged(async user => {
+        unsubscribe();
+        resolve(user);
+      }, reject);
+    });
+
     if (!currentUser) {
-      await auth.signInAnonymously();
-      currentUser = auth.currentUser;
+      const result = await auth.signInAnonymously();
+      currentUser = result.user;
     }
 
     if (activationCode) {
       const ok = await verifyAccessCode(activationCode, currentUser.uid);
       if (ok) {
         if (currentUser.isAnonymous) {
+          // Kod jest aktywny, ale konto nie zostało jeszcze zabezpieczone.
           showSecureAccount();
         } else {
+          // Konto e-mail jest już powiązane z UID — wpuszczamy od razu do aplikacji.
           menu();
         }
         return;
