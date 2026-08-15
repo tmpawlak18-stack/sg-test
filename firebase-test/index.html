@@ -54,35 +54,90 @@ let activationCode = localStorage.getItem("sgAccessCode") || "";
 async function initFirebase() {
   try {
     await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
-    await auth.signInAnonymously();
     currentUser = auth.currentUser;
+    if (!currentUser) {
+      await auth.signInAnonymously();
+      currentUser = auth.currentUser;
+    }
 
     if (activationCode) {
-      const ok = await verifyStoredAccess();
+      const ok = await verifyAccessCode(activationCode, currentUser.uid);
       if (ok) {
-        menu();
+        if (currentUser.isAnonymous) {
+          showSecureAccount();
+        } else {
+          menu();
+        }
         return;
       }
+      activationCode = "";
+      localStorage.removeItem("sgAccessCode");
     }
-    showActivation();
+
+    if (currentUser && !currentUser.isAnonymous) {
+      showLoginRecovery();
+    } else {
+      showActivation();
+    }
   } catch (e) {
     console.error(e);
     showActivation("Nie udało się połączyć z systemem aktywacji. Sprawdź konfigurację Firebase.");
   }
 }
 
-async function verifyStoredAccess() {
-  if (!currentUser || !activationCode) return false;
+async function verifyAccessCode(code, uid) {
+  if (!code || !uid) return false;
   try {
-    const ref = db.collection("accessCodes").doc(activationCode);
-    const snap = await ref.get();
+    const normalized = code.trim().toUpperCase();
+    const snap = await db.collection("accessCodes").doc(normalized).get();
     if (!snap.exists) return false;
-
     const data = snap.data();
-    return data.active === true && data.userId === currentUser.uid;
+    return data.active === true && data.userId === uid;
   } catch (e) {
     console.error(e);
     return false;
+  }
+}
+
+async function activateAccess() {
+  const input = document.getElementById("accessCodeInput");
+  const msg = document.getElementById("activationMsg");
+  const code = (input.value || "").trim().toUpperCase();
+
+  if (!code) { msg.textContent = "Wpisz kod dostępu."; return; }
+  if (!currentUser) { msg.textContent = "Trwa łączenie z Firebase. Spróbuj ponownie za chwilę."; return; }
+
+  msg.textContent = "Sprawdzam kod…";
+  input.disabled = true;
+  try {
+    const ref = db.collection("accessCodes").doc(code);
+    const snap = await ref.get();
+    if (!snap.exists) {
+      input.disabled = false;
+      msg.textContent = "❌ Nieprawidłowy kod dostępu.";
+      return;
+    }
+    const data = snap.data();
+    if (data.active !== true) {
+      input.disabled = false;
+      msg.textContent = "❌ Ten kod jest nieaktywny.";
+      return;
+    }
+    if (data.userId && data.userId !== currentUser.uid) {
+      input.disabled = false;
+      msg.textContent = "❌ Ten kod został już wykorzystany.";
+      return;
+    }
+    if (!data.userId) await ref.update({ userId: currentUser.uid });
+
+    activationCode = code;
+    localStorage.setItem("sgAccessCode", code);
+    msg.textContent = "✅ Kod zaakceptowany. Teraz zabezpiecz dostęp kontem.";
+    setTimeout(showSecureAccount, 400);
+  } catch (e) {
+    console.error(e);
+    input.disabled = false;
+    msg.textContent = "❌ Nie udało się aktywować kodu. Sprawdź konfigurację Firebase.";
   }
 }
 
@@ -91,73 +146,98 @@ function showActivation(errorText = "") {
   state.mode = "activation";
   document.getElementById("app").innerHTML = `<div class="card">
     <h1>🔐 Aktywacja dostępu</h1>
-    <div class="small" style="margin-bottom:18px">
-      Wpisz kod dostępu otrzymany do aplikacji. Kod można przypisać tylko do jednego urządzenia/przeglądarki.
-    </div>
+    <div class="small" style="margin-bottom:18px">Wpisz kod dostępu otrzymany do aplikacji.</div>
     ${errorText ? `<div class="feedback badbox" style="margin-bottom:15px">${esc(errorText)}</div>` : ""}
-    <input id="accessCodeInput" autocomplete="off" autocapitalize="characters"
-      placeholder="np. SG-DEMO-001"
-      style="width:100%;padding:15px;border-radius:12px;border:1px solid #33415f;background:#1b2540;color:white;font-size:18px;box-sizing:border-box;text-transform:uppercase">
+    <input id="accessCodeInput" autocomplete="off" autocapitalize="characters" placeholder="np. SG-XXXX-XXXX" style="width:100%;padding:15px;border-radius:12px;border:1px solid #33415f;background:#1b2540;color:white;font-size:18px;box-sizing:border-box;text-transform:uppercase">
     <button onclick="activateAccess()" style="width:100%;margin-top:12px">🔓 Aktywuj dostęp</button>
+    <div style="margin-top:18px;text-align:center"><button class="secondary" onclick="showLoginRecovery()">Mam już konto — zaloguj się</button></div>
     <div id="activationMsg" class="small" style="margin-top:15px"></div>
   </div>`;
 }
 
-async function activateAccess() {
-  const input = document.getElementById("accessCodeInput");
-  const msg = document.getElementById("activationMsg");
-  const code = (input.value || "").trim().toUpperCase();
+function showSecureAccount(message = "") {
+  stopTimer();
+  state.mode = "secure-account";
+  document.getElementById("app").innerHTML = `<div class="card">
+    <h1>🛡️ Zabezpiecz dostęp</h1>
+    <div class="small" style="margin-bottom:18px">Kod został aktywowany. Utwórz konto e-mail i hasło, aby po wyczyszczeniu danych przeglądarki móc odzyskać dostęp. Twoje obecne uprawnienie zostanie zachowane.</div>
+    ${message ? `<div class="feedback badbox" style="margin-bottom:15px">${esc(message)}</div>` : ""}
+    <input id="regEmail" type="email" autocomplete="email" placeholder="E-mail" style="width:100%;padding:15px;border-radius:12px;border:1px solid #33415f;background:#1b2540;color:white;font-size:17px;box-sizing:border-box;margin-bottom:10px">
+    <input id="regPass" type="password" autocomplete="new-password" placeholder="Hasło — minimum 6 znaków" style="width:100%;padding:15px;border-radius:12px;border:1px solid #33415f;background:#1b2540;color:white;font-size:17px;box-sizing:border-box">
+    <button onclick="createAccount()" style="width:100%;margin-top:12px">🛡️ Zabezpiecz moje konto</button>
+    <div id="accountMsg" class="small" style="margin-top:15px"></div>
+  </div>`;
+}
 
-  if (!code) {
-    msg.textContent = "Wpisz kod dostępu.";
-    return;
-  }
+async function createAccount() {
+  const email = (document.getElementById("regEmail").value || "").trim();
+  const pass = document.getElementById("regPass").value || "";
+  const msg = document.getElementById("accountMsg");
+  if (!email || !pass) { msg.textContent = "Wpisz e-mail i hasło."; return; }
+  if (pass.length < 6) { msg.textContent = "Hasło musi mieć co najmniej 6 znaków."; return; }
+  if (!currentUser || !currentUser.isAnonymous) { menu(); return; }
 
-  if (!currentUser) {
-    msg.textContent = "Trwa łączenie z Firebase. Spróbuj ponownie za chwilę.";
-    return;
-  }
-
-  msg.textContent = "Sprawdzam kod…";
-  input.disabled = true;
-
+  msg.textContent = "Tworzę konto…";
   try {
-    const ref = db.collection("accessCodes").doc(code);
-    const snap = await ref.get();
-
-    if (!snap.exists) {
-      input.disabled = false;
-      msg.textContent = "❌ Nieprawidłowy kod dostępu.";
-      return;
-    }
-
-    const data = snap.data();
-
-    if (data.active !== true) {
-      input.disabled = false;
-      msg.textContent = "❌ Ten kod jest nieaktywny.";
-      return;
-    }
-
-    if (data.userId && data.userId !== currentUser.uid) {
-      input.disabled = false;
-      msg.textContent = "❌ Ten kod został już wykorzystany.";
-      return;
-    }
-
-    if (!data.userId) {
-      await ref.update({ userId: currentUser.uid });
-    }
-
-    activationCode = code;
-    localStorage.setItem("sgAccessCode", code);
-
-    msg.textContent = "✅ Dostęp aktywowany.";
+    const credential = firebase.auth.EmailAuthProvider.credential(email, pass);
+    const result = await currentUser.linkWithCredential(credential);
+    currentUser = result.user;
+    msg.textContent = "✅ Konto zabezpieczone.";
     setTimeout(menu, 500);
   } catch (e) {
     console.error(e);
-    input.disabled = false;
-    msg.textContent = "❌ Nie udało się aktywować kodu. Sprawdź reguły Firestore i logowanie anonimowe.";
+    if (e.code === "auth/email-already-in-use") {
+      msg.textContent = "❌ Ten e-mail jest już używany. Jeśli to Twoje konto, użyj opcji logowania poniżej.";
+    } else if (e.code === "auth/invalid-email") {
+      msg.textContent = "❌ Nieprawidłowy adres e-mail.";
+    } else if (e.code === "auth/weak-password") {
+      msg.textContent = "❌ Hasło jest za słabe.";
+    } else {
+      msg.textContent = "❌ Nie udało się zabezpieczyć konta: " + (e.message || e.code);
+    }
+  }
+}
+
+function showLoginRecovery(message = "") {
+  stopTimer();
+  state.mode = "login";
+  document.getElementById("app").innerHTML = `<div class="card">
+    <h1>🔑 Odzyskaj dostęp</h1>
+    <div class="small" style="margin-bottom:18px">Zaloguj się e-mailem i hasłem ustawionym wcześniej, a następnie podaj swój kod dostępu.</div>
+    ${message ? `<div class="feedback badbox" style="margin-bottom:15px">${esc(message)}</div>` : ""}
+    <input id="loginEmail" type="email" autocomplete="email" placeholder="E-mail" style="width:100%;padding:15px;border-radius:12px;border:1px solid #33415f;background:#1b2540;color:white;font-size:17px;box-sizing:border-box;margin-bottom:10px">
+    <input id="loginPass" type="password" autocomplete="current-password" placeholder="Hasło" style="width:100%;padding:15px;border-radius:12px;border:1px solid #33415f;background:#1b2540;color:white;font-size:17px;box-sizing:border-box;margin-bottom:10px">
+    <input id="loginCode" autocomplete="off" autocapitalize="characters" placeholder="Kod dostępu" style="width:100%;padding:15px;border-radius:12px;border:1px solid #33415f;background:#1b2540;color:white;font-size:17px;box-sizing:border-box;text-transform:uppercase">
+    <button onclick="loginAndRecover()" style="width:100%;margin-top:12px">🔓 Zaloguj i odzyskaj dostęp</button>
+    <div style="margin-top:18px;text-align:center"><button class="secondary" onclick="showActivation()">← Wróć do aktywacji kodem</button></div>
+    <div id="loginMsg" class="small" style="margin-top:15px"></div>
+  </div>`;
+}
+
+async function loginAndRecover() {
+  const email = (document.getElementById("loginEmail").value || "").trim();
+  const pass = document.getElementById("loginPass").value || "";
+  const code = (document.getElementById("loginCode").value || "").trim().toUpperCase();
+  const msg = document.getElementById("loginMsg");
+  if (!email || !pass || !code) { msg.textContent = "Wypełnij e-mail, hasło i kod dostępu."; return; }
+  msg.textContent = "Loguję…";
+  try {
+    const result = await auth.signInWithEmailAndPassword(email, pass);
+    currentUser = result.user;
+    const ok = await verifyAccessCode(code, currentUser.uid);
+    if (!ok) {
+      await auth.signOut();
+      currentUser = null;
+      msg.textContent = "❌ Konto lub kod dostępu nie pasują do siebie.";
+      return;
+    }
+    activationCode = code;
+    localStorage.setItem("sgAccessCode", code);
+    msg.textContent = "✅ Dostęp odzyskany.";
+    setTimeout(menu, 500);
+  } catch (e) {
+    console.error(e);
+    msg.textContent = "❌ Nieprawidłowy e-mail lub hasło.";
   }
 }
 
