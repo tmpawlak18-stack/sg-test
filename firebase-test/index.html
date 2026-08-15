@@ -170,14 +170,37 @@ function showActivation(errorText = "") {
 function showSecureAccount(message = "") {
   stopTimer();
   state.mode = "secure-account";
+
   document.getElementById("app").innerHTML = `<div class="card">
-    <h1>🛡️ Zabezpiecz dostęp</h1>
-    <div class="small" style="margin-bottom:18px">Kod został aktywowany. Utwórz konto e-mail i hasło, aby po wyczyszczeniu danych przeglądarki móc odzyskać dostęp. Twoje obecne uprawnienie zostanie zachowane.</div>
-    ${message ? `<div class="feedback badbox" style="margin-bottom:15px">${esc(message)}</div>` : ""}
-    <input id="regEmail" type="email" autocomplete="email" placeholder="E-mail" style="width:100%;padding:15px;border-radius:12px;border:1px solid #33415f;background:#1b2540;color:white;font-size:17px;box-sizing:border-box;margin-bottom:10px">
-    <input id="regPass" type="password" autocomplete="new-password" placeholder="Hasło — minimum 6 znaków" style="width:100%;padding:15px;border-radius:12px;border:1px solid #33415f;background:#1b2540;color:white;font-size:17px;box-sizing:border-box">
-    <button onclick="createAccount()" style="width:100%;margin-top:12px">🛡️ Zabezpiecz moje konto</button>
-    <div id="accountMsg" class="small" style="margin-top:15px"></div>
+
+  <h1>🛡️ Zabezpiecz dostęp</h1>
+
+  <div class="small" style="margin-bottom:18px">
+    Kod został aktywowany. Utwórz konto e-mail i hasło, aby po wyczyszczeniu danych przeglądarki móc odzyskać dostęp. Twoje obecne uprawnienie zostanie zachowane.
+  </div>
+
+  ${message ? `<div class="feedback badbox" style="margin-bottom:15px">${esc(message)}</div>` : ""}
+
+  <input id="regEmail" type="email" autocomplete="email"
+    placeholder="E-mail"
+    style="width:100%;padding:15px;border-radius:12px;border:1px solid #33415f;background:#1b2540;color:white;font-size:17px;box-sizing:border-box;margin-bottom:10px">
+
+  <input id="regPass" type="password" autocomplete="new-password"
+    placeholder="Hasło — minimum 6 znaków"
+    style="width:100%;padding:15px;border-radius:12px;border:1px solid #33415f;background:#1b2540;color:white;font-size:17px;box-sizing:border-box">
+
+  <button onclick="createAccount()" style="width:100%;margin-top:12px">
+    🛡️ Zabezpiecz moje konto
+  </button>
+
+  <div style="margin-top:18px;text-align:center">
+    <button class="secondary" onclick="showLoginRecovery()">
+      🔑 Mam już konto — zaloguj się
+    </button>
+  </div>
+
+  <div id="accountMsg" class="small" style="margin-top:15px"></div>
+
   </div>`;
 }
 
