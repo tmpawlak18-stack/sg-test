@@ -8,6 +8,11 @@
   "theme_color": "#0b1020",
   "description": "Test wiedzy do Straży Granicznej — 200 pytań, nauka, egzamin 10 pytań i powtórka błędów.",
   "icons": [
-    {"src":"./icon-180.png","sizes":"180x180","type":"image/png"}
+    {
+      "src": "./icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
   ]
 }
