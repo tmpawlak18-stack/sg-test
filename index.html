@@ -289,7 +289,7 @@ function updateTimer(){
  const left=Math.max(0,state.examDeadline-Date.now());
  const totalSec=Math.ceil(left/1000);
  const el=document.getElementById("timer");
- if(el){const m=String(Math.floor(totalSec/60)).padStart(2,"0"),sec=String(totalSec%60).padStart(2,"0");el.textContent=`⏱️ ${m}:${sec}`;} const top=document.getElementById("topTimer"); if(top){const m=String(Math.floor(totalSec/60)).padStart(2,"0"),sec=String(totalSec%60).padStart(2,"0");top.textContent=`${m}:${sec}`;}
+ if(el){const m=String(Math.floor(totalSec/60)).padStart(2,"0"),sec=String(totalSec%60).padStart(2,"0");el.textContent=`⏱️ ${m}:${sec}`;}
   const top=document.getElementById("topTimer"); if(top){const m=String(Math.floor(totalSec/60)).padStart(2,"0"),sec=String(totalSec%60).padStart(2,"0");top.textContent=`${m}:${sec}`;}
  if(left<=0){stopTimer();finish(true)}
 }
