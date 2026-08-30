@@ -1,10 +1,11 @@
-const CACHE_NAME = "sg-test-v4";
+const CACHE_NAME = "sg-test-v5";
 
 const LOCAL_ASSETS = [
   "./",
   "./index.html",
   "./manifest.webmanifest",
-  "./icon-180.png"
+  "./icon-180.png",
+  "./testrekrut-sg-bg-clean.jpg"
 ];
 
 self.addEventListener("install", event => {
