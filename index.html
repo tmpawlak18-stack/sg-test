@@ -342,6 +342,7 @@ function render(){
  <div class="controls" style="width:min(650px,calc(100% - 32px));margin:14px auto 0">
  <button class="secondary" onclick="previousQuestion()" ${state.pos===0?"disabled":""}>‹ &nbsp; POPRZEDNIE</button>
  <button id="next" class="hidden" onclick="next()">NASTĘPNE &nbsp; ›</button>
+ <button class="secondary" onclick="menu()">☰ &nbsp; MENU</button>
  </div>`}
 function previousQuestion(){
  if(state.pos<=0)return;
