@@ -336,7 +336,6 @@ function render(){
  <div class="question-label">Pytanie ${state.pos+1}</div>
  <div class="q">${esc(x.q)}</div>
  <div class="answers">${order.map((idx,i)=>`<button class="ans" id="a${idx}" onclick="answer(${idx})"><b>${labels[i]}</b><span>${esc(x.a[idx])}</span></button>`).join("")}</div>
- <div style="text-align:center;margin-top:16px"><button class="secondary" style="border-color:#9b7b16;color:#ffd84d;background:rgba(30,25,8,.42)" onclick="toggleBookmark(${x.id})">🔖 &nbsp; OZNACZ DO POWROTU</button></div>
  <div id="feedback"></div>
  </div>
  <div class="controls" style="width:min(650px,calc(100% - 32px));margin:14px auto 0">
@@ -349,11 +348,6 @@ function previousQuestion(){
  state.pos--;
  state.answered=false;
  render();
-}
-function toggleBookmark(id){
- if(!state.bookmarks)state.bookmarks=[];
- const i=state.bookmarks.indexOf(id);
- if(i>=0)state.bookmarks.splice(i,1);else state.bookmarks.push(id);
 }
 function answer(idx){
 if(state.answered)return;
