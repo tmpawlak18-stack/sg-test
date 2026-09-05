@@ -221,6 +221,58 @@ input{font:inherit;color:#fff;background:#09192d;border:1px solid #2b4564;outlin
   .menu button{min-height:58px!important;font-size:16px!important}
 }
 
+
+/* ===== CONTACT BUTTONS ===== */
+.contact-box{
+  width:min(650px,calc(100% - 32px));
+  margin:14px auto 0;
+  padding:14px 16px;
+  background:rgba(4,17,31,.82);
+  border:1px solid rgba(70,94,117,.65);
+  border-radius:14px;
+  backdrop-filter:blur(10px);
+  text-align:center;
+}
+.contact-title{
+  color:#c8d3df;
+  font-size:12px;
+  font-weight:800;
+  margin-bottom:10px;
+}
+.contact-buttons{
+  display:flex;
+  gap:10px;
+}
+.contact-btn{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:44px;
+  padding:10px 12px;
+  border-radius:10px;
+  text-decoration:none;
+  color:#fff!important;
+  font-size:14px;
+  font-weight:850;
+  background:#0b1b30;
+  transition:.15s;
+}
+.contact-btn:hover{transform:translateY(-1px);filter:brightness(1.08)}
+.contact-btn.whatsapp{border:1px solid #1fa45c}
+.contact-btn.messenger{border:1px solid #5278b8}
+.contact-note{
+  color:#8292a5;
+  font-size:10px;
+  margin-top:8px;
+}
+@media(max-width:520px){
+  .contact-box{width:calc(100% - 20px);padding:12px}
+  .contact-buttons{gap:8px}
+  .contact-btn{font-size:13px;min-height:46px}
+}
+
 </style>
 </head>
 <body><div class="wrap">
@@ -229,6 +281,16 @@ input{font:inherit;color:#fff;background:#09192d;border:1px solid #2b4564;outlin
   <div class="topchips"><div class="chip greenchip"><span>Baza</span><b>200 pytań</b></div><div class="chip"><span>Tryb</span><b>15 min / 10 pytań</b></div></div>
 </div>
 <div id="app"></div>
+
+<div class="contact-box">
+  <div class="contact-title">MASZ PYTANIE? SKONTAKTUJ SIĘ</div>
+  <div class="contact-buttons">
+    <a class="contact-btn whatsapp" href="https://wa.me/48608737181" target="_blank" rel="noopener noreferrer">🟢 WhatsApp</a>
+    <a class="contact-btn messenger" href="https://m.me/tomasz.pawlak.54" target="_blank" rel="noopener noreferrer">🔵 Messenger</a>
+  </div>
+  <div class="contact-note">Pytania dotyczące TESTREKRUT, zakupu i aktywacji dostępu.</div>
+</div>
+
 <div class="featurebar">
   <div class="feature"><div class="ico">✓</div><div><strong>Aktualna baza</strong><span>Pytania zgodne z wymaganiami SG</span></div></div>
   <div class="feature"><div class="ico">↻</div><div><strong>Skuteczna nauka</strong><span>Trenuj i analizuj swoje błędy</span></div></div>
