@@ -35,6 +35,23 @@ body{
   -webkit-user-drag:none;
 }
 
+/* Ukrywamy wyłącznie nieaktywne zakładki.
+   Logo TESTREKRUT pozostaje widoczne. */
+.top-nav-cover{
+  position:absolute;
+  z-index:5;
+  top:0;
+  right:0;
+  width:38%;
+  height:12.5%;
+  background:linear-gradient(
+    180deg,
+    rgba(5,15,23,.97) 0%,
+    rgba(5,15,23,.90) 68%,
+    rgba(5,15,23,0) 100%
+  );
+  pointer-events:none;
+}
 
 /* Klikalne karty */
 .hit{
@@ -149,14 +166,14 @@ body{
 }
 
 .contact-btn{
-  height:2.35vw;
-  min-width:8vw;
-  padding:0 .9vw;
+  height:2.6vw;
+  min-width:8.75vw;
+  padding:0 1.1vw;
   box-sizing:border-box;
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap:.45vw;
+  gap:.55vw;
   border-radius:6px;
   color:#fff;
   text-decoration:none;
@@ -172,8 +189,8 @@ body{
 }
 
 .contact-btn svg{
-  width:1.15vw;
-  height:1.15vw;
+  width:1.3vw;
+  height:1.3vw;
   flex:none;
 }
 
@@ -194,7 +211,6 @@ body{
   line-height:1.45;
   white-space:nowrap;
 }
-
 
 @media(max-width:1250px){
   .site-footer{
@@ -221,45 +237,52 @@ body{
   html,body{
     width:100%;
     min-width:0;
+    margin:0;
+    padding:0;
     overflow-x:hidden;
   }
 
   .stage{
-    width:100%;
-    min-height:0;
+    position:relative;
+    width:100vw;
+    max-width:100vw;
+    min-width:0;
+    margin:0;
     overflow:hidden;
   }
 
   /*
-    Na telefonie desktopowa grafika jest kadrowana do centralnej,
-    czytelnej części zamiast zmniejszana do szerokości kilku setek pikseli.
-    Dzięki temu główny nagłówek i karty pozostają znacznie bardziej czytelne.
+    Telefon: pokazujemy CAŁĄ grafikę w szerokości ekranu.
+    Nie używamy już 205vw/225vw, które powodowały obcinanie lewej i prawej strony.
   */
   .design{
-    width:205vw;
-    max-width:none;
-    height:auto;
-    margin-left:-52.5vw;
+    display:block;
+    width:100vw !important;
+    max-width:100vw !important;
+    height:auto !important;
+    margin:0 !important;
   }
 
   .hit{
-    border-radius:10px;
+    border-radius:8px;
   }
 
+  /* Pozycje klikanych kart pozostają zgodne z grafiką. */
   .sg-card{
-    left:30.1%;
+    left:3.25%;
     top:45.25%;
     width:35.7%;
     height:31.4%;
   }
 
   .police-card{
-    left:67.1%;
+    left:40.25%;
     top:45.25%;
     width:35.7%;
     height:31.4%;
   }
 
+  /* Niska, prosta stopka mobilna. */
   .site-footer{
     position:absolute;
     left:0;
@@ -271,6 +294,7 @@ body{
     justify-content:space-between;
     gap:8px;
     padding:0 10px;
+    background:#031827;
   }
 
   .footer-brand{
@@ -284,18 +308,15 @@ body{
   }
 
   .footer-divider,
-  .footer-platform{
+  .footer-platform,
+  .mail-icon,
+  .contact-text{
     display:none;
   }
 
   .footer-contact{
     flex:0 0 auto;
     gap:6px;
-  }
-
-  .mail-icon,
-  .contact-text{
-    display:none;
   }
 
   .contact-buttons{
@@ -305,7 +326,7 @@ body{
   .contact-btn{
     width:40px;
     min-width:40px;
-    height:38px;
+    height:36px;
     padding:0;
     border-radius:6px;
   }
@@ -315,8 +336,8 @@ body{
   }
 
   .contact-btn svg{
-    width:20px;
-    height:20px;
+    width:19px;
+    height:19px;
   }
 
   .footer-copy{
@@ -328,11 +349,6 @@ body{
 }
 
 @media(max-width:420px){
-  .design{
-    width:225vw;
-    margin-left:-62.5vw;
-  }
-
   .site-footer{
     height:54px;
     padding:0 8px;
@@ -343,14 +359,14 @@ body{
   }
 
   .contact-btn{
-    width:36px;
-    min-width:36px;
-    height:34px;
+    width:34px;
+    min-width:34px;
+    height:32px;
   }
 
   .contact-btn svg{
-    width:18px;
-    height:18px;
+    width:17px;
+    height:17px;
   }
 
   .footer-copy{
@@ -377,7 +393,11 @@ body{
     src="homepage-design-clean.png"
     alt="TESTREKRUT — przygotuj się do rekrutacji"
   >
-<!-- Klikalne karty -->
+
+  <!-- Ukrywa nieaktywne elementy nawigacji w grafice -->
+  <div class="top-nav-cover" aria-hidden="true"></div>
+
+  <!-- Klikalne karty -->
   <a
     class="hit sg-card"
     href="/SG/"
