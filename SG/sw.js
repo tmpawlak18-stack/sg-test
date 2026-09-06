@@ -1,4 +1,4 @@
-const CACHE = "testrekrut-v3";
+const CACHE = "testrekrut-v1";
 
 self.addEventListener("install", event => {
   self.skipWaiting();
