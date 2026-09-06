@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TESTREKRUT — Przygotuj się do rekrutacji</title>
-<meta name="description" content="TESTREKRUT — platforma przygotowująca do testów wiedzy do Straży Granicznej i Policji.">
+<title>TESTREKRUT 2026 — Przygotuj się do rekrutacji</title>
+<meta name="description" content="TESTREKRUT — platforma przygotowująca do testów rekrutacyjnych Straży Granicznej i Policji.">
 
 <style>
 *{box-sizing:border-box}
@@ -23,7 +23,7 @@ body{
 .stage{
   position:relative;
   width:100vw;
-  margin:0;
+  margin:0 auto;
   line-height:0;
 }
 
@@ -35,7 +35,7 @@ body{
   -webkit-user-drag:none;
 }
 
-/* Ukrywamy wyłącznie nieaktywne zakładki.
+/* Zakrywamy wyłącznie nieaktywne zakładki u góry po prawej.
    Logo TESTREKRUT pozostaje widoczne. */
 .top-nav-cover{
   position:absolute;
@@ -43,11 +43,11 @@ body{
   top:0;
   right:0;
   width:38%;
-  height:12.5%;
+  height:11%;
   background:linear-gradient(
     180deg,
     rgba(5,15,23,.97) 0%,
-    rgba(5,15,23,.90) 68%,
+    rgba(5,15,23,.88) 65%,
     rgba(5,15,23,0) 100%
   );
   pointer-events:none;
@@ -69,51 +69,49 @@ body{
 
 .sg-card{
   left:3.25%;
-  top:45.25%;
+  top:40.2%;
   width:35.7%;
-  height:31.4%;
+  height:30.5%;
 }
 
 .police-card{
   left:40.25%;
-  top:45.25%;
+  top:40.2%;
   width:35.7%;
-  height:31.4%;
+  height:30.5%;
 }
 
 /*
-  TYLKO PRZYCISKI KONTAKTOWE.
-  Bez czarnej stopki, bez dodatkowego panelu.
-  Są ustawione bezpośrednio po tekście
-  „Masz pytanie? Skontaktuj się z nami”
-  znajdującym się w grafice.
+  Przyciski kontaktowe są jedynymi elementami HTML w stopce.
+  Są umieszczone w pustym miejscu pomiędzy tekstem kontaktowym
+  a prawą częścią stopki z copyrightem.
 */
 .contact-buttons{
   position:absolute;
   z-index:30;
-  right:3.5%;
-  bottom:1.65%;
+  right:13.7%;
+  bottom:1.55%;
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:7px;
   line-height:normal;
 }
 
 .contact-btn{
-  height:34px;
-  min-width:105px;
-  padding:0 12px;
+  height:31px;
+  min-width:82px;
+  padding:0 10px;
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap:7px;
-  border-radius:8px;
+  gap:5px;
+  border-radius:7px;
   color:#fff;
   text-decoration:none;
-  font-size:10px;
+  font-size:9px;
   font-weight:800;
-  letter-spacing:.15px;
-  box-shadow:0 4px 14px rgba(0,0,0,.25);
+  letter-spacing:.1px;
+  box-shadow:0 3px 10px rgba(0,0,0,.24);
   transition:transform .15s ease,filter .15s ease;
 }
 
@@ -123,60 +121,59 @@ body{
 }
 
 .contact-btn svg{
-  width:16px;
-  height:16px;
+  width:14px;
+  height:14px;
   flex:none;
 }
 
 .contact-btn.whatsapp{
-  background:linear-gradient(135deg,#08783f,#0a9b54);
+  background:#08783f;
   border:1px solid #39d57d;
 }
 
 .contact-btn.messenger{
-  background:linear-gradient(135deg,#1557c5,#2477ee);
+  background:#1557c5;
   border:1px solid #5794ff;
 }
 
-/* Na węższych ekranach przyciski zostają małe i układają się obok siebie. */
-@media(max-width:900px){
+@media(max-width:1000px){
   .contact-buttons{
-    right:2.5%;
-    bottom:1.5%;
-    gap:6px;
-  }
-
-  .contact-btn{
-    height:32px;
-    min-width:94px;
-    padding:0 9px;
-    font-size:9px;
-  }
-
-  .contact-btn svg{
-    width:15px;
-    height:15px;
-  }
-}
-
-@media(max-width:600px){
-  .contact-buttons{
-    right:2%;
-    bottom:1.3%;
+    right:13%;
+    bottom:1.45%;
     gap:5px;
   }
 
   .contact-btn{
-    height:29px;
-    min-width:82px;
-    padding:0 7px;
+    min-width:72px;
+    height:28px;
+    padding:0 8px;
     font-size:8px;
-    gap:5px;
   }
 
   .contact-btn svg{
     width:13px;
     height:13px;
+  }
+}
+
+@media(max-width:650px){
+  .contact-buttons{
+    right:10%;
+    bottom:1.2%;
+    gap:4px;
+  }
+
+  .contact-btn{
+    min-width:65px;
+    height:25px;
+    padding:0 6px;
+    border-radius:6px;
+    font-size:7px;
+  }
+
+  .contact-btn svg{
+    width:11px;
+    height:11px;
   }
 }
 </style>
@@ -189,27 +186,25 @@ body{
   <img
     class="design"
     src="homepage-design.png"
-    alt="TESTREKRUT — przygotuj się do rekrutacji"
+    alt="TESTREKRUT 2026 — przygotuj się do rekrutacji"
   >
 
-  <!-- Nieaktywne zakładki są ukryte -->
   <div class="top-nav-cover" aria-hidden="true"></div>
 
-  <!-- Klikalna karta Straży Granicznej -->
   <a
     class="hit sg-card"
     href="/SG/"
     aria-label="Przejdź do testu Straż Graniczna">
   </a>
 
-  <!-- Klikalna karta Policji -->
   <a
     class="hit police-card"
     href="/policja/"
     aria-label="Przejdź do testu Policja">
   </a>
 
-  <!-- Tylko prawdziwe przyciski kontaktowe -->
+  <!-- Tylko przyciski — tekst „Masz pytanie? Skontaktuj się z nami”
+       oraz copyright pozostają w grafice. -->
   <div class="contact-buttons">
 
     <a
@@ -218,7 +213,6 @@ body{
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Skontaktuj się przez WhatsApp">
-
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path fill="currentColor" d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.8L.2 24l6.6-1.7a11.8 11.8 0 0 0 5.3 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.1-1.2-6.1-3.5-8.3ZM12.2 21.5h-.1c-1.7 0-3.4-.5-4.8-1.3l-.3-.2-3.9 1 1-3.8-.2-.3a9.7 9.7 0 1 1 8.3 4.6Zm5.3-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.6-1.4-3.7-3.2-.3-.5.3-.5.8-1.7.1-.2.1-.4 0-.6-.1-.2-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1-1.1 2.5s1.1 2.9 1.3 3.1c.2.2 2.2 3.4 5.4 4.7.8.3 1.4.5 1.8.6.8.2 1.5.2 2 .1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.1-1.4-.1-.2-.3-.3-.6-.4Z"/>
       </svg>
@@ -231,7 +225,6 @@ body{
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Skontaktuj się przez Messenger">
-
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path fill="currentColor" d="M12 1.8C5.8 1.8 1 6.3 1 12c0 3.2 1.6 6.1 4.3 8.1V24l3.9-2.1c.9.2 1.8.3 2.8.3 6.2 0 11-4.5 11-10.2S18.2 1.8 12 1.8Zm1 13.6-2.8-3-5.5 3 6-6.4 2.8 3 5.4-3-5.9 6.4Z"/>
       </svg>
