@@ -35,23 +35,6 @@ body{
   -webkit-user-drag:none;
 }
 
-/* Ukrywamy wyłącznie nieaktywne zakładki.
-   Logo TESTREKRUT pozostaje widoczne. */
-.top-nav-cover{
-  position:absolute;
-  z-index:5;
-  top:0;
-  right:0;
-  width:38%;
-  height:12.5%;
-  background:linear-gradient(
-    180deg,
-    rgba(5,15,23,.97) 0%,
-    rgba(5,15,23,.90) 68%,
-    rgba(5,15,23,0) 100%
-  );
-  pointer-events:none;
-}
 
 /* Klikalne karty */
 .hit{
@@ -273,11 +256,7 @@ body{
     src="homepage-design-clean.png"
     alt="TESTREKRUT — przygotuj się do rekrutacji"
   >
-
-  <!-- Ukrywa nieaktywne elementy nawigacji w grafice -->
-  <div class="top-nav-cover" aria-hidden="true"></div>
-
-  <!-- Klikalne karty -->
+<!-- Klikalne karty -->
   <a
     class="hit sg-card"
     href="/SG/"
