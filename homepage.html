@@ -5,26 +5,200 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TESTREKRUT — Przygotuj się do rekrutacji</title>
 <meta name="description" content="TESTREKRUT — platforma przygotowująca do testów wiedzy do Straży Granicznej i Policji.">
+
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;background:#061019}
 body{font-family:Arial,Helvetica,sans-serif;overflow-x:hidden}
-.stage{position:relative;width:100%;max-width:1536px;margin:0 auto;line-height:0}
-.design{display:block;width:100%;height:auto;user-select:none;-webkit-user-drag:none}
-.hit{position:absolute;display:block;z-index:5;cursor:pointer;border-radius:20px}
+.stage{
+  position:relative;
+  width:100vw;
+  max-width:none;
+  margin:0;
+  line-height:0;
+}
+.design{
+  display:block;
+  width:100vw;
+  height:auto;
+  min-height:100vh;
+  object-fit:cover;
+  user-select:none;
+  -webkit-user-drag:none;
+}
+
+/* Usunięcie nieaktywnych zakładek z górnej części grafiki */
+.top-nav-cover{
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height:13.2%;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(7,19,29,.96) 0%,
+      rgba(7,19,29,.78) 55%,
+      rgba(7,19,29,0) 100%
+    );
+  z-index:5;
+  pointer-events:none;
+}
+
+/* Zachowujemy logo TESTREKRUT z grafiki */
+.top-nav-cover::after{
+  content:"";
+  position:absolute;
+  right:4%;
+  top:2.8%;
+  width:31%;
+  height:7%;
+  background:rgba(5,14,22,.92);
+  border-radius:0 0 12px 12px;
+}
+
+/* Przywrócenie czytelnego napisu POLICJA w emblemacie karty */
+.police-emblem-fix{
+  position:absolute;
+  left:55.35%;
+  top:58.2%;
+  width:5.1%;
+  height:7.0%;
+  z-index:9;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#18212b;
+  font-size:clamp(7px,.75vw,12px);
+  font-weight:900;
+  letter-spacing:.35px;
+  line-height:1;
+  text-align:center;
+  text-shadow:0 0 1px rgba(255,255,255,.9);
+  pointer-events:none;
+}
+
+/* Karty są klikalne */
+.hit{
+  position:absolute;
+  display:block;
+  z-index:10;
+  cursor:pointer;
+  border-radius:20px;
+}
 .hit:hover{background:rgba(255,255,255,.025)}
 .sg-card{left:3.25%;top:45.25%;width:35.7%;height:31.4%}
 .police-card{left:40.25%;top:45.25%;width:35.7%;height:31.4%}
+
+/* Kontakt */
+.contact-box{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  z-index:100;
+  width:275px;
+  padding:14px;
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:14px;
+  background:rgba(6,16,25,.94);
+  backdrop-filter:blur(14px);
+  box-shadow:0 14px 45px rgba(0,0,0,.48);
+  line-height:normal;
+}
+.contact-title{
+  color:#e3ebf1;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:1.25px;
+  text-align:center;
+  margin-bottom:10px;
+}
+.contact-buttons{display:flex;gap:8px}
+.contact-btn{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:39px;
+  padding:0 9px;
+  border-radius:9px;
+  background:#0b1b30;
+  color:#fff;
+  text-decoration:none;
+  font-size:11px;
+  font-weight:800;
+  transition:transform .15s,filter .15s;
+}
+.contact-btn:hover{transform:translateY(-1px);filter:brightness(1.1)}
+.contact-btn.whatsapp{border:1px solid #1fa45c}
+.contact-btn.messenger{border:1px solid #5278b8}
+.contact-note{
+  color:#8292a5;
+  font-size:9px;
+  text-align:center;
+  line-height:1.35;
+  margin-top:8px;
+}
+
 @media(max-width:700px){
-  .stage{min-width:760px;margin-left:50%;transform:translateX(-50%)}
+  .contact-box{
+    right:10px;
+    bottom:10px;
+    left:10px;
+    width:auto;
+    max-width:none;
+  }
 }
 </style>
 </head>
+
 <body>
 <div class="stage">
-<img class="design" src="homepage-design.png" alt="TESTREKRUT — przygotowanie do rekrutacji">
-<a class="hit sg-card" href="/SG/" aria-label="Przejdź do testu Straż Graniczna"></a>
-<a class="hit police-card" href="/policja/" aria-label="Przejdź do testu Policja"></a>
+
+  <img
+    class="design"
+    src="homepage-design.png"
+    alt="TESTREKRUT — przygotuj się do rekrutacji"
+  >
+
+  <div class="top-nav-cover" aria-hidden="true"></div>
+
+  <!-- Korekta emblematu Policji w karcie -->
+  <div class="police-emblem-fix" aria-hidden="true">POLICJA</div>
+
+  <a class="hit sg-card"
+     href="/SG/"
+     aria-label="Przejdź do testu Straż Graniczna"></a>
+
+  <a class="hit police-card"
+     href="/policja/"
+     aria-label="Przejdź do testu Policja"></a>
+
 </div>
+
+<div class="contact-box">
+  <div class="contact-title">MASZ PYTANIE? SKONTAKTUJ SIĘ</div>
+
+  <div class="contact-buttons">
+    <a class="contact-btn whatsapp"
+       href="https://wa.me/48608737181"
+       target="_blank"
+       rel="noopener noreferrer">
+      🟢 WhatsApp
+    </a>
+
+    <a class="contact-btn messenger"
+       href="https://m.me/tomasz.pawlak.54"
+       target="_blank"
+       rel="noopener noreferrer">
+      🔵 Messenger
+    </a>
+  </div>
+
+  <div class="contact-note">
+    Pytania dotyczące TESTREKRUT, zakupu i aktywacji dostępu.
+  </div>
+</div>
+
 </body>
 </html>
