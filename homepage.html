@@ -1,12 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>TESTREKRUT – Testy do Straży Granicznej i Policji</title>
-  <meta name="description" content="TESTREKRUT – przygotuj się do testów wiedzy podczas rekrutacji do Straży Granicznej i Policji.">
+  <title>TESTREKRUT — Przygotuj się do rekrutacji</title>
+
+  <meta name="description"
+        content="TESTREKRUT — platforma przygotowująca do testów wiedzy podczas rekrutacji do Straży Granicznej i Policji.">
 
   <style>
     * {
@@ -15,14 +16,38 @@
       padding: 0;
     }
 
+    :root {
+      --bg: #050a10;
+      --bg2: #09121b;
+      --card: #0b151f;
+      --border: rgba(255,255,255,.10);
+      --text: #f4f7fa;
+      --muted: #8c9aa7;
+      --blue: #55b9ff;
+      --blue2: #167bc1;
+      --green: #46d2a2;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
-      font-family: Arial, Helvetica, sans-serif;
       min-height: 100vh;
-      color: #f5f7fa;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      color: var(--text);
       background:
-        radial-gradient(circle at 15% 20%, rgba(30, 90, 150, 0.25), transparent 35%),
-        radial-gradient(circle at 85% 80%, rgba(0, 120, 100, 0.18), transparent 35%),
-        linear-gradient(135deg, #071018 0%, #0b1620 50%, #061019 100%);
+        radial-gradient(
+          circle at 50% -15%,
+          rgba(38, 132, 199, .24),
+          transparent 42%
+        ),
+        radial-gradient(
+          circle at 100% 70%,
+          rgba(26, 98, 142, .13),
+          transparent 35%
+        ),
+        var(--bg);
       overflow-x: hidden;
     }
 
@@ -30,282 +55,406 @@
       content: "";
       position: fixed;
       inset: 0;
-      background:
-        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
-      background-size: 40px 40px;
       pointer-events: none;
-      opacity: 0.35;
+      opacity: .22;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size: 44px 44px;
     }
 
-    .container {
-      width: min(1100px, calc(100% - 40px));
-      margin: 0 auto;
+    .page {
       position: relative;
       z-index: 1;
+      width: min(1180px, calc(100% - 40px));
+      margin: auto;
     }
+
+    /* HEADER */
 
     header {
-      padding: 28px 0;
+      height: 82px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255,255,255,.07);
     }
 
-    .logo {
-      font-size: 24px;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-decoration: none;
+      color: white;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(85,185,255,.35);
+      border-radius: 9px;
+      background: rgba(85,185,255,.07);
+      color: var(--blue);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+
+    .brand-name {
+      font-size: 18px;
       font-weight: 800;
       letter-spacing: 1.5px;
     }
 
-    .logo span {
-      color: #6fc7ff;
+    .brand-name span {
+      color: var(--blue);
     }
 
-    .header-badge {
-      font-size: 13px;
-      color: #aebbc7;
-      border: 1px solid rgba(255,255,255,0.12);
-      padding: 8px 13px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.035);
+    .header-label {
+      color: #71808d;
+      font-size: 11px;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
     }
+
+    /* HERO */
 
     .hero {
+      padding: 105px 0 75px;
       text-align: center;
-      padding: 75px 0 55px;
     }
 
     .eyebrow {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 25px;
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before,
+    .eyebrow::after {
+      content: "";
+      width: 22px;
+      height: 1px;
+      background: rgba(85,185,255,.55);
+    }
+
+    .hero h1 {
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: clamp(46px, 7vw, 82px);
+      line-height: .98;
+      letter-spacing: -4px;
+      font-weight: 850;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: transparent;
+      background: linear-gradient(
+        100deg,
+        #ffffff 10%,
+        #72c8ff 80%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .hero-description {
+      max-width: 650px;
+      margin: 27px auto 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    /* SECTION TITLE */
+
+    .choose-title {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 20px;
+      color: #6f7e8b;
+      font-size: 10px;
+      font-weight: 800;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: #78caff;
-      margin-bottom: 20px;
     }
 
-    h1 {
-      font-size: clamp(42px, 7vw, 78px);
-      line-height: 0.98;
-      letter-spacing: -3px;
-      margin-bottom: 25px;
+    .choose-title::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: rgba(255,255,255,.07);
     }
 
-    h1 span {
-      display: block;
-      background: linear-gradient(90deg, #ffffff, #79caff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-text {
-      max-width: 690px;
-      margin: 0 auto;
-      color: #aebbc7;
-      font-size: 18px;
-      line-height: 1.65;
-    }
+    /* CARDS */
 
     .tests {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      max-width: 900px;
-      margin: 30px auto 70px;
+      gap: 18px;
+      margin-bottom: 80px;
     }
 
     .test-card {
       position: relative;
+      min-height: 360px;
+      display: flex;
+      flex-direction: column;
       padding: 34px;
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,0.12);
-      background: rgba(13, 25, 36, 0.82);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.28);
-      transition: transform 0.2s ease, border-color 0.2s ease;
       overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background:
+        linear-gradient(
+          145deg,
+          rgba(18,32,45,.96),
+          rgba(7,15,22,.98)
+        );
+      text-decoration: none;
+      color: white;
+      transition:
+        transform .25s ease,
+        border-color .25s ease,
+        box-shadow .25s ease;
     }
 
     .test-card:hover {
       transform: translateY(-5px);
-      border-color: rgba(120, 202, 255, 0.45);
+      border-color: rgba(85,185,255,.38);
+      box-shadow:
+        0 25px 70px rgba(0,0,0,.35),
+        0 0 35px rgba(45,150,215,.07);
     }
 
-    .test-card::after {
+    .test-card::before {
       content: "";
       position: absolute;
-      width: 180px;
-      height: 180px;
+      width: 330px;
+      height: 330px;
+      right: -170px;
+      bottom: -180px;
       border-radius: 50%;
-      right: -80px;
-      top: -80px;
-      background: rgba(100, 190, 255, 0.08);
+      background: rgba(58,167,230,.07);
+      transition: transform .4s ease;
     }
 
-    .icon {
-      width: 58px;
-      height: 58px;
+    .test-card:hover::before {
+      transform: scale(1.15);
+    }
+
+    .card-top {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .service-number {
+      color: #566674;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    .service-icon {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 14px;
+      background: rgba(255,255,255,.035);
+    }
+
+    .service-icon svg {
+      width: 27px;
+      height: 27px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.6;
+    }
+
+    .sg .service-icon {
+      color: #67c4ff;
+    }
+
+    .police .service-icon {
+      color: #b4c5d4;
+    }
+
+    .card-content {
+      position: relative;
+      z-index: 1;
+      margin-top: auto;
+      padding-top: 65px;
+    }
+
+    .card-content h2 {
+      font-size: 29px;
+      letter-spacing: -.7px;
+      margin-bottom: 13px;
+    }
+
+    .card-content p {
+      max-width: 450px;
+      color: #8998a5;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .card-bottom {
+      position: relative;
+      z-index: 1;
       display: flex;
       align-items: center;
-      justify-content: center;
-      border-radius: 16px;
-      background: rgba(255,255,255,0.07);
-      font-size: 28px;
-      margin-bottom: 23px;
+      justify-content: space-between;
+      margin-top: 27px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,.08);
     }
 
-    .test-card h2 {
-      font-size: 25px;
-      margin-bottom: 12px;
+    .card-button {
+      color: #9edbff;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1px;
     }
 
-    .test-card p {
-      color: #9eacb8;
-      line-height: 1.55;
-      min-height: 75px;
-      margin-bottom: 25px;
+    .arrow {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 50%;
+      color: #8fa0ad;
+      transition: .25s ease;
     }
 
-    .button {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-      min-height: 50px;
-      border-radius: 12px;
-      text-decoration: none;
+    .test-card:hover .arrow {
+      transform: translateX(3px);
       color: white;
-      font-weight: 700;
-      font-size: 15px;
-      background: linear-gradient(135deg, #1685c7, #2469d8);
-      box-shadow: 0 8px 25px rgba(20, 120, 200, 0.2);
-      transition: transform 0.2s ease, filter 0.2s ease;
+      border-color: rgba(85,185,255,.4);
     }
 
-    .button:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.1);
-    }
-
-    .button.police {
-      background: linear-gradient(135deg, #34495e, #1f2f3d);
-    }
-
-    .access {
-      max-width: 650px;
-      margin: 0 auto 80px;
-      padding: 28px 32px;
-      text-align: center;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.035);
-      border: 1px solid rgba(255,255,255,0.09);
-    }
-
-    .access h3 {
-      font-size: 19px;
-      margin-bottom: 9px;
-    }
-
-    .access p {
-      color: #9eacb8;
-      font-size: 14px;
-      line-height: 1.5;
-      margin-bottom: 18px;
-    }
-
-    .access-button {
-      display: inline-block;
-      padding: 11px 20px;
-      border-radius: 10px;
-      border: 1px solid rgba(120,202,255,0.35);
-      color: #7dccff;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 14px;
-      transition: background 0.2s ease;
-    }
-
-    .access-button:hover {
-      background: rgba(120,202,255,0.08);
-    }
+    /* FEATURES */
 
     .features {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      max-width: 900px;
-      margin: 0 auto 80px;
+      border-top: 1px solid rgba(255,255,255,.07);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      margin-bottom: 75px;
     }
 
     .feature {
+      padding: 29px 25px;
       text-align: center;
-      padding: 22px 15px;
+    }
+
+    .feature + .feature {
+      border-left: 1px solid rgba(255,255,255,.07);
+    }
+
+    .feature-number {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
     }
 
     .feature strong {
       display: block;
-      font-size: 16px;
       margin-bottom: 7px;
+      font-size: 14px;
     }
 
     .feature span {
-      color: #8998a5;
-      font-size: 13px;
-      line-height: 1.45;
+      color: #687784;
+      font-size: 12px;
+      line-height: 1.5;
     }
+
+    /* FOOTER */
 
     footer {
-      padding: 30px 0 35px;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      text-align: center;
-      color: #6f7d88;
-      font-size: 12px;
+      padding: 0 0 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #53616c;
+      font-size: 11px;
     }
 
-    @media (max-width: 720px) {
-      .container {
+    .footer-brand {
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 760px) {
+
+      .page {
         width: min(100% - 24px, 600px);
       }
 
       header {
-        padding: 20px 0;
+        height: 70px;
       }
 
-      .header-badge {
+      .header-label {
         display: none;
       }
 
       .hero {
-        padding: 55px 0 40px;
+        padding: 72px 0 55px;
       }
 
-      h1 {
-        letter-spacing: -2px;
+      .hero h1 {
+        font-size: clamp(42px, 13vw, 64px);
+        letter-spacing: -3px;
       }
 
-      .hero-text {
-        font-size: 16px;
+      .hero-description {
+        font-size: 15px;
       }
 
       .tests {
         grid-template-columns: 1fr;
-        margin-bottom: 45px;
+        margin-bottom: 55px;
+      }
+
+      .test-card {
+        min-height: 330px;
+        padding: 27px;
       }
 
       .features {
         grid-template-columns: 1fr;
-        gap: 5px;
-        margin-bottom: 50px;
       }
 
-      .test-card {
-        padding: 28px;
+      .feature + .feature {
+        border-left: 0;
+        border-top: 1px solid rgba(255,255,255,.07);
       }
 
-      .access {
-        padding: 24px 20px;
+      footer {
+        flex-direction: column;
+        gap: 10px;
       }
     }
   </style>
@@ -313,108 +462,221 @@
 
 <body>
 
-  <div class="container">
+<div class="page">
 
-    <header>
-      <div class="logo">TEST<span>REKRUT</span></div>
-      <div class="header-badge">Platforma przygotowawcza</div>
-    </header>
+  <!-- HEADER -->
 
-    <main>
+  <header>
 
-      <section class="hero">
-        <div class="eyebrow">Przygotuj się. Sprawdź się. Zdaj.</div>
+    <a href="/" class="brand">
+      <div class="brand-mark">TR</div>
 
-        <h1>
-          TESTY DO
-          <span>SŁUŻB MUNDUROWYCH</span>
-        </h1>
+      <div class="brand-name">
+        TEST<span>REKRUT</span>
+      </div>
+    </a>
 
-        <p class="hero-text">
-          Praktyczne testy wiedzy przygotowujące do rekrutacji
-          do Straży Granicznej i Policji.
-          Ćwicz pytania, sprawdzaj swoje wyniki i przygotuj się
-          do właściwego testu.
-        </p>
-      </section>
+    <div class="header-label">
+      Platforma przygotowawcza
+    </div>
 
-      <section class="tests">
+  </header>
 
-        <article class="test-card">
-          <div class="icon">🛂</div>
+
+  <!-- HERO -->
+
+  <main>
+
+    <section class="hero">
+
+      <div class="eyebrow">
+        Rekrutacja do służb mundurowych
+      </div>
+
+      <h1>
+        PRZYGOTUJ SIĘ.
+        <span>SPRAWDŹ SIĘ.</span>
+      </h1>
+
+      <p class="hero-description">
+        Testy wiedzy stworzone z myślą o osobach przygotowujących się
+        do rekrutacji. Wybierz służbę i rozpocznij przygotowania.
+      </p>
+
+    </section>
+
+
+    <!-- TESTY -->
+
+    <div class="choose-title">
+      Wybierz test
+    </div>
+
+    <section class="tests">
+
+
+      <!-- STRAŻ GRANICZNA -->
+
+      <a href="/SG/" class="test-card sg">
+
+        <div class="card-top">
+
+          <div class="service-number">
+            01 / SG
+          </div>
+
+          <div class="service-icon">
+
+            <svg viewBox="0 0 24 24">
+              <path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/>
+              <path d="M9 11.5l2 2 4-4"/>
+            </svg>
+
+          </div>
+
+        </div>
+
+
+        <div class="card-content">
 
           <h2>Straż Graniczna</h2>
 
           <p>
-            Test wiedzy do Straży Granicznej.
-            200 pytań, tryb nauki, egzamin oraz
-            powtórka błędnych odpowiedzi.
+            Przygotuj się do testu wiedzy. Tryb nauki,
+            egzamin oraz powtórka pytań, na które
+            odpowiedziałeś błędnie.
           </p>
 
-          <a class="button" href="/SG/">
-            PRZEJDŹ DO TESTU SG →
-          </a>
-        </article>
+        </div>
 
-        <article class="test-card">
-          <div class="icon">👮</div>
+
+        <div class="card-bottom">
+
+          <span class="card-button">
+            PRZEJDŹ DO TESTU
+          </span>
+
+          <span class="arrow">→</span>
+
+        </div>
+
+      </a>
+
+
+      <!-- POLICJA -->
+
+      <a href="/policja/" class="test-card police">
+
+        <div class="card-top">
+
+          <div class="service-number">
+            02 / POLICJA
+          </div>
+
+          <div class="service-icon">
+
+            <svg viewBox="0 0 24 24">
+              <path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/>
+              <path d="M8.5 10h7"/>
+              <path d="M10 13h4"/>
+            </svg>
+
+          </div>
+
+        </div>
+
+
+        <div class="card-content">
 
           <h2>Policja</h2>
 
           <p>
-            Przygotuj się do testu wiedzy dla kandydatów
-            do Policji. Ćwicz pytania i sprawdzaj
-            swoje przygotowanie.
+            Ćwicz pytania i sprawdzaj swoją wiedzę
+            przed testem rekrutacyjnym do Policji.
           </p>
 
-          <a class="button police" href="/policja/">
-            PRZEJDŹ DO TESTU POLICJA →
-          </a>
-        </article>
-
-      </section>
-
-      <section class="access">
-        <h3>Masz już kod dostępu do testu SG?</h3>
-
-        <p>
-          Jeśli korzystałeś wcześniej z testu pod adresem
-          testrekrut.pl, możesz przejść bezpośrednio
-          do swojej aplikacji.
-        </p>
-
-        <a class="access-button" href="/SG/">
-          MAM KOD DOSTĘPU →
-        </a>
-      </section>
-
-      <section class="features">
-
-        <div class="feature">
-          <strong>📚 Nauka</strong>
-          <span>Ćwicz pytania we własnym tempie.</span>
         </div>
 
-        <div class="feature">
-          <strong>⏱️ Egzamin</strong>
-          <span>Sprawdź się w warunkach zbliżonych do testu.</span>
+
+        <div class="card-bottom">
+
+          <span class="card-button">
+            PRZEJDŹ DO TESTU
+          </span>
+
+          <span class="arrow">→</span>
+
         </div>
 
-        <div class="feature">
-          <strong>🎯 Powtórka</strong>
-          <span>Wróć do pytań, na które odpowiedziałeś błędnie.</span>
-        </div>
+      </a>
 
-      </section>
+    </section>
 
-    </main>
 
-    <footer>
-      © 2026 TESTREKRUT · Platforma przygotowawcza do testów rekrutacyjnych
-    </footer>
+    <!-- FEATURES -->
 
-  </div>
-  </body>
+    <section class="features">
+
+      <div class="feature">
+
+        <span class="feature-number">01</span>
+
+        <strong>NAUKA</strong>
+
+        <span>
+          Ćwicz pytania i utrwalaj wiedzę.
+        </span>
+
+      </div>
+
+
+      <div class="feature">
+
+        <span class="feature-number">02</span>
+
+        <strong>EGZAMIN</strong>
+
+        <span>
+          Sprawdź swoje przygotowanie
+          w trybie testowym.
+        </span>
+
+      </div>
+
+
+      <div class="feature">
+
+        <span class="feature-number">03</span>
+
+        <strong>POWTÓRKA</strong>
+
+        <span>
+          Wróć do pytań, które sprawiły
+          Ci trudność.
+        </span>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="footer-brand">
+      TESTREKRUT
+    </div>
+
+    <div>
+      © 2026 · Platforma przygotowawcza
+    </div>
+
+  </footer>
+
+</div>
+
+</body>
 </html>
-
- 
