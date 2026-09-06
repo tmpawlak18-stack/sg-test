@@ -195,46 +195,167 @@ body{
   white-space:nowrap;
 }
 
+
 @media(max-width:1250px){
   .site-footer{
-    gap:18px;
-    padding:0 22px;
+    gap:1.4vw;
+    padding:0 1.5vw;
   }
-  .footer-platform{font-size:12px}
-  .footer-contact{gap:8px}
-  .contact-text{font-size:12px}
+  .footer-platform{font-size:.68vw}
+  .footer-contact{gap:.55vw}
+  .contact-text{font-size:.68vw}
   .contact-btn{
-    min-width:112px;
-    height:38px;
-    padding:0 12px;
-    font-size:12px;
+    min-width:7vw;
+    height:2.15vw;
+    padding:0 .75vw;
+    font-size:.68vw;
   }
-  .footer-copy{font-size:11px}
+  .contact-btn svg{
+    width:1vw;
+    height:1vw;
+  }
+  .footer-copy{font-size:.62vw}
 }
 
-@media(max-width:900px){
-  .site-footer{
-    height:4.65vw;
-    grid-template-columns:1fr auto;
-    gap:12px;
-    padding:0 14px;
+@media(max-width:700px){
+  html,body{
+    width:100%;
+    min-width:0;
+    overflow-x:hidden;
   }
-  .footer-platform,
+
+  .stage{
+    width:100%;
+    min-height:0;
+    overflow:hidden;
+  }
+
+  /*
+    Na telefonie desktopowa grafika jest kadrowana do centralnej,
+    czytelnej części zamiast zmniejszana do szerokości kilku setek pikseli.
+    Dzięki temu główny nagłówek i karty pozostają znacznie bardziej czytelne.
+  */
+  .design{
+    width:205vw;
+    max-width:none;
+    height:auto;
+    margin-left:-52.5vw;
+  }
+
+  .hit{
+    border-radius:10px;
+  }
+
+  .sg-card{
+    left:30.1%;
+    top:45.25%;
+    width:35.7%;
+    height:31.4%;
+  }
+
+  .police-card{
+    left:67.1%;
+    top:45.25%;
+    width:35.7%;
+    height:31.4%;
+  }
+
+  .site-footer{
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:100%;
+    height:58px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:8px;
+    padding:0 10px;
+  }
+
+  .footer-brand{
+    min-width:0;
+    flex:1 1 auto;
+    overflow:hidden;
+  }
+
+  .footer-brand-name{
+    font-size:18px;
+  }
+
   .footer-divider,
-  .footer-copy{display:none}
-  .footer-brand-name{font-size:22px}
-  @media(max-width:600px){
-  .site-footer{height:58px}
-  .footer-brand-name{font-size:18px}
-  .contact-buttons{gap:5px}
+  .footer-platform{
+    display:none;
+  }
+
+  .footer-contact{
+    flex:0 0 auto;
+    gap:6px;
+  }
+
+  .mail-icon,
+  .contact-text{
+    display:none;
+  }
+
+  .contact-buttons{
+    gap:5px;
+  }
+
   .contact-btn{
-    min-width:42px;
-    width:42px;
+    width:40px;
+    min-width:40px;
     height:38px;
     padding:0;
+    border-radius:6px;
   }
-  .contact-btn span{display:none}
-  .contact-btn svg{width:20px;height:20px}
+
+  .contact-btn span{
+    display:none;
+  }
+
+  .contact-btn svg{
+    width:20px;
+    height:20px;
+  }
+
+  .footer-copy{
+    display:block;
+    flex:0 0 auto;
+    font-size:9px;
+    line-height:1.25;
+  }
+}
+
+@media(max-width:420px){
+  .design{
+    width:225vw;
+    margin-left:-62.5vw;
+  }
+
+  .site-footer{
+    height:54px;
+    padding:0 8px;
+  }
+
+  .footer-brand-name{
+    font-size:16px;
+  }
+
+  .contact-btn{
+    width:36px;
+    min-width:36px;
+    height:34px;
+  }
+
+  .contact-btn svg{
+    width:18px;
+    height:18px;
+  }
+
+  .footer-copy{
+    font-size:8px;
+  }
 }
 
 .site-footer,
