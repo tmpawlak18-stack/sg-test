@@ -35,8 +35,8 @@ body{
   -webkit-user-drag:none;
 }
 
-/* Ukrywamy wyłącznie nieaktywne menu z prawej strony.
-   Logo TESTREKRUT po lewej zostaje nietknięte. */
+/* Ukrywamy wyłącznie nieaktywne zakładki.
+   Logo TESTREKRUT pozostaje widoczne. */
 .top-nav-cover{
   position:absolute;
   z-index:5;
@@ -53,7 +53,7 @@ body{
   pointer-events:none;
 }
 
-/* Karty SG i Policji */
+/* Klikalne karty */
 .hit{
   position:absolute;
   display:block;
@@ -82,80 +82,27 @@ body{
 }
 
 /*
-  PRAWDZIWA STOPKA HTML.
-  Zastępuje stopkę tekstową z grafiki, dzięki czemu:
-  - tekst jest ostry,
-  - kontakt jest statyczny,
-  - przyciski są prawdziwie klikalne.
+  TYLKO PRZYCISKI KONTAKTOWE.
+  Bez czarnej stopki, bez dodatkowego panelu.
+  Są ustawione bezpośrednio po tekście
+  „Masz pytanie? Skontaktuj się z nami”
+  znajdującym się w grafice.
 */
-.footer{
+.contact-buttons{
   position:absolute;
-  left:0;
-  right:0;
-  bottom:0;
-  z-index:20;
-  min-height:74px;
-  padding:10px 3.2%;
-  display:grid;
-  grid-template-columns:1fr auto 1fr;
+  z-index:30;
+  right:3.5%;
+  bottom:1.65%;
+  display:flex;
   align-items:center;
-  gap:24px;
-  background:rgba(3,12,20,.97);
-  border-top:1px solid rgba(120,190,230,.16);
+  gap:8px;
   line-height:normal;
 }
 
-.footer-left{
-  display:flex;
-  align-items:center;
-  gap:15px;
-  min-width:0;
-}
-
-.footer-brand{
-  color:#f4f7fa;
-  font-size:12px;
-  font-weight:900;
-  letter-spacing:1.3px;
-  white-space:nowrap;
-}
-
-.footer-divider{
-  width:1px;
-  height:22px;
-  background:rgba(255,255,255,.16);
-}
-
-.footer-description{
-  color:#71818e;
-  font-size:10px;
-  white-space:nowrap;
-}
-
-.footer-contact{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  white-space:nowrap;
-}
-
-.contact-label{
-  color:#b9c6cf;
-  font-size:10px;
-  font-weight:700;
-  letter-spacing:.45px;
-}
-
-.contact-buttons{
-  display:flex;
-  gap:7px;
-}
-
 .contact-btn{
-  height:36px;
-  min-width:108px;
-  padding:0 13px;
+  height:34px;
+  min-width:105px;
+  padding:0 12px;
   display:inline-flex;
   align-items:center;
   justify-content:center;
@@ -166,74 +113,70 @@ body{
   font-size:10px;
   font-weight:800;
   letter-spacing:.15px;
-  transition:transform .15s ease,filter .15s ease,box-shadow .15s ease;
+  box-shadow:0 4px 14px rgba(0,0,0,.25);
+  transition:transform .15s ease,filter .15s ease;
 }
 
 .contact-btn:hover{
   transform:translateY(-1px);
-  filter:brightness(1.08);
+  filter:brightness(1.1);
 }
 
 .contact-btn svg{
-  width:17px;
-  height:17px;
+  width:16px;
+  height:16px;
   flex:none;
 }
 
 .contact-btn.whatsapp{
   background:linear-gradient(135deg,#08783f,#0a9b54);
   border:1px solid #39d57d;
-  box-shadow:0 5px 18px rgba(14,150,80,.18);
 }
 
 .contact-btn.messenger{
   background:linear-gradient(135deg,#1557c5,#2477ee);
   border:1px solid #5794ff;
-  box-shadow:0 5px 18px rgba(35,105,220,.18);
 }
 
-.footer-right{
-  display:flex;
-  justify-content:flex-end;
-  color:#64737e;
-  font-size:9px;
-  white-space:nowrap;
-}
-
-/* Telefon */
+/* Na węższych ekranach przyciski zostają małe i układają się obok siebie. */
 @media(max-width:900px){
-  .footer{
-    grid-template-columns:1fr;
-    justify-items:center;
-    gap:9px;
-    padding:12px;
-  }
-
-  .footer-left,
-  .footer-contact,
-  .footer-right{
-    justify-content:center;
-  }
-
-  .footer-description,
-  .footer-right{
-    display:none;
-  }
-
-  .footer{
-    min-height:112px;
-  }
-}
-
-@media(max-width:700px){
-  .contact-label{
-    display:none;
+  .contact-buttons{
+    right:2.5%;
+    bottom:1.5%;
+    gap:6px;
   }
 
   .contact-btn{
-    min-width:125px;
-    height:38px;
-    font-size:10px;
+    height:32px;
+    min-width:94px;
+    padding:0 9px;
+    font-size:9px;
+  }
+
+  .contact-btn svg{
+    width:15px;
+    height:15px;
+  }
+}
+
+@media(max-width:600px){
+  .contact-buttons{
+    right:2%;
+    bottom:1.3%;
+    gap:5px;
+  }
+
+  .contact-btn{
+    height:29px;
+    min-width:82px;
+    padding:0 7px;
+    font-size:8px;
+    gap:5px;
+  }
+
+  .contact-btn svg{
+    width:13px;
+    height:13px;
   }
 }
 </style>
@@ -249,71 +192,53 @@ body{
     alt="TESTREKRUT — przygotuj się do rekrutacji"
   >
 
-  <!-- Nieaktywne zakładki: ukryte. Logo pozostaje widoczne. -->
+  <!-- Nieaktywne zakładki są ukryte -->
   <div class="top-nav-cover" aria-hidden="true"></div>
 
-  <!-- Klikalne karty -->
-  <a class="hit sg-card"
-     href="/SG/"
-     aria-label="Przejdź do testu Straż Graniczna"></a>
+  <!-- Klikalna karta Straży Granicznej -->
+  <a
+    class="hit sg-card"
+    href="/SG/"
+    aria-label="Przejdź do testu Straż Graniczna">
+  </a>
 
-  <a class="hit police-card"
-     href="/policja/"
-     aria-label="Przejdź do testu Policja"></a>
+  <!-- Klikalna karta Policji -->
+  <a
+    class="hit police-card"
+    href="/policja/"
+    aria-label="Przejdź do testu Policja">
+  </a>
 
-  <!-- Statyczna stopka -->
-  <footer class="footer">
+  <!-- Tylko prawdziwe przyciski kontaktowe -->
+  <div class="contact-buttons">
 
-    <div class="footer-left">
-      <div class="footer-brand">TESTREKRUT</div>
-      <div class="footer-divider"></div>
-      <div class="footer-description">
-        Platforma przygotowawcza do testów rekrutacyjnych
-      </div>
-    </div>
+    <a
+      class="contact-btn whatsapp"
+      href="https://wa.me/48608737181"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Skontaktuj się przez WhatsApp">
 
-    <div class="footer-contact">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.8L.2 24l6.6-1.7a11.8 11.8 0 0 0 5.3 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.1-1.2-6.1-3.5-8.3ZM12.2 21.5h-.1c-1.7 0-3.4-.5-4.8-1.3l-.3-.2-3.9 1 1-3.8-.2-.3a9.7 9.7 0 1 1 8.3 4.6Zm5.3-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.6-1.4-3.7-3.2-.3-.5.3-.5.8-1.7.1-.2.1-.4 0-.6-.1-.2-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1-1.1 2.5s1.1 2.9 1.3 3.1c.2.2 2.2 3.4 5.4 4.7.8.3 1.4.5 1.8.6.8.2 1.5.2 2 .1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.1-1.4-.1-.2-.3-.3-.6-.4Z"/>
+      </svg>
+      WhatsApp
+    </a>
 
-      <div class="contact-label">
-        MASZ PYTANIE? SKONTAKTUJ SIĘ Z NAMI:
-      </div>
+    <a
+      class="contact-btn messenger"
+      href="https://m.me/tomasz.pawlak.54"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Skontaktuj się przez Messenger">
 
-      <div class="contact-buttons">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M12 1.8C5.8 1.8 1 6.3 1 12c0 3.2 1.6 6.1 4.3 8.1V24l3.9-2.1c.9.2 1.8.3 2.8.3 6.2 0 11-4.5 11-10.2S18.2 1.8 12 1.8Zm1 13.6-2.8-3-5.5 3 6-6.4 2.8 3 5.4-3-5.9 6.4Z"/>
+      </svg>
+      Messenger
+    </a>
 
-        <a
-          class="contact-btn whatsapp"
-          href="https://wa.me/48608737181"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Skontaktuj się przez WhatsApp">
-
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="currentColor" d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.8L.2 24l6.6-1.7a11.8 11.8 0 0 0 5.3 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.1-1.2-6.1-3.5-8.3ZM12.2 21.5h-.1c-1.7 0-3.4-.5-4.8-1.3l-.3-.2-3.9 1 1-3.8-.2-.3a9.7 9.7 0 1 1 8.3 4.6Zm5.3-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.6-1.4-3.7-3.2-.3-.5.3-.5.8-1.7.1-.2.1-.4 0-.6-.1-.2-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1-1.1 2.5s1.1 2.9 1.3 3.1c.2.2 2.2 3.4 5.4 4.7.8.3 1.4.5 1.8.6.8.2 1.5.2 2 .1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.1-1.4-.1-.2-.3-.3-.6-.4Z"/>
-          </svg>
-          WhatsApp
-        </a>
-
-        <a
-          class="contact-btn messenger"
-          href="https://m.me/tomasz.pawlak.54"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Skontaktuj się przez Messenger">
-
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path fill="currentColor" d="M12 1.8C5.8 1.8 1 6.3 1 12c0 3.2 1.6 6.1 4.3 8.1V24l3.9-2.1c.9.2 1.8.3 2.8.3 6.2 0 11-4.5 11-10.2S18.2 1.8 12 1.8Zm1 13.6-2.8-3-5.5 3 6-6.4 2.8 3 5.4-3-5.9 6.4Z"/>
-          </svg>
-          Messenger
-        </a>
-
-      </div>
-    </div>
-
-    <div class="footer-right">
-      © 2026 TESTREKRUT. Wszelkie prawa zastrzeżone.
-    </div>
-
-  </footer>
+  </div>
 
 </div>
 
