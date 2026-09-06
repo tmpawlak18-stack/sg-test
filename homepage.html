@@ -340,5 +340,16 @@ body{
 
 </div>
 
+
+<script>
+(function () {
+  window.addEventListener('wheel', function (e) {
+    if (e.ctrlKey || e.metaKey) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+})();
+</script>
+
 </body>
 </html>
