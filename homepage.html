@@ -88,7 +88,8 @@ body{
   left:0;
   bottom:0;
   width:100%;
-  height:8%;
+  height:6%;
+  min-height:48px;
   display:grid;
   grid-template-columns:1.45fr 1fr .72fr;
   align-items:center;
@@ -111,11 +112,20 @@ body{
   min-width:0;
 }
 
+.brand-line{
+  display:flex;
+  align-items:center;
+  gap:.7vw;
+  min-width:0;
+  white-space:nowrap;
+}
+
 .brand-title{
   white-space:nowrap;
   font-weight:800;
   letter-spacing:-.03em;
-  font-size:clamp(16px,1.55vw,28px);
+  font-size:clamp(16px,1.35vw,26px);
+  line-height:1;
 }
 
 .brand-test{color:#fff}
@@ -126,8 +136,12 @@ body{
   margin-left:.28em;
 }
 
+.brand-separator{
+  color:rgba(255,255,255,.45);
+  font-size:clamp(12px,.8vw,16px);
+}
+
 .brand-subtitle{
-  margin-top:.22em;
   color:rgba(255,255,255,.76);
   font-size:clamp(8px,.62vw,12px);
   letter-spacing:.01em;
@@ -215,7 +229,8 @@ body{
 
 @media(max-width:600px){
   .site-footer{
-    height:10%;
+    height:8%;
+    min-height:42px;
     grid-template-columns:1fr auto;
   }
   .footer-contact{
@@ -266,11 +281,14 @@ body{
   <footer class="site-footer">
 
     <div class="footer-brand">
-      <div class="brand-title">
-        <span class="brand-test">TEST</span><span class="brand-rekrut">REKRUT</span>
-        <span class="brand-year">2026</span>
+      <div class="brand-line">
+        <span class="brand-title">
+          <span class="brand-test">TEST</span><span class="brand-rekrut">REKRUT</span>
+          <span class="brand-year">2026</span>
+        </span>
+        <span class="brand-separator">|</span>
+        <span class="brand-subtitle">Platforma przygotowawcza do testów rekrutacyjnych</span>
       </div>
-      <div class="brand-subtitle">Platforma przygotowawcza do testów rekrutacyjnych</div>
     </div>
 
     <div class="footer-contact">
