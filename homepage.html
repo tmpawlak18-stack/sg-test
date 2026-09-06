@@ -88,43 +88,40 @@ body{
   left:0;
   bottom:0;
   width:100%;
-  height:6%;
-  min-height:48px;
+  height:84px;
+  box-sizing:border-box;
   display:grid;
-  grid-template-columns:1.45fr 1fr .72fr;
+  grid-template-columns:minmax(0,1fr) auto auto;
   align-items:center;
-  padding:0 2.1%;
-  gap:2%;
+  gap:32px;
+  padding:0 32px;
   color:#fff;
   font-family:Arial,Helvetica,sans-serif;
   line-height:1.15;
-  background:linear-gradient(
-    180deg,
-    rgba(2,17,29,.48) 0%,
-    rgba(2,17,29,.82) 100%
-  );
-  border-top:1px solid rgba(74,145,181,.34);
+  background:#031827;
+  border-top:1px solid rgba(92,155,188,.28);
 }
 
-.footer-brand,
-.footer-contact,
-.footer-copy{
+.footer-brand{
   min-width:0;
-}
-
-.brand-line{
   display:flex;
   align-items:center;
-  gap:.7vw;
-  min-width:0;
+  gap:10px;
   white-space:nowrap;
 }
 
-.brand-title{
+.footer-logo-icon{
+  width:38px;
+  height:38px;
+  object-fit:contain;
+  flex:none;
+}
+
+.footer-brand-name{
   white-space:nowrap;
   font-weight:800;
-  letter-spacing:-.03em;
-  font-size:clamp(16px,1.35vw,26px);
+  letter-spacing:-.035em;
+  font-size:27px;
   line-height:1;
 }
 
@@ -133,18 +130,18 @@ body{
 .brand-year{
   color:#e9f0f4;
   font-weight:500;
-  margin-left:.28em;
+  margin-left:4px;
 }
 
-.brand-separator{
-  color:rgba(255,255,255,.45);
-  font-size:clamp(12px,.8vw,16px);
+.footer-divider{
+  color:rgba(255,255,255,.5);
+  font-size:22px;
+  margin:0 3px;
 }
 
-.brand-subtitle{
+.footer-platform{
   color:rgba(255,255,255,.76);
-  font-size:clamp(8px,.62vw,12px);
-  letter-spacing:.01em;
+  font-size:14px;
   white-space:nowrap;
 }
 
@@ -152,104 +149,123 @@ body{
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:.55vw;
+  gap:12px;
   white-space:nowrap;
+}
+
+.mail-icon{
+  color:#9fc6df;
+  font-size:23px;
+  line-height:1;
+  transform:translateY(-1px);
 }
 
 .contact-text{
   color:rgba(255,255,255,.88);
-  font-size:clamp(9px,.68vw,13px);
+  font-size:14px;
 }
 
 .contact-buttons{
   display:flex;
   align-items:center;
-  gap:5px;
-  flex:none;
+  gap:10px;
 }
 
 .contact-btn{
-  width:28px;
-  height:28px;
-  padding:0;
+  height:42px;
+  min-width:140px;
+  padding:0 18px;
   box-sizing:border-box;
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  border-radius:50%;
+  gap:9px;
+  border-radius:6px;
   color:#fff;
   text-decoration:none;
-  box-shadow:0 2px 7px rgba(0,0,0,.25);
-  transition:filter .15s ease;
+  font-size:14px;
+  font-weight:700;
+  box-shadow:0 2px 7px rgba(0,0,0,.28);
+  transition:filter .15s ease,transform .15s ease;
 }
 
-.contact-btn:hover{filter:brightness(1.1)}
+.contact-btn:hover{
+  filter:brightness(1.08);
+  transform:translateY(-1px);
+}
 
 .contact-btn svg{
-  width:16px;
-  height:16px;
+  width:21px;
+  height:21px;
   flex:none;
 }
 
 .contact-btn.whatsapp{
-  background:linear-gradient(135deg,#08783f,#0a9b54);
-  border:1px solid #39d57d;
+  background:#0b9f55;
+  border:1px solid #24c96e;
 }
 
 .contact-btn.messenger{
-  background:linear-gradient(135deg,#1557c5,#2477ee);
-  border:1px solid #5794ff;
+  background:#1677e8;
+  border:1px solid #4b9cff;
 }
 
 .footer-copy{
-  text-align:right;
+  text-align:left;
   color:rgba(255,255,255,.82);
-  font-size:clamp(8px,.58vw,12px);
-  line-height:1.35;
+  font-size:13px;
+  line-height:1.45;
+  white-space:nowrap;
+}
+
+@media(max-width:1250px){
+  .site-footer{
+    gap:18px;
+    padding:0 22px;
+  }
+  .footer-platform{font-size:12px}
+  .footer-contact{gap:8px}
+  .contact-text{font-size:12px}
+  .contact-btn{
+    min-width:112px;
+    height:38px;
+    padding:0 12px;
+    font-size:12px;
+  }
+  .footer-copy{font-size:11px}
 }
 
 @media(max-width:900px){
   .site-footer{
-    grid-template-columns:1.2fr 1fr .7fr;
-    padding:0 1.5%;
-    gap:1%;
+    height:70px;
+    grid-template-columns:1fr auto;
+    gap:12px;
+    padding:0 14px;
   }
-  .footer-contact{
-    gap:5px;
-  }
-  .contact-btn{
-    width:24px;
-    height:24px;
-  }
-  .contact-btn svg{
-    width:14px;
-    height:14px;
-  }
+  .footer-platform,
+  .footer-divider,
+  .footer-copy{display:none}
+  .footer-brand-name{font-size:22px}
+  .footer-logo-icon{width:32px;height:32px}
+  .footer-contact{justify-self:end}
+  .contact-text,
+  .mail-icon{display:none}
 }
 
 @media(max-width:600px){
-  .site-footer{
-    height:8%;
-    min-height:42px;
-    grid-template-columns:1fr auto;
+  .site-footer{height:58px}
+  .footer-brand-name{font-size:18px}
+  .footer-logo-icon{width:28px;height:28px}
+  .contact-buttons{gap:5px}
+  .contact-btn{
+    min-width:42px;
+    width:42px;
+    height:38px;
+    padding:0;
   }
-  .footer-contact{
-    grid-column:2;
-    grid-row:1;
-  }
-  .footer-brand{
-    grid-column:1;
-    grid-row:1;
-  }
-  .footer-copy{
-    display:none;
-  }
-  .brand-subtitle,
-  .contact-text{
-    display:none;
-  }
+  .contact-btn span{display:none}
+  .contact-btn svg{width:20px;height:20px}
 }
-
 </style>
 </head>
 
@@ -281,42 +297,42 @@ body{
   <footer class="site-footer">
 
     <div class="footer-brand">
-      <div class="brand-line">
-        <span class="brand-title">
-          <span class="brand-test">TEST</span><span class="brand-rekrut">REKRUT</span>
-          <span class="brand-year">2026</span>
-        </span>
-        <span class="brand-separator">|</span>
-        <span class="brand-subtitle">Platforma przygotowawcza do testów rekrutacyjnych</span>
+      <img class="footer-logo-icon" src="icon-180-v3.png" alt="" aria-hidden="true">
+      <div class="footer-brand-name">
+        <span class="brand-test">TEST</span><span class="brand-rekrut">REKRUT</span>
+        <span class="brand-year">2026</span>
       </div>
+      <span class="footer-divider">|</span>
+      <span class="footer-platform">Platforma przygotowawcza do testów rekrutacyjnych</span>
     </div>
 
     <div class="footer-contact">
+      <span class="mail-icon" aria-hidden="true">✉</span>
       <span class="contact-text">Masz pytanie? Skontaktuj się z nami:</span>
 
       <div class="contact-buttons">
-        <a
-          class="contact-btn whatsapp"
-          href="https://wa.me/48608737181"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="WhatsApp — skontaktuj się"
-          title="WhatsApp">
+        <a class="contact-btn whatsapp"
+           href="https://wa.me/48608737181"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="WhatsApp"
+           title="WhatsApp">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path fill="currentColor" d="M20.5 3.5A11.8 11.8 0 0 0 12.1 0C5.6 0 .3 5.3.3 11.8c0 2.1.6 4.1 1.6 5.8L.2 24l6.6-1.7a11.8 11.8 0 0 0 5.3 1.3h.1c6.5 0 11.8-5.3 11.8-11.8 0-3.1-1.2-6.1-3.5-8.3ZM12.2 21.5h-.1c-1.7 0-3.4-.5-4.8-1.3l-.3-.2-3.9 1 1-3.8-.2-.3a9.7 9.7 0 1 1 8.3 4.6Zm5.3-7.3c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1-1.6-.8-2.6-1.4-3.7-3.2-.3-.5.3-.5.8-1.7.1-.2.1-.4 0-.6-.1-.2-.7-1.7-.9-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1-1.1 2.5s1.1 2.9 1.3 3.1c.2.2 2.2 3.4 5.4 4.7.8.3 1.4.5 1.8.6.8.2 1.5.2 2 .1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.1-1.4-.1-.2-.3-.3-.6-.4Z"/>
           </svg>
+          <span>WhatsApp</span>
         </a>
 
-        <a
-          class="contact-btn messenger"
-          href="https://m.me/tomasz.pawlak.54"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Messenger — skontaktuj się"
-          title="Messenger">
+        <a class="contact-btn messenger"
+           href="https://m.me/tomasz.pawlak.54"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-label="Messenger"
+           title="Messenger">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path fill="currentColor" d="M12 1.8C5.8 1.8 1 6.3 1 12c0 3.2 1.6 6.1 4.3 8.1V24l3.9-2.1c.9.2 1.8.3 2.8.3 6.2 0 11-4.5 11-10.2S18.2 1.8 12 1.8Zm1 13.6-2.8-3-5.5 3 6-6.4 2.8 3 5.4-3-5.9 6.4Z"/>
           </svg>
+          <span>Messenger</span>
         </a>
       </div>
     </div>
