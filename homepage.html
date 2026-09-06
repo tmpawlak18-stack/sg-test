@@ -414,28 +414,7 @@
     </footer>
 
   </div>
+  </body>
+</html>
 
-  <script>
-    /*
-      Kompatybilność ze starymi klientami SG.
-
-      Jeżeli przeglądarka ma zapisany kod dostępu używany
-      przez dotychczasową aplikację SG, kierujemy użytkownika
-      bezpośrednio do /SG/.
-
-      Nie sprawdzamy samego kodu tutaj.
-      Jego prawidłowość weryfikuje aplikacja SG.
-    */
-
-    (function () {
-      try {
-        const sgAccessCode = localStorage.getItem("sgAccessCode");
-
-        if (sgAccessCode && sgAccessCode.trim() !== "") {
-          window.location.replace("/SG/");
-        }
-      } catch (e) {
-        // Brak dostępu do localStorage — pozostawiamy stronę główną.
-      }
-    })();
-  </script>
+ 
