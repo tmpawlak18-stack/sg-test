@@ -88,13 +88,14 @@ body{
   left:0;
   bottom:0;
   width:100%;
-  height:84px;
+  height:5.25vw;
+  min-height:0;
   box-sizing:border-box;
   display:grid;
   grid-template-columns:minmax(0,1fr) auto auto;
   align-items:center;
-  gap:32px;
-  padding:0 32px;
+  gap:2vw;
+  padding:0 2vw;
   color:#fff;
   font-family:Arial,Helvetica,sans-serif;
   line-height:1.15;
@@ -106,22 +107,15 @@ body{
   min-width:0;
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:.6vw;
   white-space:nowrap;
-}
-
-.footer-logo-icon{
-  width:38px;
-  height:38px;
-  object-fit:contain;
-  flex:none;
 }
 
 .footer-brand-name{
   white-space:nowrap;
   font-weight:800;
   letter-spacing:-.035em;
-  font-size:27px;
+  font-size:1.65vw;
   line-height:1;
 }
 
@@ -135,13 +129,13 @@ body{
 
 .footer-divider{
   color:rgba(255,255,255,.5);
-  font-size:22px;
+  font-size:1.35vw;
   margin:0 3px;
 }
 
 .footer-platform{
   color:rgba(255,255,255,.76);
-  font-size:14px;
+  font-size:.78vw;
   white-space:nowrap;
 }
 
@@ -155,35 +149,35 @@ body{
 
 .mail-icon{
   color:#9fc6df;
-  font-size:23px;
+  font-size:1.35vw;
   line-height:1;
   transform:translateY(-1px);
 }
 
 .contact-text{
   color:rgba(255,255,255,.88);
-  font-size:14px;
+  font-size:.78vw;
 }
 
 .contact-buttons{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:.6vw;
 }
 
 .contact-btn{
-  height:42px;
-  min-width:140px;
-  padding:0 18px;
+  height:2.6vw;
+  min-width:8.75vw;
+  padding:0 1.1vw;
   box-sizing:border-box;
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap:9px;
+  gap:.55vw;
   border-radius:6px;
   color:#fff;
   text-decoration:none;
-  font-size:14px;
+  font-size:.78vw;
   font-weight:700;
   box-shadow:0 2px 7px rgba(0,0,0,.28);
   transition:filter .15s ease,transform .15s ease;
@@ -195,8 +189,8 @@ body{
 }
 
 .contact-btn svg{
-  width:21px;
-  height:21px;
+  width:1.3vw;
+  height:1.3vw;
   flex:none;
 }
 
@@ -213,7 +207,7 @@ body{
 .footer-copy{
   text-align:left;
   color:rgba(255,255,255,.82);
-  font-size:13px;
+  font-size:.72vw;
   line-height:1.45;
   white-space:nowrap;
 }
@@ -237,7 +231,7 @@ body{
 
 @media(max-width:900px){
   .site-footer{
-    height:70px;
+    height:5.25vw;
     grid-template-columns:1fr auto;
     gap:12px;
     padding:0 14px;
@@ -246,16 +240,9 @@ body{
   .footer-divider,
   .footer-copy{display:none}
   .footer-brand-name{font-size:22px}
-  .footer-logo-icon{width:32px;height:32px}
-  .footer-contact{justify-self:end}
-  .contact-text,
-  .mail-icon{display:none}
-}
-
-@media(max-width:600px){
+  @media(max-width:600px){
   .site-footer{height:58px}
   .footer-brand-name{font-size:18px}
-  .footer-logo-icon{width:28px;height:28px}
   .contact-buttons{gap:5px}
   .contact-btn{
     min-width:42px;
@@ -266,6 +253,14 @@ body{
   .contact-btn span{display:none}
   .contact-btn svg{width:20px;height:20px}
 }
+
+.site-footer,
+.site-footer *{
+  transform:none;
+  -webkit-user-select:none;
+  user-select:none;
+}
+
 </style>
 </head>
 
@@ -297,7 +292,6 @@ body{
   <footer class="site-footer">
 
     <div class="footer-brand">
-      <img class="footer-logo-icon" src="icon-180-v3.png" alt="" aria-hidden="true">
       <div class="footer-brand-name">
         <span class="brand-test">TEST</span><span class="brand-rekrut">REKRUT</span>
         <span class="brand-year">2026</span>
