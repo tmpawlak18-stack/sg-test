@@ -1,9 +1,10 @@
-const CACHE = "testrekrut-sg-v4";
+const CACHE = "testrekrut-sg-v5";
 
 const FILES = [
   "./",
   "./index.html",
   "./manifest.webmanifest",
+  "./icon-header.png",
   "./icon-180.png",
   "./icon-512.png",
   "./testrekrut-sg-bg.jpg"
