@@ -1,10 +1,11 @@
-const CACHE = 'testrekrut-policja-v1';
+const CACHE = 'testrekrut-policja-v2';
 const APP_SHELL = [
   './',
   './index.html',
   './manifest.webmanifest',
   './icon-180.png',
   './icon-512.png',
+  './icon-header-policja.png',
   './policja-logo.png'
 ];
 
@@ -25,10 +26,8 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const request = event.request;
   if (request.method !== 'GET') return;
-
   const url = new URL(request.url);
 
-  // Navigation: always prefer the live version, fall back to cached app shell offline.
   if (request.mode === 'navigate') {
     event.respondWith(
       fetch(request).then(response => {
@@ -40,7 +39,6 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  // Only cache local app assets. Firebase/CDN requests stay network-based.
   if (url.origin === self.location.origin && url.pathname.startsWith('/policja/')) {
     event.respondWith(
       caches.match(request).then(cached => cached || fetch(request).then(response => {

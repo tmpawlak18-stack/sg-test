@@ -325,6 +325,23 @@ input{background:#091a2d;border-color:#2b4c69}input:focus{border-color:#55b5ff;b
 .featurebar{background:rgba(6,19,33,.94);border-color:#28465f}.feature{border-color:#28465f}.feature .ico{color:#55b5ff}.footer b{color:#55b5ff}
 @media(max-width:520px){.brandicon.policebadge{width:46px;height:46px}.brand{font-size:21px}}
 
+
+/* ===== HEADER ICON V2 ===== */
+.brandicon.police-header-icon{
+  width:76px!important;
+  height:76px!important;
+  flex:0 0 76px!important;
+  border-radius:18px!important;
+  object-fit:cover!important;
+  border:0!important;
+  box-shadow:0 8px 28px rgba(0,0,0,.42),0 0 0 1px rgba(62,167,255,.22)!important;
+}
+@media(max-width:800px){
+  .brandicon.police-header-icon{width:58px!important;height:58px!important;flex-basis:58px!important;border-radius:14px!important}
+}
+@media(max-width:520px){
+  .brandicon.police-header-icon{width:52px!important;height:52px!important;flex-basis:52px!important;border-radius:13px!important}
+}
 </style>
 
 <style id="police-base-chip-blue">
@@ -335,7 +352,7 @@ input{background:#091a2d;border-color:#2b4c69}input:focus{border-color:#55b5ff;b
 <body><div class="wrap">
 <div class="top">
   <div class="brandbox">
-    <div class="brandicon policebadge" aria-label="TESTREKRUT POLICJA"><span>POLICJA</span><i></i></div>
+    <img class="brandicon police-header-icon" src="icon-header-policja.png" alt="TESTREKRUT Policja">
     <div><div class="brand">TEST<span class="green">REKRUT</span></div><div class="subtitle">Testy wiedzy • POLICJA</div></div>
   </div>
   <div class="topchips">
@@ -430,6 +447,8 @@ async function initFirebase() {
 }
 
 async function verifyAccessCode(code, uid) {
+  // Policja korzysta z kolekcji accessCodes z oznaczeniem product: "policja".
+
   if (!code || !uid) return false;
   try {
     const normalized = code.trim().toUpperCase();
@@ -469,7 +488,7 @@ async function activateAccess() {
     }
     if (data.product !== "policja") {
       input.disabled = false;
-      msg.textContent = "❌ Ten kod nie jest kodem dostępu do testu Policji.";
+      msg.textContent = "❌ Ten kod nie jest przeznaczony do testu Policji.";
       return;
     }
     if (data.userId && data.userId !== currentUser.uid) {
@@ -692,7 +711,7 @@ initFirebase();
 
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./sw.js").catch(err => {
+    navigator.serviceWorker.register("./sw.js?v=2").catch(err => {
       console.error("Service Worker registration failed:", err);
     });
   });
