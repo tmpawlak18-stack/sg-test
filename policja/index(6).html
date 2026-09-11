@@ -1,0 +1,3264 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#071426">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TESTREKRUT Policja">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<title>TESTREKRUT — Test wiedzy Policja 216 pytań</title>
+<style>
+:root{--bg:#050c18;--panel:#071526;--panel2:#0b1b30;--panel3:#10243d;--text:#f5f8fc;--muted:#9eacc0;--green:#22d36b;--green2:#159c4d;--gold:#e4aa3b;--red:#ff4352;--line:#213754;--shadow:0 22px 70px rgba(0,0,0,.55)}
+*{box-sizing:border-box}
+html{min-height:100%;background:#050c18}
+body{margin:0;min-height:100vh;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--text);background:#071321;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;z-index:0;background-image:url('testrekrut-sg-bg.jpg');background-size:cover;background-position:center center;background-attachment:fixed;filter:brightness(1.16) saturate(.95) contrast(1.03)}
+body:after{content:"";position:fixed;inset:0;z-index:1;background:linear-gradient(180deg,rgba(3,12,24,.62) 0%,rgba(3,12,24,.10) 16%,rgba(3,12,24,.05) 66%,rgba(3,12,24,.58) 100%),linear-gradient(90deg,rgba(3,12,24,.18) 0%,rgba(3,12,24,.03) 35%,rgba(3,12,24,.10) 65%,rgba(3,12,24,.22) 100%)}
+.wrap{position:relative;z-index:2;width:100%;margin:0 auto;padding:0 0 28px}
+.top{box-sizing:border-box;width:100%;display:flex;justify-content:space-between;gap:22px;align-items:center;margin:0;padding:13px 4.3%;min-height:104px;background:rgba(4,15,28,.80);border-bottom:1px solid rgba(120,145,168,.25);backdrop-filter:blur(9px)}
+.brandbox{display:flex;align-items:center;gap:15px}.brandicon{width:62px;height:62px;border-radius:50%;object-fit:cover;border:0;box-shadow:0 5px 20px rgba(0,0,0,.35)}.brand{font-size:31px;font-weight:900;letter-spacing:-.9px}.brand .green{color:var(--green)}.small{color:#b5c2d0;font-size:14px}.subtitle{margin-top:3px;color:#edf2f7;font-size:16px}
+.topchips{display:flex;gap:14px;align-items:center;min-width:0;max-width:58%;justify-content:flex-end}.topchips .chip{flex:0 1 auto}.topchips button{white-space:nowrap}.chip{min-width:195px;padding:10px 17px;border:1px solid #506b84;background:rgba(7,20,35,.68);border-radius:11px;text-align:center;backdrop-filter:blur(10px)}.chip b{display:block;font-size:19px}.chip span{font-size:11px;color:#c0ccd8;text-transform:uppercase;letter-spacing:.8px}.chip.greenchip{border-color:#20c866}.chip.greenchip b{color:var(--green)}
+.card{width:min(650px,calc(100% - 32px));margin:20px auto 0;background:linear-gradient(145deg,rgba(12,27,42,.93),rgba(6,18,31,.91));border:1px solid rgba(101,128,151,.58);border-radius:21px;padding:36px;box-shadow:0 25px 80px rgba(0,0,0,.48);backdrop-filter:blur(11px)}
+h1{margin:0 0 9px;font-size:31px;letter-spacing:-.6px}h2{margin:0}.q{font-size:28px;line-height:1.28;font-weight:760;margin:24px 0 22px;letter-spacing:-.35px}.question-label{font-size:14px;color:var(--green);font-weight:850;text-transform:none;letter-spacing:.2px;margin-top:5px}
+.exam-meta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.meta{display:inline-flex;align-items:center;gap:7px;border:1px solid #3e5973;background:rgba(7,22,38,.72);border-radius:10px;padding:9px 13px;color:#c5d0dc;font-size:13px}.meta b{color:#fff}.meta.timer{margin-left:auto;font-size:16px;font-weight:900;color:#6af59d;border-color:#318b5a}.meta.timer b{color:#fff}
+.progress-wrap{width:min(650px,calc(100% - 32px));margin:18px auto 0}.progress-head{display:flex;justify-content:space-between;align-items:center;margin-top:0;font-size:14px;color:#f0f3f6;text-transform:uppercase;letter-spacing:.5px}.progress-head b{color:var(--green);font-size:16px}.bar{height:9px;background:rgba(225,231,236,.78);border-radius:99px;overflow:hidden;margin:8px 0 0;border:0}.fill{height:100%;background:linear-gradient(90deg,#20d96d,#b3ef4f);width:0;border-radius:99px;box-shadow:0 0 18px rgba(34,211,107,.28)}
+.answers{display:grid;gap:10px}.ans{position:relative;background:rgba(15,31,46,.78);border:1px solid rgba(82,108,130,.62);color:var(--text);border-radius:10px;padding:13px;text-align:left;font-size:16px;cursor:pointer;transition:.16s;min-height:55px;display:flex;align-items:center;gap:14px}.ans:hover{border-color:#6b8cab;transform:translateY(-1px);background:rgba(21,41,58,.86)}.ans b{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:rgba(4,17,30,.86);color:#e0e7ef;font-size:14px;flex:0 0 36px}.ans.disabled{cursor:default}.ans.good{border-color:#24dc70;background:linear-gradient(90deg,rgba(10,108,58,.9),rgba(7,68,43,.86));box-shadow:0 0 0 1px rgba(31,200,102,.12),0 8px 25px rgba(16,169,80,.12)}.ans.good b{background:#0a4d2e;color:#7af6a8}.ans.bad{border-color:var(--red);background:linear-gradient(90deg,rgba(91,22,35,.9),rgba(49,17,27,.9))}.ans.bad b{background:#541a29;color:#ff9ca5}
+.feedback{margin-top:18px;padding:16px 18px;border-radius:13px;font-weight:800}.goodbox{background:rgba(9,75,46,.84);border:1px solid #1c9f55;color:#9af3bd}.badbox{background:rgba(78,22,34,.88);border:1px solid #b63a4a;color:#ffb5bd}
+.controls{display:flex;gap:12px;justify-content:space-between;align-items:center;margin-top:18px;flex-wrap:wrap}button{border:1px solid transparent;border-radius:10px;padding:13px 20px;background:linear-gradient(135deg,#18b85d,#22d36b);color:#03120a;font-weight:850;cursor:pointer;box-shadow:0 8px 24px rgba(18,181,88,.18);transition:.15s}button:hover{transform:translateY(-1px);filter:brightness(1.06)}button.secondary{background:rgba(8,25,44,.9);border-color:#385775;color:#dce5ef;box-shadow:none}button.danger{background:transparent;color:#ff4d5a;border-color:#e73543;box-shadow:none}.hidden{display:none}
+.menu{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:23px}.menu button{padding:17px 14px;min-height:66px;font-size:15px}.menu button.secondary{background:#0c1b30}.list{max-height:360px;overflow:auto;margin-top:15px;border:1px solid #1d314b;border-radius:12px}.row{padding:12px;border-bottom:1px solid #1b3048}.row:last-child{border-bottom:0}.tag{display:inline-block;padding:3px 8px;border-radius:8px;background:#293b53;font-size:12px;margin-left:5px;color:#d5deea}
+input{font:inherit;color:#fff;background:#09192d;border:1px solid #2b4564;outline:none}input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(34,211,107,.09)}
+.featurebar{box-sizing:border-box;display:grid;grid-template-columns:repeat(4,1fr);width:min(1100px,calc(100% - 40px));margin:20px auto 0;background:rgba(4,17,31,.76);border:1px solid rgba(70,94,117,.65);border-radius:12px;overflow:hidden;backdrop-filter:blur(11px)}.feature{padding:13px 18px;display:flex;gap:11px;align-items:center;border-right:1px solid rgba(70,94,117,.55)}.feature:last-child{border-right:0}.feature .ico{font-size:23px;color:var(--green)}.feature strong{display:block;font-size:13px}.feature span{display:block;color:#bac5d0;font-size:11px;margin-top:2px}
+.footer{text-align:center;color:#b0bbc6;font-size:11px;margin-top:12px}.footer b{color:#22c866}
+@media(max-width:1000px){.top{padding:12px 20px}.topchips{max-width:52%}.topchips .chip{min-width:150px}}@media(max-width:800px){.top{padding:12px 16px;align-items:flex-start}.topchips{display:none}.brand{font-size:24px}.subtitle{font-size:13px}.brandicon{width:50px;height:50px}.card{margin-top:18px;width:calc(100% - 20px);padding:22px}.q{font-size:23px}.menu{grid-template-columns:1fr}.featurebar{grid-template-columns:1fr 1fr;width:calc(100% - 20px)}.feature:nth-child(2){border-right:0}.feature:nth-child(-n+2){border-bottom:1px solid #20364f}.feature{padding:13px}}
+@media(max-width:520px){.progress-wrap{width:calc(100% - 20px);margin-top:14px}body:before{background-position:center center;filter:brightness(.68) saturate(.9) contrast(1.05)}.top{min-height:84px}.brand{font-size:20px}.subtitle{font-size:11px}.card{margin-top:14px;padding:17px;border-radius:16px}.q{font-size:21px}.ans{font-size:15px;padding:13px}.featurebar{grid-template-columns:1fr}.feature{border-right:0!important;border-bottom:1px solid #20364f!important}.feature:last-child{border-bottom:0!important}}
+
+/* ===== MOBILE COMPACT V4 ===== */
+@media (max-width:700px){
+  body{font-size:15px!important}
+  .top{
+    min-height:72px!important;
+    padding:8px 14px!important;
+  }
+  .brand{gap:9px!important}
+  .brand img{
+    width:48px!important;height:48px!important;
+    flex:0 0 48px!important;
+  }
+  .brand strong{font-size:21px!important;letter-spacing:-.5px!important}
+  .brand small{font-size:12px!important}
+  .topchips{display:none!important}
+
+  .wrap{
+    padding:14px 14px 22px!important;
+  }
+  .card{
+    padding:20px 16px!important;
+    border-radius:18px!important;
+  }
+  .card h1{
+    font-size:29px!important;
+    line-height:1.08!important;
+    letter-spacing:-.7px!important;
+    margin:6px 0 10px!important;
+  }
+  .card .sub,.card p{
+    font-size:15px!important;
+    line-height:1.3!important;
+  }
+
+  .menu{
+    grid-template-columns:1fr!important;
+    gap:10px!important;
+  }
+  .menu button,.menu .button{
+    min-height:62px!important;
+    padding:12px 14px!important;
+    font-size:17px!important;
+    border-radius:14px!important;
+  }
+
+  .featurebar{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    width:100%!important;
+    margin-top:14px!important;
+    border-radius:14px!important;
+    overflow:hidden!important;
+  }
+  .featurebar>div{
+    min-height:64px!important;
+    padding:10px 9px!important;
+  }
+  .featurebar b{font-size:12px!important}
+  .featurebar span,.featurebar small{
+    font-size:9px!important;
+    line-height:1.15!important;
+  }
+
+  .status{
+    font-size:14px!important;
+    line-height:1.3!important;
+  }
+}
+@media(max-width:390px){
+  .brand img{width:45px!important;height:45px!important;flex-basis:45px!important}
+  .brand strong{font-size:20px!important}
+  .card h1{font-size:27px!important}
+  .menu button,.menu .button{min-height:58px!important;font-size:16px!important}
+}
+
+
+/* ===== MOBILE POLISH V5 ===== */
+@media (max-width:700px){
+  .wrap{padding:0 0 18px!important}
+
+  .top{
+    min-height:78px!important;
+    height:78px!important;
+    padding:7px 14px!important;
+    gap:8px!important;
+    align-items:center!important;
+  }
+  .brandbox{
+    gap:9px!important;
+    min-width:0!important;
+  }
+  .brandicon{
+    width:50px!important;
+    height:50px!important;
+    flex:0 0 50px!important;
+  }
+  .brand{
+    font-size:21px!important;
+    line-height:1!important;
+    letter-spacing:-.5px!important;
+  }
+  .subtitle{
+    margin-top:4px!important;
+    font-size:11px!important;
+    line-height:1.1!important;
+  }
+  .topchips{display:none!important}
+
+  .card{
+    width:calc(100% - 28px)!important;
+    margin:14px auto 0!important;
+    padding:20px 16px!important;
+    border-radius:18px!important;
+  }
+  .card h1{
+    font-size:29px!important;
+    line-height:1.08!important;
+    letter-spacing:-.7px!important;
+    margin:6px 0 11px!important;
+  }
+  .card .small,
+  .card p{
+    font-size:15px!important;
+    line-height:1.3!important;
+  }
+
+  .menu{
+    grid-template-columns:1fr!important;
+    gap:10px!important;
+    margin-top:18px!important;
+  }
+  .menu button{
+    min-height:61px!important;
+    padding:11px 12px!important;
+    font-size:17px!important;
+    border-radius:14px!important;
+  }
+
+  .stats{
+    display:block!important;
+    margin-top:18px!important;
+  }
+  .stats span{
+    display:block!important;
+    line-height:1.35!important;
+  }
+  .stats span+span{
+    margin-top:2px!important;
+  }
+
+  .featurebar{
+    width:calc(100% - 28px)!important;
+    grid-template-columns:1fr 1fr!important;
+    margin:14px auto 0!important;
+    border-radius:15px!important;
+  }
+  .feature{
+    min-height:67px!important;
+    padding:10px 9px!important;
+    gap:8px!important;
+  }
+  .feature .ico{font-size:21px!important}
+  .feature strong{font-size:12px!important}
+  .feature span{font-size:9px!important;line-height:1.15!important}
+  .feature:nth-child(2){border-right:0!important}
+  .feature:nth-child(-n+2){border-bottom:1px solid #20364f!important}
+  .feature:nth-child(3){border-right:1px solid rgba(70,94,117,.55)!important}
+  .feature:last-child{border-bottom:0!important}
+
+  .footer{
+    font-size:9px!important;
+    margin-top:9px!important;
+  }
+}
+
+@media (max-width:390px){
+  .top{height:72px!important;min-height:72px!important}
+  .brandicon{width:46px!important;height:46px!important;flex-basis:46px!important}
+  .brand{font-size:20px!important}
+  .subtitle{font-size:10px!important}
+  .card{width:calc(100% - 24px)!important;padding:18px 14px!important}
+  .card h1{font-size:27px!important}
+  .menu button{min-height:58px!important;font-size:16px!important}
+}
+
+
+/* ===== CONTACT BUTTONS ===== */
+.contact-box{
+  width:min(650px,calc(100% - 32px));
+  margin:14px auto 0;
+  padding:14px 16px;
+  background:rgba(4,17,31,.82);
+  border:1px solid rgba(70,94,117,.65);
+  border-radius:14px;
+  backdrop-filter:blur(10px);
+  text-align:center;
+}
+.contact-title{
+  color:#c8d3df;
+  font-size:12px;
+  font-weight:800;
+  margin-bottom:10px;
+}
+.contact-buttons{
+  display:flex;
+  gap:10px;
+}
+.contact-btn{
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:44px;
+  padding:10px 12px;
+  border-radius:10px;
+  text-decoration:none;
+  color:#fff!important;
+  font-size:14px;
+  font-weight:850;
+  background:#0b1b30;
+  transition:.15s;
+}
+.contact-btn:hover{transform:translateY(-1px);filter:brightness(1.08)}
+.contact-btn.whatsapp{border:1px solid #1fa45c}
+.contact-btn.messenger{border:1px solid #5278b8}
+.contact-note{
+  color:#8292a5;
+  font-size:10px;
+  margin-top:8px;
+}
+@media(max-width:520px){
+  .contact-box{width:calc(100% - 20px);padding:12px}
+  .contact-buttons{gap:8px}
+  .contact-btn{font-size:13px;min-height:46px}
+}
+
+
+
+/* ===== TESTREKRUT POLICJA — układ zgodny z SG ===== */
+html,body{background:#06101e}
+body:before{background-image:url('policja-bg.jpg');background-size:cover;background-position:center center;background-attachment:fixed;background-color:#06101e;filter:brightness(.72) saturate(.9) contrast(1.05)}
+body:after{background:linear-gradient(180deg,rgba(3,12,24,.58) 0%,rgba(3,12,24,.08) 18%,rgba(3,12,24,.08) 68%,rgba(3,12,24,.60) 100%),linear-gradient(90deg,rgba(3,12,24,.18) 0%,rgba(3,12,24,.03) 35%,rgba(3,12,24,.10) 65%,rgba(3,12,24,.22) 100%)}
+.wrap{padding:0 0 28px}
+.top{box-sizing:border-box;width:100%;display:flex;justify-content:space-between;gap:22px;align-items:center;margin:0;padding:13px 4.3%;min-height:104px;background:rgba(4,15,28,.80);border-bottom:1px solid rgba(120,145,168,.25);backdrop-filter:blur(9px)}
+.brandbox{display:flex;align-items:center;gap:15px;min-width:0}.brandicon{width:62px;height:62px;border-radius:50%;object-fit:cover;border:0;box-shadow:0 5px 20px rgba(0,0,0,.35);display:block;flex:0 0 62px}.brand{font-size:31px;font-weight:900;letter-spacing:-.9px}.brand .green{color:#55b5ff}.subtitle{margin-top:3px;color:#edf2f7;font-size:16px}
+.topchips{display:flex;gap:14px;align-items:center;min-width:0;max-width:58%;justify-content:flex-end}.topchips .chip{flex:0 1 auto}.chip{min-width:195px;padding:10px 17px;border:1px solid #506b84;background:rgba(7,20,35,.68);border-radius:11px;text-align:center;backdrop-filter:blur(10px)}.chip b{display:block;font-size:19px}.chip span{font-size:11px;color:#c0ccd8;text-transform:uppercase;letter-spacing:.8px}.chip.greenchip{border-color:#2d9cff}.chip.greenchip b{color:#55b5ff}
+.card{width:min(650px,calc(100% - 32px));margin:20px auto 0;background:linear-gradient(145deg,rgba(12,27,42,.93),rgba(6,18,31,.91));border:1px solid rgba(101,128,151,.58);border-radius:21px;padding:36px;box-shadow:0 25px 80px rgba(0,0,0,.48);backdrop-filter:blur(11px)}
+h1{margin:0 0 9px;font-size:31px;letter-spacing:-.6px}.q{font-size:28px;line-height:1.28;font-weight:760;margin:24px 0 22px;letter-spacing:-.35px}.question-label{font-size:14px;color:#55b5ff;font-weight:850;text-transform:none;letter-spacing:.2px;margin-top:5px}
+.exam-meta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.meta{display:inline-flex;align-items:center;gap:7px;border:1px solid #3e5973;background:rgba(7,22,38,.72);border-radius:10px;padding:9px 13px;color:#c5d0dc;font-size:13px}.meta b{color:#fff}.meta.timer{margin-left:auto;font-size:16px;font-weight:900;color:#dce5ef;border-color:#526579}.meta.timer b{color:#fff}
+.progress-wrap{width:min(650px,calc(100% - 32px));margin:18px auto 0}.progress-head{display:flex;justify-content:space-between;align-items:center;margin-top:0;font-size:14px;color:#f0f3f6;text-transform:uppercase;letter-spacing:.5px}.progress-head b{color:#55b5ff;font-size:16px}.bar{height:9px;background:#142a40;border-radius:99px;overflow:hidden;margin:8px 0 0;border:0}.fill{height:100%;background:linear-gradient(90deg,#176fba,#55b5ff);width:0;border-radius:99px;box-shadow:0 0 18px rgba(62,167,255,.28)}
+.answers{display:grid;gap:10px}.ans{position:relative;background:linear-gradient(135deg,#0c2137,#0a192b);border:1px solid #294966;color:var(--text);border-radius:10px;padding:13px;text-align:left;font-size:16px;cursor:pointer;transition:.16s;min-height:55px;display:flex;align-items:center;gap:14px}.ans:hover{border-color:#55aef0;transform:translateY(-1px);background:#102944}.ans b{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:#071524;color:#e0e7ef;font-size:14px;flex:0 0 36px}.ans.good{border-color:#55b5ff;background:linear-gradient(90deg,rgba(17,73,112,.9),rgba(8,42,68,.94));box-shadow:0 0 0 1px rgba(62,167,255,.12),0 10px 30px rgba(20,105,170,.12)}.ans.good b{background:#0b4e7e;color:#bde2ff}.ans.bad{border-color:#e52d3f;background:linear-gradient(90deg,rgba(91,22,35,.9),rgba(49,17,27,.92))}
+.feedback{margin-top:18px;padding:16px 18px;border-radius:13px;font-weight:800}.goodbox{background:rgba(12,61,94,.9);border:1px solid #3f9bd5;color:#c8e9ff}.badbox{background:rgba(78,22,34,.9);border:1px solid #b63a4a;color:#ffb5bd}
+button{border:1px solid transparent;border-radius:10px;padding:13px 20px;background:linear-gradient(135deg,#176fba,#3ea7ff);color:#fff;font-weight:850;cursor:pointer;box-shadow:0 8px 24px rgba(24,113,186,.22);transition:.15s}button:hover{transform:translateY(-1px);filter:brightness(1.06)}button.secondary{background:#0b1b2d;border-color:#2d4d69;color:#e1eaf3;box-shadow:none}button.danger{background:#551b27;border-color:#8b3141;color:#ff8c98}.menu button.secondary{background:#0b1b2d}.list{border-color:#29445f}.row{border-color:#1d354d}.tag{background:#263f59}
+input{background:#091a2d;border-color:#2b4c69;color:#fff}input:focus{border-color:#55b5ff;box-shadow:0 0 0 3px rgba(62,167,255,.1)}
+.featurebar{box-sizing:border-box;display:grid;grid-template-columns:repeat(4,1fr);width:min(1100px,calc(100% - 40px));margin:20px auto 0;background:rgba(4,17,31,.76);border:1px solid rgba(70,94,117,.65);border-radius:12px;overflow:hidden;backdrop-filter:blur(11px)}.feature{padding:13px 18px;display:flex;gap:11px;align-items:center;border-right:1px solid rgba(70,94,117,.55)}.feature:last-child{border-right:0}.feature .ico{font-size:23px;color:#55b5ff}.feature strong{display:block;font-size:13px}.feature span{display:block;color:#bac5d0;font-size:11px;margin-top:2px}.footer{text-align:center;color:#b0bbc6;font-size:11px;margin-top:12px}.footer b{color:#55b5ff}
+.contact-box{width:min(650px,calc(100% - 32px));margin:14px auto 0;padding:14px 16px;background:rgba(4,17,31,.82);border:1px solid rgba(70,94,117,.65);border-radius:14px;backdrop-filter:blur(10px);text-align:center}.contact-title{color:#c8d3df;font-size:12px;font-weight:800;margin-bottom:10px}.contact-buttons{display:flex;gap:10px}.contact-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 12px;border-radius:10px;text-decoration:none;color:#fff!important;font-size:14px;font-weight:850;background:#0b1b30;transition:.15s}.contact-btn.whatsapp{border:1px solid #1fa45c}.contact-btn.messenger{border:1px solid #5278b8}.contact-note{color:#8292a5;font-size:10px;margin-top:8px}
+@media(max-width:1000px){.top{padding:12px 20px}.topchips{max-width:52%}.topchips .chip{min-width:150px}}
+@media(max-width:800px){.top{padding:12px 16px;align-items:flex-start}.topchips{display:none}.brand{font-size:24px}.subtitle{font-size:13px}.brandicon{width:50px;height:50px;flex-basis:50px}.card{margin-top:18px;width:calc(100% - 20px);padding:22px}.q{font-size:23px}.menu{grid-template-columns:1fr}.featurebar{grid-template-columns:1fr 1fr;width:calc(100% - 20px)}.feature:nth-child(2){border-right:0}.feature:nth-child(-n+2){border-bottom:1px solid #20364f}.feature{padding:13px}.contact-box{width:calc(100% - 20px)}}
+@media(max-width:520px){.top{min-height:84px}.brand{font-size:20px}.subtitle{font-size:11px}.brandicon{width:50px;height:50px;flex-basis:50px}.card{margin-top:14px;padding:17px;border-radius:16px}.q{font-size:21px}.ans{font-size:15px;padding:13px}.featurebar{grid-template-columns:1fr}.feature{border-right:0!important;border-bottom:1px solid #20364f!important}.feature:last-child{border-bottom:0!important}.contact-box{width:calc(100% - 20px);padding:12px}.contact-buttons{gap:8px}.contact-btn{font-size:13px;min-height:46px}}
+@media(max-width:390px){.top{min-height:78px}.brandicon{width:46px;height:46px;flex-basis:46px}.brand{font-size:20px}.subtitle{font-size:10px}.card{width:calc(100% - 20px);padding:16px 14px}.card h1{font-size:27px}.menu button{min-height:58px;font-size:16px}}
+</style>
+
+<style id="police-base-chip-blue">
+.topchips .chip.greenchip{border-color:#2d9cff !important;}
+.topchips .chip.greenchip b{color:#2d9cff !important;}
+</style>
+</head>
+<body><div class="wrap">
+<div class="top">
+  <div class="brandbox">
+    <img class="brandicon" src="icon-header-policja.png" alt="Policja">
+    <div><div class="brand">TEST<span class="green">REKRUT</span></div><div class="subtitle">Testy wiedzy • Policja</div></div>
+  </div>
+  <div class="topchips">
+    <div class="chip greenchip"><span>Baza</span><b>216 pytań</b></div>
+    <div class="chip"><span>Tryb</span><b>40 min / 40 pytań</b></div>
+  </div>
+</div>
+<div id="app"></div>
+
+<div class="contact-box">
+  <div class="contact-title">MASZ PYTANIE? SKONTAKTUJ SIĘ</div>
+  <div class="contact-buttons">
+    <a class="contact-btn whatsapp" href="https://wa.me/48608737181" target="_blank" rel="noopener noreferrer">🟢 WhatsApp</a>
+    <a class="contact-btn messenger" href="https://m.me/tomasz.pawlak.54" target="_blank" rel="noopener noreferrer">🔵 Messenger</a>
+  </div>
+  <div class="contact-note">Pytania dotyczące TESTREKRUT, zakupu i aktywacji dostępu.</div>
+</div>
+<div class="featurebar">
+  <div class="feature"><div class="ico">✓</div><div><strong>Aktualna baza</strong><span>Pytania zgodne z oficjalnym wykazem Policji</span></div></div>
+  <div class="feature"><div class="ico">↻</div><div><strong>Skuteczna nauka</strong><span>Trenuj i analizuj swoje błędy</span></div></div>
+  <div class="feature"><div class="ico">▥</div><div><strong>Postęp</strong><span>Śledź wyniki kolejnych sesji</span></div></div>
+  <div class="feature"><div class="ico">⌑</div><div><strong>Bezpieczny dostęp</strong><span>Dostęp tylko dla uprawnionych</span></div></div>
+</div>
+<div class="footer"><b>TESTREKRUT</b> • © 2026 • Testy przygotowujące do rekrutacji do Policji</div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+<script>
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDhF58VCYjnZh9nTP8jX2yEUAjLkvy2oCo",
+  authDomain: "test-wiedzy-sg.firebaseapp.com",
+  projectId: "test-wiedzy-sg",
+  storageBucket: "test-wiedzy-sg.firebasestorage.app",
+  messagingSenderId: "505553329961",
+  appId: "1:505553329961:web:f9f0d18a0953136204e138"
+};
+
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+let currentUser = null;
+let activationCode = localStorage.getItem("policeAccessCode") || "";
+
+async function initFirebase() {
+  try {
+    await auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+
+    // Firebase potrzebuje chwili na odtworzenie zapisanej sesji.
+    // Nie wolno odczytywać auth.currentUser od razu po setPersistence(),
+    // bo może być jeszcze null i aplikacja utworzy wtedy nowego anonimowego użytkownika.
+    currentUser = await new Promise((resolve, reject) => {
+      const unsubscribe = auth.onAuthStateChanged(async user => {
+        unsubscribe();
+        resolve(user);
+      }, reject);
+    });
+
+    if (!currentUser) {
+      const result = await auth.signInAnonymously();
+      currentUser = result.user;
+    }
+
+    if (activationCode) {
+      const ok = await verifyAccessCode(activationCode, currentUser.uid);
+      if (ok) {
+        if (currentUser.isAnonymous) {
+          // Kod jest aktywny, ale konto nie zostało jeszcze zabezpieczone.
+          showSecureAccount();
+        } else {
+          // Konto e-mail jest już powiązane z UID — wpuszczamy od razu do aplikacji.
+          menu();
+        }
+        return;
+      }
+      activationCode = "";
+      localStorage.removeItem("policeAccessCode");
+    }
+
+    if (currentUser && !currentUser.isAnonymous) {
+      showLoginRecovery();
+    } else {
+      showActivation();
+    }
+  } catch (e) {
+    console.error(e);
+    showActivation("Nie udało się połączyć z systemem aktywacji. Sprawdź konfigurację Firebase.");
+  }
+}
+
+async function verifyAccessCode(code, uid) {
+  if (!code || !uid) return false;
+  try {
+    const normalized = code.trim().toUpperCase();
+    const snap = await db.collection("accessCodes").doc(normalized).get();
+    if (!snap.exists) return false;
+    const data = snap.data();
+    return data.active === true && data.product === "policja" && data.userId === uid;
+  } catch (e) {
+    console.error(e);
+    return false;
+  }
+}
+
+async function activateAccess() {
+  const input = document.getElementById("accessCodeInput");
+  const msg = document.getElementById("activationMsg");
+  const code = (input.value || "").trim().toUpperCase();
+
+  if (!code) { msg.textContent = "Wpisz kod dostępu."; return; }
+  if (!currentUser) { msg.textContent = "Trwa łączenie z Firebase. Spróbuj ponownie za chwilę."; return; }
+
+  msg.textContent = "Sprawdzam kod…";
+  input.disabled = true;
+  try {
+    const ref = db.collection("accessCodes").doc(code);
+    const snap = await ref.get();
+    if (!snap.exists) {
+      input.disabled = false;
+      msg.textContent = "❌ Nieprawidłowy kod dostępu.";
+      return;
+    }
+    const data = snap.data();
+    if (data.active !== true) {
+      input.disabled = false;
+      msg.textContent = "❌ Ten kod jest nieaktywny.";
+      return;
+    }
+    if (data.product !== "policja") {
+      input.disabled = false;
+      msg.textContent = "❌ Ten kod nie jest kodem dostępu do testu Policji.";
+      return;
+    }
+    if (data.userId && data.userId !== currentUser.uid) {
+      input.disabled = false;
+      msg.textContent = "❌ Ten kod został już wykorzystany.";
+      return;
+    }
+    if (!data.userId) await ref.update({ userId: currentUser.uid });
+
+    activationCode = code;
+    localStorage.setItem("policeAccessCode", code);
+    msg.textContent = "✅ Kod zaakceptowany. Teraz zabezpiecz dostęp kontem.";
+    setTimeout(showSecureAccount, 400);
+  } catch (e) {
+    console.error(e);
+    input.disabled = false;
+    msg.textContent = "❌ Nie udało się aktywować kodu. Sprawdź konfigurację Firebase.";
+  }
+}
+
+function showActivation(errorText = "") {
+  stopTimer();
+  state.mode = "activation";
+  document.getElementById("app").innerHTML = `<div class="card">
+    <h1>🔐 Aktywacja dostępu</h1>
+    <div class="small" style="margin-bottom:18px">Wpisz kod dostępu otrzymany do testu Policji.</div>
+    ${errorText ? `<div class="feedback badbox" style="margin-bottom:15px">${esc(errorText)}</div>` : ""}
+    <input id="accessCodeInput" autocomplete="off" autocapitalize="characters" placeholder="np. POL-XXXX-XXXX" style="width:100%;padding:15px;border-radius:12px;border:1px solid #33415f;background:#1b2540;color:white;font-size:18px;box-sizing:border-box;text-transform:uppercase">
+    <button onclick="activateAccess()" style="width:100%;margin-top:12px">🔓 Aktywuj dostęp</button>
+    <div style="margin-top:18px;text-align:center"><button class="secondary" onclick="showLoginRecovery()">Mam już konto — zaloguj się</button></div>
+    <div id="activationMsg" class="small" style="margin-top:15px"></div>
+  </div>`;
+}
+
+function showSecureAccount(message = "") {
+  stopTimer();
+  state.mode = "secure-account";
+  document.getElementById("app").innerHTML = `<div class="card">
+    <h1>🛡️ Zabezpiecz dostęp</h1>
+    <div class="small" style="margin-bottom:18px">Kod został aktywowany. Utwórz konto e-mail i hasło, aby po wyczyszczeniu danych przeglądarki móc odzyskać dostęp. Twoje obecne uprawnienie zostanie zachowane.</div>
+    ${message ? `<div class="feedback badbox" style="margin-bottom:15px">${esc(message)}</div>` : ""}
+    <input id="regEmail" type="email" autocomplete="email" placeholder="E-mail" style="width:100%;padding:15px;border-radius:12px;border:1px solid #33415f;background:#1b2540;color:white;font-size:17px;box-sizing:border-box;margin-bottom:10px">
+    <input id="regPass" type="password" autocomplete="new-password" placeholder="Hasło — minimum 6 znaków" style="width:100%;padding:15px;border-radius:12px;border:1px solid #33415f;background:#1b2540;color:white;font-size:17px;box-sizing:border-box">
+    <button onclick="createAccount()" style="width:100%;margin-top:12px">🛡️ Zabezpiecz moje konto</button>
+    <div style="margin-top:18px;text-align:center">
+      <button class="secondary" onclick="showLoginRecovery()">🔑 Mam już konto — zaloguj się</button>
+    </div>
+    <div id="accountMsg" class="small" style="margin-top:15px"></div>
+  </div>`;
+}
+
+async function createAccount() {
+  const email = (document.getElementById("regEmail").value || "").trim();
+  const pass = document.getElementById("regPass").value || "";
+  const msg = document.getElementById("accountMsg");
+  if (!email || !pass) { msg.textContent = "Wpisz e-mail i hasło."; return; }
+  if (pass.length < 6) { msg.textContent = "Hasło musi mieć co najmniej 6 znaków."; return; }
+  if (!currentUser || !currentUser.isAnonymous) { menu(); return; }
+
+  msg.textContent = "Tworzę konto…";
+  try {
+    const credential = firebase.auth.EmailAuthProvider.credential(email, pass);
+    const result = await currentUser.linkWithCredential(credential);
+    currentUser = result.user;
+    msg.textContent = "✅ Konto zabezpieczone.";
+    setTimeout(menu, 500);
+  } catch (e) {
+    console.error(e);
+    if (e.code === "auth/email-already-in-use") {
+      msg.textContent = "❌ Ten e-mail jest już używany. Jeśli to Twoje konto, użyj opcji logowania poniżej.";
+    } else if (e.code === "auth/invalid-email") {
+      msg.textContent = "❌ Nieprawidłowy adres e-mail.";
+    } else if (e.code === "auth/weak-password") {
+      msg.textContent = "❌ Hasło jest za słabe.";
+    } else {
+      msg.textContent = "❌ Nie udało się zabezpieczyć konta: " + (e.message || e.code);
+    }
+  }
+}
+
+function showLoginRecovery(message = "") {
+  stopTimer();
+  state.mode = "login";
+  document.getElementById("app").innerHTML = `<div class="card">
+    <h1>🔑 Odzyskaj dostęp</h1>
+    <div class="small" style="margin-bottom:18px">Zaloguj się e-mailem i hasłem ustawionym wcześniej, a następnie podaj swój kod dostępu.</div>
+    ${message ? `<div class="feedback badbox" style="margin-bottom:15px">${esc(message)}</div>` : ""}
+    <input id="loginEmail" type="email" autocomplete="email" placeholder="E-mail" style="width:100%;padding:15px;border-radius:12px;border:1px solid #33415f;background:#1b2540;color:white;font-size:17px;box-sizing:border-box;margin-bottom:10px">
+    <input id="loginPass" type="password" autocomplete="current-password" placeholder="Hasło" style="width:100%;padding:15px;border-radius:12px;border:1px solid #33415f;background:#1b2540;color:white;font-size:17px;box-sizing:border-box;margin-bottom:10px">
+    <input id="loginCode" autocomplete="off" autocapitalize="characters" placeholder="Kod dostępu" style="width:100%;padding:15px;border-radius:12px;border:1px solid #33415f;background:#1b2540;color:white;font-size:17px;box-sizing:border-box;text-transform:uppercase">
+    <button onclick="loginAndRecover()" style="width:100%;margin-top:12px">🔓 Zaloguj i odzyskaj dostęp</button>
+    <div style="margin-top:18px;text-align:center"><button class="secondary" onclick="showActivation()">← Wróć do aktywacji kodem</button></div>
+    <div id="loginMsg" class="small" style="margin-top:15px"></div>
+  </div>`;
+}
+
+async function loginAndRecover() {
+  const email = (document.getElementById("loginEmail").value || "").trim();
+  const pass = document.getElementById("loginPass").value || "";
+  const code = (document.getElementById("loginCode").value || "").trim().toUpperCase();
+  const msg = document.getElementById("loginMsg");
+  if (!email || !pass || !code) { msg.textContent = "Wypełnij e-mail, hasło i kod dostępu."; return; }
+  msg.textContent = "Loguję…";
+  try {
+    const result = await auth.signInWithEmailAndPassword(email, pass);
+    currentUser = result.user;
+    const ok = await verifyAccessCode(code, currentUser.uid);
+    if (!ok) {
+      await auth.signOut();
+      currentUser = null;
+      msg.textContent = "❌ Konto lub kod dostępu nie pasują do siebie.";
+      return;
+    }
+    activationCode = code;
+    localStorage.setItem("policeAccessCode", code);
+    msg.textContent = "✅ Dostęp odzyskany.";
+    setTimeout(menu, 500);
+  } catch (e) {
+    console.error(e);
+    msg.textContent = "❌ Nieprawidłowy e-mail lub hasło.";
+  }
+}
+
+const QUESTIONS = [
+  {
+    "id": 1,
+    "q": "Uczestnik ruchu NIE może być wpuszczony do pojazdu Policji w przypadku",
+    "a": [
+      "udzielenia pomocy choremu lub rannemu",
+      "wykorzystania pojazdu do celów prywatnych lub niezwiązanych z wykonywaniem czynności służbowych",
+      "wykonania czynności w sprawie o wykroczenie",
+      "umożliwienia zapłaty mandatu bezgotówkowo"
+    ],
+    "correct": 1,
+    "explanation": "Prawidłowa odpowiedź: w celu prywatnym lub bez związku z wykonywaniem czynności służbowych."
+  },
+  {
+    "id": 2,
+    "q": "Policjant zatrzymał pojazd Policji w miejscu zabronionym poza obszarem zabudowanym w celu przeprowadzenia czynności kontrolnych. W tej sytuacji policjant postąpił",
+    "a": [
+      "prawidłowo tylko w obszarze zabudowanym",
+      "nieprawidłowo, bo pojazd Policji nigdy nie może stać w miejscu zabronionym",
+      "nieprawidłowo, bo policjant musi włączyć sygnał dźwiękowy",
+      "prawidłowo, jeżeli przed przystąpieniem do kontroli włączył niebieskie światło błyskowe"
+    ],
+    "correct": 3,
+    "explanation": "Prawidłowa odpowiedź: prawidłowo, jeżeli przed przystąpieniem do kontroli włączył niebieskie światło błyskowe."
+  },
+  {
+    "id": 3,
+    "q": "W przypadku zatrzymania pojazdu do kontroli drogowej przez policjanta, kierujący tym pojazdem",
+    "a": [
+      "powinien wysiąść bez polecenia",
+      "może odmówić wykonania polecenia",
+      "jest obowiązany stosować się do poleceń i sygnałów policjanta",
+      "może oddalić się po okazaniu prawa jazdy"
+    ],
+    "correct": 2,
+    "explanation": "Prawidłowa odpowiedź: jest obowiązany stosować się do poleceń i sygnałów policjanta."
+  },
+  {
+    "id": 4,
+    "q": "Policjant nieumundurowany NIE może podać sygnału do zatrzymania",
+    "a": [
+      "w ogóle nie może zatrzymać pojazdu",
+      "na obszarze zabudowanym w każdych warunkach",
+      "tylko w nocy",
+      "w terenie niezabudowanym, gdy nie ma szczególnych okoliczności uzasadniających wyjątek"
+    ],
+    "correct": 3,
+    "explanation": "Prawidłowa odpowiedź: w terenie niezabudowanym, gdy nie ma szczególnych okoliczności uzasadniających wyjątek."
+  },
+  {
+    "id": 5,
+    "q": "W wyniku działań pościgowych policjant zatrzymał do kontroli samochód marki Fiat. Kierujący pojazdem zarzucił policjantowi, że ten działał nieprawidłowo ponieważ nie przedstawił się. W tej sytuacji",
+    "a": [
+      "nie miał obowiązku przedstawienia się, ponieważ zatrzymanie nastąpiło w wyniku pościgu",
+      "musi przedstawić się tylko na żądanie kierującego",
+      "zatrzymanie było nieważne",
+      "powinien zawsze przedstawić się przed zatrzymaniem"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: nie miał obowiązku przedstawienia się, ponieważ zatrzymanie nastąpiło w wyniku pościgu."
+  },
+  {
+    "id": 6,
+    "q": "Prawo do ujęcia na gorącym uczynku popełnienia przestępstwa przysługuje",
+    "a": [
+      "każdemu",
+      "policji, ale wyłącznie na polecenie prokuratora",
+      "wyłącznie pokrzywdzonemu przestępstwem",
+      "tylko funkcjonariuszowi Policji prowadzącemu postępowanie"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: każdemu."
+  },
+  {
+    "id": 7,
+    "q": "Policja ma prawo zatrzymać osobę ujętą na gorącym uczynku popełnienia wykroczenia lub bezpośrednio potem, jeżeli",
+    "a": [
+      "zachodzą przesłanki zatrzymania, w szczególności potrzeba ustalenia tożsamości lub zastosowania trybu przyspieszonego",
+      "gdy sprawca przyznał się do wykroczenia",
+      "zawsze, niezależnie od okoliczności zatrzymania",
+      "wyłącznie na polecenie sądu"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: zachodzą przesłanki zatrzymania, w szczególności potrzeba ustalenia tożsamości lub zastosowania trybu przyspieszonego."
+  },
+  {
+    "id": 8,
+    "q": "Prawomocny mandat karny podlega niezwłocznie uchyleniu jeżeli grzywnę nałożono",
+    "a": [
+      "za czyn niebędący wykroczeniem lub na osobę, która nie popełniła wykroczenia",
+      "za każde wykroczenie, którego sprawca nie przyjął mandatu",
+      "wyłącznie na osobę, która przyjęła mandat pod przymusem",
+      "tylko wtedy, gdy sprawca zmienił miejsce zamieszkania"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: za czyn niebędący wykroczeniem lub na osobę, która nie popełniła wykroczenia."
+  },
+  {
+    "id": 9,
+    "q": "Zgodnie z ustawą o Policji rozróżniamy następujące korpusy:",
+    "a": [
+      "szeregowych, podoficerów, aspirantów, oficerów młodszych, oficerów starszych i generałów",
+      "szeregowych, podoficerów, aspirantów i oficerów",
+      "szeregowych, podoficerów, chorążych, oficerów i generałów",
+      "szeregowych, aspirantów, oficerów młodszych i generałów"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: szeregowych, podoficerów, aspirantów, oficerów młodszych, oficerów starszych i generałów."
+  },
+  {
+    "id": 10,
+    "q": "Termin organizacja hierarchiczna, użyty w zarządzeniu nr 30 Komendanta Głównego Policji z dnia 16 grudnia 2013 roku, oznacza",
+    "a": [
+      "wewnętrzną organizację Policji opartą na systemie podległości i wzajemnych uprawnień oraz obowiązków",
+      "wyłącznie kolejność stopni policyjnych",
+      "system organizacji oparty na zasadzie dobrowolnego podporządkowania",
+      "strukturę jednostki bez zależności służbowych"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: wewnętrzną organizację Policji opartą na systemie podległości i wzajemnych uprawnień oraz obowiązków."
+  },
+  {
+    "id": 11,
+    "q": "Komórka organizacyjna to",
+    "a": [
+      "wyodrębniona organizacyjnie część struktury jednostki Policji",
+      "każda jednostka Policji posiadająca własny numer REGON",
+      "wyłącznie komenda wojewódzka Policji",
+      "zespół funkcjonariuszy działający bez formalnego wyodrębnienia"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: wyodrębniona organizacyjnie część struktury jednostki Policji."
+  },
+  {
+    "id": 12,
+    "q": "Termin przełożony, użyty w zarządzeniu nr 30 Komendanta Głównego Policji z dnia 16 grudnia 2013 roku, oznacza",
+    "a": [
+      "policjant lub pracownik Policji uprawniony do kierowania służbą lub pracą innego policjanta lub pracownika",
+      "policjant posiadający najwyższy stopień w jednostce",
+      "każdy policjant pełniący służbę w Policji",
+      "wyłącznie kierownik jednostki organizacyjnej"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: policjant lub pracownik Policji uprawniony do kierowania służbą lub pracą innego policjanta lub pracownika."
+  },
+  {
+    "id": 13,
+    "q": "Do podstawowych zadań ustawowych Policji NIE należy",
+    "a": [
+      "prowadzenie działalności gospodarczej w imieniu przedsiębiorców",
+      "ochrona życia i zdrowia ludzi",
+      "wykrywanie sprawców przestępstw i wykroczeń",
+      "zapewnienie bezpieczeństwa i porządku publicznego"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: prowadzenie działalności gospodarczej w imieniu przedsiębiorców."
+  },
+  {
+    "id": 14,
+    "q": "Policja składa się z następujących rodzajów służb:",
+    "a": [
+      "kryminalnej, śledczej, spraw wewnętrznych, prewencyjnej, kontrterrorystycznej, zwalczania cyberprzestępczości oraz wspomagającej",
+      "kryminalnej, śledczej, prewencyjnej i wspomagającej",
+      "kryminalnej, dochodzeniowej, drogowej, granicznej i logistycznej",
+      "prewencyjnej, sądowej, wojskowej, kontrterrorystycznej i wspomagającej"
+    ],
+    "correct": 0,
+    "explanation": "Policja wyróżnia siedem rodzajów służb: kryminalną, śledczą, spraw wewnętrznych, prewencyjną, kontrterrorystyczną, zwalczania cyberprzestępczości oraz wspomagającą."
+  },
+  {
+    "id": 15,
+    "q": "Które zdanie jest fałszywe?",
+    "a": [
+      "Policja może samodzielnie wydawać wyroki skazujące i wymierzać kary pozbawienia wolności.",
+      "Policja jest formacją umundurowaną i uzbrojoną służącą społeczeństwu.",
+      "Komendant Główny Policji jest przełożonym wszystkich policjantów.",
+      "Policja wykonuje zadania związane z ochroną bezpieczeństwa ludzi i utrzymaniem porządku publicznego."
+    ],
+    "correct": 0,
+    "explanation": "Fałszywe jest twierdzenie, że Policja może samodzielnie wydawać wyroki skazujące i wymierzać kary pozbawienia wolności. Orzekanie o winie i karze należy do sądu."
+  },
+  {
+    "id": 16,
+    "q": "Środkiem przymusu bezpośredniego jest między innymi pas",
+    "a": [
+      "pas obezwładniający",
+      "kajdanki",
+      "pałka służbowa",
+      "przedmioty przeznaczone do obezwładniania osób za pomocą energii elektrycznej"
+    ],
+    "correct": 0,
+    "explanation": "Pas obezwładniający jest jednym ze środków przymusu bezpośredniego wymienionych w ustawie."
+  },
+  {
+    "id": 17,
+    "q": "Wykorzystanie broni palnej to",
+    "a": [
+      "oddanie strzału z zastosowaniem amunicji penetracyjnej w kierunku zwierzęcia, przedmiotu lub w innym kierunku niezagrażającym osobie",
+      "oddanie strzału w kierunku osoby z zastosowaniem amunicji penetracyjnej",
+      "samo skierowanie broni palnej w stronę osoby bez oddania strzału",
+      "oddanie strzału ostrzegawczego w kierunku osoby"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: oddanie strzału z zastosowaniem amunicji penetracyjnej w kierunku zwierzęcia, przedmiotu lub w innym kierunku nie stwarzającym zagrożenia dla osoby."
+  },
+  {
+    "id": 18,
+    "q": "Ze służby w porze nocnej w godzinach od 22.00 do 6.00 oraz w niedzielę i święta zwalnia się policjanta",
+    "a": [
+      "kobietę w ciąży oraz określone osoby opiekujące się dzieckiem lub karmiące piersią – na zasadach określonych w przepisach",
+      "wyłącznie każdego policjanta wychowującego dziecko do 18 lat",
+      "tylko policjanta będącego na urlopie wypoczynkowym",
+      "każdego policjanta, który złoży taki wniosek bez względu na podstawę prawną"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: kobietę w ciąży oraz określone osoby opiekujące się dzieckiem lub karmiące piersią – na zasadach określonych w przepisach."
+  },
+  {
+    "id": 19,
+    "q": "Policjant może pełnić dyżur domowy nie więcej niż",
+    "a": [
+      "4 razy w miesiącu",
+      "2 razy w miesiącu",
+      "6 razy w miesiącu",
+      "10 razy w miesiącu"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: 4 razy w miesiącu."
+  },
+  {
+    "id": 20,
+    "q": "Zgodnie z zarządzeniem nr 805 Komendanta Głównego Policji z dnia 31 grudnia 2003 roku w sprawie ,,Zasad etyki zawodowej policjanta” w sytuacjach nieuregulowanych przepisami prawa lub nieujętych w zasadach etyki zawodowej policjant powinien kierować się",
+    "a": [
+      "interesem służby, z pominięciem zasad etyki",
+      "wyłącznie przepisami prawa",
+      "zasadami współżycia społecznego, postępując tak, aby być przykładem praworządności i pogłębiać zaufanie do Policji",
+      "własną oceną sytuacji"
+    ],
+    "correct": 2,
+    "explanation": "Prawidłowa odpowiedź: zasadami współżycia społecznego, postępując tak, aby być przykładem praworządności i pogłębiać zaufanie do Policji."
+  },
+  {
+    "id": 21,
+    "q": "Zgodnie z zarządzeniem nr 805 Komendanta Głównego Policji z dnia 31 grudnia 2003 roku w sprawie ,,Zasad etyki zawodowej policjanta” wykonując zadania służbowe, policjant powinien dostosowywać swoje zachowanie do sytuacji i cech osób uczestniczących w zdarzeniu",
+    "a": [
+      "wieku i stanowiska służbowego",
+      "wyłącznie płci i narodowości",
+      "wieku, płci, narodowości, wyznania oraz potrzeb osób uczestniczących w zdarzeniu",
+      "wyłącznie potrzeb osób pokrzywdzonych"
+    ],
+    "correct": 2,
+    "explanation": "Prawidłowa odpowiedź: wieku, płci, narodowości, wyznania oraz potrzeb osób uczestniczących w zdarzeniu."
+  },
+  {
+    "id": 22,
+    "q": "Zgodnie z zarządzeniem nr 805 Komendanta Głównego Policji z dnia 31 grudnia 2003 roku w sprawie ,,Zasad etyki zawodowej policjanta” stosunek policjanta do innych policjantów powinien być oparty na",
+    "a": [
+      "zasadzie bezwzględnego podporządkowania",
+      "rywalizacji między policjantami",
+      "zasadach poprawnego zachowania, poszanowaniu godności oraz tolerancji w granicach nienaruszających porządku prawnego",
+      "wyłącznie wykonywaniu poleceń przełożonych"
+    ],
+    "correct": 2,
+    "explanation": "Prawidłowa odpowiedź: zasadach poprawnego zachowania, poszanowaniu godności oraz tolerancji w granicach nienaruszających porządku prawnego."
+  },
+  {
+    "id": 23,
+    "q": "„Zasady etyki zawodowej policjanta” są uregulowane na podstawie",
+    "a": [
+      "zarządzenia nr 805 Komendanta Głównego Policji z 31 grudnia 2003 r.",
+      "ustawy o środkach przymusu bezpośredniego i broni palnej",
+      "Kodeksu postępowania karnego",
+      "rozporządzenia Rady Ministrów w sprawie organizacji Policji"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: zarządzenia nr 805 Komendanta Głównego Policji z 31 grudnia 2003 r.."
+  },
+  {
+    "id": 24,
+    "q": "Nieumundurowany policjant przystępując do czynności legitymowania",
+    "a": [
+      "okazuje legitymację służbową bez wezwania",
+      "okazuje legitymację służbową na żądanie osoby, wobec której podejmuje czynność",
+      "okazuje legitymację wyłącznie na polecenie przełożonego",
+      "okazuje legitymację wyłącznie po uzyskaniu zgody sądu"
+    ],
+    "correct": 1,
+    "explanation": "Prawidłowa odpowiedź: okazuje legitymację służbową na żądanie osoby, wobec której podejmuje czynność."
+  },
+  {
+    "id": 25,
+    "q": "Umundurowany policjant przystępując do czynności legitymowania ma obowiązek",
+    "a": [
+      "podać stopień, imię i nazwisko",
+      "okazać legitymację służbową przed każdą czynnością bez wyjątku",
+      "uzyskać zgodę sądu na legitymowanie",
+      "uzyskać każdorazowo zgodę przełożonego"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: podać stopień, imię i nazwisko."
+  },
+  {
+    "id": 26,
+    "q": "Policjant ustala tożsamość osoby legitymowanej m.in. na podstawie",
+    "a": [
+      "dokumentu tożsamości oraz innych wiarygodnych danych lub dokumentów pozwalających ustalić tożsamość",
+      "wyłącznie oświadczenia osoby legitymowanej",
+      "wyłącznie danych uzyskanych od przypadkowego świadka",
+      "wyłącznie informacji z jednej policyjnej bazy danych"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: dokumentu tożsamości oraz innych wiarygodnych danych lub dokumentów pozwalających ustalić tożsamość."
+  },
+  {
+    "id": 27,
+    "q": "Podczas prowadzonych przez umundurowanych policjantów działań kontrolnych, polegających na poddaniu jak największej liczby kierujących badaniu w celu ustalenia w organizmie zawartości alkoholu policjant poprzestaje na podaniu",
+    "a": [
+      "przyczyny zatrzymania",
+      "stopnia, imienia i nazwiska oraz wszystkich danych dotyczących policjanta",
+      "wyłącznie danych kierującego",
+      "wyłącznie informacji o wysokości ewentualnego mandatu"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: przyczyny zatrzymania."
+  },
+  {
+    "id": 28,
+    "q": "Po zatrzymaniu pojazdu w związku z podanym sygnałem do zatrzymania przez kontrolującego, kierujący tym pojazdem powinien trzymać ręce na kierownicy oraz na polecenie policjanta",
+    "a": [
+      "wyłączyć silnik i umożliwić policjantowi dokonanie czynności kontrolnych",
+      "wysiąść z pojazdu bez polecenia",
+      "opuścić pojazd i oddalić się od miejsca kontroli",
+      "odmówić wykonania polecenia, jeżeli nie zna nazwiska policjanta"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: wyłączyć silnik i umożliwić policjantowi dokonanie czynności kontrolnych."
+  },
+  {
+    "id": 29,
+    "q": "Umundurowany policjant, po zatrzymaniu kierującego pojazdem do kontroli drogowej zobowiązany jest podać kierującemu stopień, imię i nazwisko oraz",
+    "a": [
+      "przyczynę zatrzymania",
+      "numer PESEL policjanta",
+      "miejsce zamieszkania policjanta",
+      "wynik kontroli przed jej przeprowadzeniem"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: przyczynę zatrzymania."
+  },
+  {
+    "id": 30,
+    "q": "W przypadku zatrzymania pojazdu na jezdni lub poboczu, w miejscu gdzie jest to zabronione, kierujący pojazdem Policji przed przystąpieniem do kontroli włącza",
+    "a": [
+      "niebieskie światło błyskowe",
+      "wyłącznie sygnał dźwiękowy",
+      "światła awaryjne bez niebieskiego światła błyskowego",
+      "żaden sygnał, niezależnie od miejsca zatrzymania"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: niebieskie światło błyskowe."
+  },
+  {
+    "id": 31,
+    "q": "Centralnym organem administracji rządowej, właściwym w sprawach ochrony bezpieczeństwa ludzi oraz utrzymania bezpieczeństwa i porządku publicznego, jest",
+    "a": [
+      "Komendant Główny Policji",
+      "Minister właściwy do spraw wewnętrznych",
+      "Komendant Wojewódzki Policji",
+      "Prezes Rady Ministrów"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: Komendant Główny Policji."
+  },
+  {
+    "id": 32,
+    "q": "Jednym z podstawowych zadań Policji jest",
+    "a": [
+      "ochrona życia i zdrowia ludzi oraz mienia przed bezprawnymi zamachami",
+      "wydawanie wyroków w sprawach karnych",
+      "ochrona granicy państwowej",
+      "prowadzenie polityki zagranicznej państwa"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: ochrona życia i zdrowia ludzi oraz mienia przed bezprawnymi zamachami."
+  },
+  {
+    "id": 33,
+    "q": "Funkcjonariusz Policji podczas przeprowadzania interwencji domowej zatrzymał sprawcę przemocy domowej, który swoim zachowaniem stwarzał bezpośrednie zagrożenie dla życia lub zdrowia ludzkiego. Funkcjonariusz Policji postąpił",
+    "a": [
+      "prawidłowo, jeżeli zatrzymanie było zgodne z przesłankami ustawowymi",
+      "nieprawidłowo, ponieważ Policja nie może zatrzymać sprawcy przemocy domowej",
+      "nieprawidłowo, ponieważ zatrzymanie wymaga zawsze zgody sądu",
+      "prawidłowo w każdym przypadku, niezależnie od przesłanek ustawowych"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: prawidłowo, jeżeli zatrzymanie było zgodne z przesłankami ustawowymi."
+  },
+  {
+    "id": 34,
+    "q": "Funkcjonariusz Policji w trakcie czynności służbowych dokonał sprawdzenia zawartości odzieży i obuwia osoby. W związku z powyższym przeprowadził",
+    "a": [
+      "kontrolę osobistą",
+      "przeszukanie mieszkania",
+      "kontrolę bagażu na przejściu granicznym",
+      "przeglądanie dokumentów pojazdu"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: kontrolę osobistą."
+  },
+  {
+    "id": 35,
+    "q": "Policjanta przenosi się na niższe stanowisko służbowe w razie",
+    "a": [
+      "trwałej niezdolności do służby na zajmowanym stanowisku albo innych ustawowych przesłanek",
+      "uzyskania wyższego stopnia policyjnego",
+      "zmiany miejsca zamieszkania policjanta",
+      "wyłącznie na jego pisemny wniosek, niezależnie od potrzeb służby"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: trwałej niezdolności do służby na zajmowanym stanowisku albo innych ustawowych przesłanek."
+  },
+  {
+    "id": 36,
+    "q": "Postępowanie kwalifikacyjne do Policji zarządza i prowadzi",
+    "a": [
+      "właściwy przełożony w sprawie postępowania kwalifikacyjnego, zgodnie z art. 25 ustawy o Policji",
+      "wyłącznie Komendant Główny Policji dla wszystkich kandydatów",
+      "Minister właściwy do spraw wewnętrznych",
+      "Komendant wojewódzki Policji w każdym przypadku"
+    ],
+    "correct": 0,
+    "explanation": "Postępowanie kwalifikacyjne zarządza i prowadzi właściwy przełożony określony w art. 25 ustawy o Policji; nie jest to w każdym przypadku Komendant Główny Policji."
+  },
+  {
+    "id": 37,
+    "q": "Policjanta można zwolnić ze służby m.in. w przypadku",
+    "a": [
+      "orzeczenia trwałej niezdolności do służby",
+      "uzyskania pozytywnej opinii służbowej",
+      "ukończenia szkolenia podstawowego",
+      "osiągnięcia wysokiego wyniku w teście wiedzy"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: orzeczenia trwałej niezdolności do służby."
+  },
+  {
+    "id": 38,
+    "q": "Policjant obowiązany jest odmówić wykonania rozkazu lub polecenia przełożonego, jeśli jego wykonanie łączyłoby się z popełnieniem przestępstwa. O odmowie wykonania takiego rozkazu lub polecenia policjant powinien zameldować",
+    "a": [
+      "bezpośredniemu przełożonemu, a jeżeli nie jest to możliwe – Komendantowi Głównemu Policji z pominięciem drogi służbowej",
+      "ministrowi właściwemu do spraw wewnętrznych w każdym przypadku",
+      "wyłącznie prokuratorowi",
+      "przełożonemu właściwemu do rozstrzygnięcia sprawy, bez stosowania zasad dotyczących odmowy wykonania przestępnego rozkazu"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: bezpośredniemu przełożonemu, a jeżeli nie jest to możliwe – Komendantowi Głównemu Policji z pominięciem drogi służbowej."
+  },
+  {
+    "id": 39,
+    "q": "Przypadki, w których policjant w czasie wykonywania obowiązków służbowych nie ma obowiązku noszenia munduru określa",
+    "a": [
+      "Komendant Główny Policji w drodze zarządzenia",
+      "minister właściwy do spraw wewnętrznych w drodze rozporządzenia",
+      "Komendant wojewódzki Policji w drodze decyzji",
+      "Rada Ministrów w drodze ustawy"
+    ],
+    "correct": 0,
+    "explanation": "Art. 60 ust. 2 ustawy o Policji stanowi, że przypadki, w których policjant nie ma obowiązku noszenia munduru, określa Komendant Główny Policji."
+  },
+  {
+    "id": 40,
+    "q": "Posterunkowy Jan N. w trakcie zatrzymania agresywnego, aktywnie stawiającego opór sprawcy rozboju, używał słów powszechnie uznanych za obelżywe. Z tego powodu zatrzymany złożył skargę. Po zakończeniu czynności post. Jan N. przeprosił zatrzymanego. Wcześniej policjant został ukarany za podobne zachowanie karą nagany, ale kara zatarła się. Wymierzając karę dyscyplinarną zgodnie z ustawą o Policji przełożony jako okoliczności łagodzące powinien wziąć pod uwagę",
+    "a": [
+      "jego przeproszenie pokrzywdzonego oraz dobrowolne usunięcie skutków przewinienia",
+      "brak jakiejkolwiek reakcji policjanta po popełnieniu przewinienia",
+      "fakt, że przewinienie miało miejsce wyłącznie poza służbą",
+      "sam fakt zatarcia wcześniejszej kary nagany jako jedyną okoliczność łagodzącą"
+    ],
+    "correct": 0,
+    "explanation": "Przy wymierzaniu kary dyscyplinarnej uwzględnia się m.in. okoliczności przemawiające na korzyść obwinionego, w tym jego zachowanie po popełnieniu przewinienia. Samo zatarcie wcześniejszej kary nie jest automatycznie okolicznością łagodzącą."
+  },
+  {
+    "id": 41,
+    "q": "Zasady etyki zawodowej policjanta zawarte w zarządzeniu nr 805 Komendanta Głównego Policji wynikają z",
+    "a": [
+      "ogólnych norm prawnych i regulaminów służbowych",
+      "zasad ustalanych indywidualnie przez policjanta",
+      "ogólnych norm moralnych oraz wartości i norm właściwych dla zawodu policjanta",
+      "wyłącznie z ustawy o Policji"
+    ],
+    "correct": 2,
+    "explanation": "Prawidłowa odpowiedź: ogólnych norm moralnych oraz wartości i norm właściwych dla zawodu policjanta."
+  },
+  {
+    "id": 42,
+    "q": "Zgodnie z zasadami etyki zawodowej policjanta, postępowanie policjanta w kontaktach z ludźmi powinno cechować",
+    "a": [
+      "życzliwość oraz bezstronność wykluczająca uprzedzenia",
+      "wyłącznie formalny dystans wobec osób spoza Policji",
+      "pierwszeństwo interesu służby przed prawami człowieka w każdej sytuacji",
+      "swobodne ujawnianie informacji uzyskanych w związku ze służbą"
+    ],
+    "correct": 0,
+    "explanation": "Zgodnie z § 6 załącznika do zarządzenia nr 805 KGP postępowanie policjanta w kontaktach z ludźmi powinno cechować życzliwość oraz bezstronność wykluczająca uprzedzenia."
+  },
+  {
+    "id": 43,
+    "q": "Policjant będący w trakcie rozwodu poprosił przełożonego o zachowanie dyskrecji w przedmiotowej sprawie. Zgodnie z obowiązującymi przepisami przełożony",
+    "a": [
+      "może ujawnić informację każdemu policjantowi",
+      "powinien zachować dyskrecję, jeżeli informacja mogłaby zaszkodzić dobru służby lub dobremu imieniu osoby",
+      "ma obowiązek przekazać informację wszystkim podwładnym",
+      "nie może zachować dyskrecji w sprawach rodzinnych"
+    ],
+    "correct": 1,
+    "explanation": "Prawidłowa odpowiedź: powinien zachować dyskrecję, jeżeli informacja mogłaby zaszkodzić dobru służby lub dobremu imieniu osoby."
+  },
+  {
+    "id": 44,
+    "q": "Nałożenie grzywny w drodze mandatu karnego może nastąpić do",
+    "a": [
+      "500 zł, a w przypadku zbiegu określonego w art. 9 § 1 Kodeksu wykroczeń – 1000 zł, z wyjątkami ustawowymi",
+      "100 zł, a w przypadku zbiegu – 200 zł",
+      "2000 zł w każdym przypadku",
+      "5000 zł w każdym przypadku"
+    ],
+    "correct": 0,
+    "explanation": "Co do zasady w postępowaniu mandatowym można nałożyć grzywnę do 500 zł, a w przypadku zbiegu z art. 9 § 1 Kodeksu wykroczeń – do 1000 zł; przepisy szczególne przewidują wyższe limity dla wskazanych wykroczeń."
+  },
+  {
+    "id": 45,
+    "q": "Mandat karny kredytowany staje się prawomocny z chwilą",
+    "a": [
+      "pokwitowania odbioru przez ukaranego",
+      "sporządzenia mandatu przez policjanta",
+      "wpisania mandatu do systemu teleinformatycznego",
+      "uiszczenia grzywny przez ukaranego"
+    ],
+    "correct": 0,
+    "explanation": "Mandat karny kredytowany staje się prawomocny z chwilą pokwitowania jego odbioru przez ukaranego."
+  },
+  {
+    "id": 46,
+    "q": "Mandatem karnym kredytowanym NIE można ukarać osoby posiadającej miejsce stałego zamieszkania lub pobytu na terenie",
+    "a": [
+      "państwa spoza Unii Europejskiej",
+      "Rzeczypospolitej Polskiej",
+      "innego niż Polska państwa członkowskiego Unii Europejskiej",
+      "dowolnego państwa należącego do Europejskiego Obszaru Gospodarczego"
+    ],
+    "correct": 0,
+    "explanation": "Mandat kredytowany może być zastosowany m.in. wobec osoby mającej stałe miejsce zamieszkania lub pobytu w Polsce albo w innym państwie członkowskim UE. Nie można nim ukarać osoby mającej takie miejsce w państwie spoza UE."
+  },
+  {
+    "id": 47,
+    "q": "Gdy wobec sprawcy wykroczenia stosujemy tryb przyspieszony czas jego zatrzymania nie może przekroczyć",
+    "a": [
+      "48 godzin",
+      "24 godziny",
+      "72 godziny",
+      "14 dni"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: 48 godzin."
+  },
+  {
+    "id": 48,
+    "q": "W toku prowadzonych czynności wyjaśniających policjant nałożył grzywnę w drodze mandatu karnego. W takiej sytuacji",
+    "a": [
+      "nie wyłącza to możliwości prowadzenia dalszych czynności w sprawie, jeżeli mandat został prawidłowo nałożony",
+      "mandat automatycznie umarza całe postępowanie wyjaśniające w każdym zakresie",
+      "policjant musi natychmiast zwolnić sprawcę bez żadnych dalszych czynności",
+      "nałożenie mandatu jest niemożliwe, jeżeli wcześniej wykonano jakąkolwiek czynność wyjaśniającą"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: nie wyłącza to możliwości prowadzenia dalszych czynności w sprawie, jeżeli mandat został prawidłowo nałożony."
+  },
+  {
+    "id": 49,
+    "q": "Wniosek o ukaranie przed przekazaniem do sądu powinien być sprawdzony i podpisany przez",
+    "a": [
+      "organ Policji osobiście albo osoba upoważniona przez ten organ",
+      "sąd właściwy do rozpoznania sprawy",
+      "każdy policjant bez upoważnienia",
+      "Komendant Główny Policji"
+    ],
+    "correct": 0,
+    "explanation": "Wniosek o ukaranie przed skierowaniem do sądu sprawdza i podpisuje organ Policji osobiście albo osoba przez niego upoważniona."
+  },
+  {
+    "id": 50,
+    "q": "Decyzję o zastosowaniu środka oddziaływania wychowawczego w toku czynności wyjaśniających podejmuje",
+    "a": [
+      "policjant ujawniający wykroczenie albo policjant prowadzący czynności wyjaśniające – zależnie od momentu zastosowania środka",
+      "wyłącznie prokurator",
+      "wyłącznie sąd rejonowy",
+      "minister właściwy do spraw wewnętrznych"
+    ],
+    "correct": 0,
+    "explanation": "Jeżeli środek jest stosowany bezpośrednio po ujawnieniu wykroczenia, decyzję podejmuje policjant ujawniający wykroczenie; jeżeli przesłanki powstały w toku czynności wyjaśniających – policjant prowadzący te czynności."
+  },
+  {
+    "id": 51,
+    "q": "W reakcji na wykroczenie policjant poprzestał na zastosowaniu środków oddziaływania wychowawczego. Policjant ten",
+    "a": [
+      "może odstąpić od kierowania wniosku o ukaranie, jeżeli środek oddziaływania wychowawczego jest wystarczający",
+      "musi zawsze skierować wniosek o ukaranie do sądu",
+      "nie może już w żaden sposób prowadzić czynności dotyczących sprawcy",
+      "zastosowanie środka wychowawczego automatycznie oznacza ukaranie mandatem"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: może odstąpić od kierowania wniosku o ukaranie, jeżeli środek oddziaływania wychowawczego jest wystarczający."
+  },
+  {
+    "id": 52,
+    "q": "Policjant w reakcji na wykroczenie wskazał sprawcy wykroczenia niezgodność jego zachowania z obowiązującymi przepisami, ze wskazaniem tych przepisów. W tej sytuacji policjant zastosował środek oddziaływania wychowawczego w postaci",
+    "a": [
+      "zwrócenie uwagi",
+      "pouczenie o prawie odmowy przyjęcia mandatu",
+      "ostrzeżenie przed zastosowaniem środka przymusu bezpośredniego",
+      "nałożenie grzywny w drodze mandatu karnego"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: zwrócenie uwagi."
+  },
+  {
+    "id": 53,
+    "q": "W rozumieniu obowiązujących przepisów jako wykorzystanie broni palnej należy uznać oddanie strzału z zastosowaniem amunicji",
+    "a": [
+      "penetracyjnej",
+      "niepenetracyjnej",
+      "gazowej",
+      "wyłącznie hukowej"
+    ],
+    "correct": 0,
+    "explanation": "Wykorzystanie broni palnej oznacza oddanie strzału z zastosowaniem amunicji penetracyjnej w kierunku zwierzęcia, przedmiotu lub w innym kierunku niestwarzającym zagrożenia dla osoby."
+  },
+  {
+    "id": 54,
+    "q": "Jako użycie broni palnej przez policjanta należy rozumieć oddanie przez niego strzału w kierunku osoby",
+    "a": [
+      "z zastosowaniem amunicji penetracyjnej",
+      "z zastosowaniem amunicji niepenetracyjnej",
+      "bez zastosowania amunicji penetracyjnej",
+      "z zastosowaniem wyłącznie amunicji hukowej"
+    ],
+    "correct": 0,
+    "explanation": "Użycie broni palnej oznacza oddanie strzału w kierunku osoby z zastosowaniem amunicji penetracyjnej."
+  },
+  {
+    "id": 55,
+    "q": "Policjant wobec zwierząt może wykorzystać środek przymusu bezpośredniego w postaci",
+    "a": [
+      "kajdanki",
+      "urządzenie elektryczne",
+      "chemiczne środki obezwładniające",
+      "pałka służbowa"
+    ],
+    "correct": 3,
+    "explanation": "Prawidłowa odpowiedź: pałka służbowa."
+  },
+  {
+    "id": 56,
+    "q": "Bezpośrednim przełożonym policjanta dzielnicowego jest",
+    "a": [
+      "kierownik dzielnicowych",
+      "Komendant Główny Policji",
+      "komendant wojewódzki Policji w każdym przypadku",
+      "komendant powiatowy Policji w każdym przypadku"
+    ],
+    "correct": 0,
+    "explanation": "Bezpośrednim przełożonym dzielnicowego jest kierownik dzielnicowych."
+  },
+  {
+    "id": 57,
+    "q": "Ustanie stosunku służbowego to rozwiązanie stosunku służbowego w związku",
+    "a": [
+      "zwolnieniem policjanta ze służby lub jego śmiercią",
+      "zawieszeniem policjanta w czynnościach służbowych",
+      "przeniesieniem do innej jednostki",
+      "mianowaniem na inne stanowisko służbowe"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: zwolnieniem policjanta ze służby lub jego śmiercią."
+  },
+  {
+    "id": 58,
+    "q": "Policjant informuje drogą służbową przełożonego właściwego w sprawach osobowych m.in. o zmianie stanu cywilnego sporządzając pisemny",
+    "a": [
+      "raport",
+      "wniosek o urlop",
+      "oświadczenie majątkowe",
+      "formularz ewidencji czasu służby"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: raport."
+  },
+  {
+    "id": 59,
+    "q": "Tryb zwracania się policjanta w sprawie osobowej lub innej sprawie wynikającej ze stosunku służbowego do przełożonego uprawnionego do jej załatwienia za pośrednictwem bezpośredniego przełożonego to",
+    "a": [
+      "droga służbowa",
+      "tryb bezpośredni",
+      "postępowanie uproszczone",
+      "droga poza służbą"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: droga służbowa."
+  },
+  {
+    "id": 60,
+    "q": "Policjant po zawarciu związku małżeńskiego jest obowiązany poinformować o tym fakcie przełożonego właściwego w sprawach osobowych niezwłocznie, jednakże nie później niż w terminie",
+    "a": [
+      "7 dni",
+      "14 dni",
+      "30 dni",
+      "61 dni"
+    ],
+    "correct": 0,
+    "explanation": "Policjant ma obowiązek poinformować o zawarciu małżeństwa niezwłocznie, nie później niż w terminie 7 dni."
+  },
+  {
+    "id": 61,
+    "q": "Policjanta uprawnionego z racji zajmowanego stanowiska albo na podstawie odrębnego przepisu lub upoważnienia do kierowania przebiegiem służby lub pracy innego policjanta określa się mianem",
+    "a": [
+      "przełożonym",
+      "starszym stopniem",
+      "kierownikiem zmiany",
+      "rzecznikiem dyscyplinarnym"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: przełożonym."
+  },
+  {
+    "id": 62,
+    "q": "Do czasu służby trwającej 8 godzin w korzystnych warunkach atmosferycznych wlicza się czas przerwy trwający",
+    "a": [
+      "20 minut",
+      "15 minut",
+      "30 minut",
+      "45 minut"
+    ],
+    "correct": 0,
+    "explanation": "Do czasu służby trwającej 8 godzin wlicza się 20 minut przerwy."
+  },
+  {
+    "id": 63,
+    "q": "Inne godziny rozpoczęcia i zakończenia służby niż określone w podstawowym rozkładzie czasu służby wprowadzić może",
+    "a": [
+      "przełożony właściwy w sprawach osobowych, na zasadach określonych w rozporządzeniu",
+      "Komendant Główny Policji wyłącznie w formie ustnej",
+      "każdy policjant według własnego uznania",
+      "wyłącznie minister właściwy do spraw wewnętrznych"
+    ],
+    "correct": 0,
+    "explanation": "Zgodnie z § 2 ust. 2 rozporządzenia MSWiA w sprawie czasu służby policjantów rozkład czasu służby wprowadza przełożony właściwy w sprawach osobowych, ustalając godziny rozpoczęcia i zakończenia służby."
+  },
+  {
+    "id": 64,
+    "q": "Jakie stopnie wyróżniamy w korpusie aspirantów Policji?",
+    "a": [
+      "młodszy aspirant, aspirant, starszy aspirant, aspirant sztabowy",
+      "podkomisarz, komisarz, nadkomisarz",
+      "posterunkowy, starszy posterunkowy",
+      "sierżant, starszy sierżant, sierżant sztabowy"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: młodszy aspirant, aspirant, starszy aspirant, aspirant sztabowy."
+  },
+  {
+    "id": 65,
+    "q": "Jakie stopnie wyróżniamy w korpusie szeregowych Policji?",
+    "a": [
+      "podinspektor, młodszy inspektor",
+      "posterunkowy, starszy posterunkowy",
+      "posterunkowy i starszy posterunkowy",
+      "młodszy aspirant, aspirant"
+    ],
+    "correct": 2,
+    "explanation": "Prawidłowa odpowiedź: posterunkowy i starszy posterunkowy."
+  },
+  {
+    "id": 66,
+    "q": "W korpusie generałów Policji wyróżniamy stopień",
+    "a": [
+      "podinspektor i inspektor",
+      "generalny inspektor Policji i nadinspektor Policji",
+      "nadkomisarz i komisarz",
+      "aspirant sztabowy i starszy aspirant"
+    ],
+    "correct": 1,
+    "explanation": "Prawidłowa odpowiedź: generalny inspektor Policji i nadinspektor Policji."
+  },
+  {
+    "id": 67,
+    "q": "Policjant we wszystkich swoich działaniach ma obowiązek",
+    "a": [
+      "przestrzegać wyłącznie prawa",
+      "przestrzegać prawa, zasad etyki zawodowej oraz szanować godność i prawa człowieka",
+      "wykonywać każde polecenie nawet sprzeczne z prawem",
+      "kierować się wyłącznie interesem służby"
+    ],
+    "correct": 1,
+    "explanation": "Prawidłowa odpowiedź: przestrzegać prawa, zasad etyki zawodowej oraz szanować godność i prawa człowieka."
+  },
+  {
+    "id": 68,
+    "q": "Policjant, jako funkcjonariusz publiczny, powinien",
+    "a": [
+      "postępować zgodnie z prawem i zasadami etyki zawodowej",
+      "wyłącznie kierować się interesem służby, niezależnie od prawa",
+      "przede wszystkim realizować interes prywatny",
+      "stosować zasady etyki tylko wtedy, gdy nie ma przepisu prawa"
+    ],
+    "correct": 0,
+    "explanation": "Zasady etyki zawodowej wymagają od policjanta jako funkcjonariusza publicznego wystrzegania się korupcji, działania zgodnie z prawem i budowania zaufania do Policji."
+  },
+  {
+    "id": 69,
+    "q": "Zgodnie z zasadami etyki zawodowej, policjant powinien",
+    "a": [
+      "kierować się wyłącznie interesem służbowym",
+      "dbać o kulturę osobistą, bezstronność i poszanowanie godności człowieka",
+      "unikać kontaktu z osobami spoza Policji",
+      "przedkładać interes Policji nad prawa jednostki w każdej sytuacji"
+    ],
+    "correct": 1,
+    "explanation": "Prawidłowa odpowiedź: dbać o kulturę osobistą, bezstronność i poszanowanie godności człowieka."
+  },
+  {
+    "id": 70,
+    "q": "W stosunku do ofiar przestępstw lub innego zdarzenia, policjant powinien",
+    "a": [
+      "ograniczyć pomoc do przekazania podstawowych informacji",
+      "okazać takt, wrażliwość i udzielić wszechstronnej pomocy, z zachowaniem dyskrecji",
+      "przekazywać informacje o ofierze osobom postronnym",
+      "traktować ofiarę wyłącznie jako źródło informacji"
+    ],
+    "correct": 1,
+    "explanation": "Prawidłowa odpowiedź: okazać takt, wrażliwość i udzielić wszechstronnej pomocy, z zachowaniem dyskrecji."
+  },
+  {
+    "id": 71,
+    "q": "Zgodnie z zasadami etyki zawodowej, przełożony w stosunku do podwładnego powinien",
+    "a": [
+      "dawać przykład nienagannego zachowania i nie nadużywać stanowiska",
+      "wydawać polecenia bez potrzeby ich wyjaśniania",
+      "wykorzystywać stanowisko w sprawach prywatnych podwładnych",
+      "oceniać podwładnych według nieujawnionych kryteriów"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: dawać przykład nienagannego zachowania i nie nadużywać stanowiska."
+  },
+  {
+    "id": 72,
+    "q": "Karami dyscyplinarnymi stosowanymi wobec policjantów są",
+    "a": [
+      "upomnienie; nagana; ostrzeżenie o niepełnej przydatności do służby na zajmowanym stanowisku; wyznaczenie na niższe stanowisko służbowe; obniżenie stopnia; ostrzeżenie o niepełnej przydatności do służby; wydalenie ze służby",
+      "mandat karny; nagana; grzywna; wydalenie ze służby",
+      "upomnienie; pouczenie; mandat karny; zawieszenie w czynnościach służbowych",
+      "nagana; areszt; ograniczenie wolności; wydalenie ze służby"
+    ],
+    "correct": 0,
+    "explanation": "Ustawa o Policji wymienia siedem kar dyscyplinarnych: upomnienie, naganę, ostrzeżenie o niepełnej przydatności do służby na zajmowanym stanowisku, wyznaczenie na niższe stanowisko, obniżenie stopnia, ostrzeżenie o niepełnej przydatności do służby oraz wydalenie ze służby."
+  },
+  {
+    "id": 73,
+    "q": "Zgodnie z ustawą z dnia 6 kwietnia 1990 r. o Policji, roszczenia z tytułu prawa do uposażenia i innych świadczeń oraz należności pieniężnych ulegają przedawnieniu z upływem",
+    "a": [
+      "10 lat",
+      "1 rok",
+      "3 lat",
+      "5 lat"
+    ],
+    "correct": 2,
+    "explanation": "Prawidłowa odpowiedź: 3 lat."
+  },
+  {
+    "id": 74,
+    "q": "Oświadczenie o stanie majątkowym policjanta przechowuje się",
+    "a": [
+      "10 lat",
+      "5 lat",
+      "15 lat",
+      "bezterminowo"
+    ],
+    "correct": 0,
+    "explanation": "Oświadczenie o stanie majątkowym przechowuje się przez 10 lat."
+  },
+  {
+    "id": 75,
+    "q": "Jan K. od 4 lat jest członkiem partii politycznej. Dnia 16 czerwca 2020 r. został przyjęty do służby w Policji. W związku z tym dotychczasowe członkostwo w partii Jana K.",
+    "a": [
+      "musi ustać, ponieważ policjant nie może być członkiem partii politycznej",
+      "może pozostać członkiem partii do końca kadencji władz partii",
+      "zawiesza się na okres jednego roku, a następnie może być wznowione",
+      "może pozostać członkiem partii za zgodą przełożonego"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: musi ustać, ponieważ policjant nie może być członkiem partii politycznej."
+  },
+  {
+    "id": 76,
+    "q": "Sąd zarządza natychmiastowe zwolnienie zatrzymanego w razie uznania",
+    "a": [
+      "niezasadności lub nielegalności zatrzymania",
+      "zatrzymanie było zgodne z prawem i zasadne",
+      "zatrzymany nie przyznał się do winy",
+      "zatrzymany odmówił podpisania protokołu"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: niezasadności lub nielegalności zatrzymania."
+  },
+  {
+    "id": 77,
+    "q": "Czas zatrzymania osoby ujętej na gorącym uczynku popełnienia wykroczenia liczy się od chwili",
+    "a": [
+      "ujęcia",
+      "sporządzenia protokołu",
+      "przyjęcia osoby do jednostki Policji",
+      "wydania postanowienia przez sąd"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: ujęcia. Czas zatrzymania liczy się od chwili ujęcia przez policjanta."
+  },
+  {
+    "id": 78,
+    "q": "Pełnisz służbę w Wydziale Ruchu Drogowego. Za pomocą przyrządu kontrolno- pomiarowego ujawniłeś wykroczenie polegające na przekroczeniu prędkości o 20 km/h w terenie zabudowanym przez kierującego pojazdem marki Ford Mondeo o numerze rejestracyjnym PP12345. Kierującemu zaproponowałeś mandat karny kredytowany, jednak ten odmówił jego przyjęcia. W takim przypadku należy",
+    "a": [
+      "sporządzić wniosek o ukaranie do sądu, ponieważ kierujący odmówił przyjęcia mandatu",
+      "umorzyć czynności, ponieważ odmowa mandatu kończy sprawę",
+      "nałożyć mandat mimo odmowy jego przyjęcia",
+      "zastosować pouczenie jako obowiązkową alternatywę dla wniosku do sądu"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: sporządzić wniosek o ukaranie do sądu, ponieważ kierujący odmówił przyjęcia mandatu."
+  },
+  {
+    "id": 79,
+    "q": "Przesłanką dodatnią postępowania mandatowego jest",
+    "a": [
+      "sprawca został schwytany na gorącym uczynku lub bezpośrednio po popełnieniu wykroczenia i nie zachodzi przeszkoda ustawowa",
+      "sprawca nie jest znany, ale funkcjonariusz podejrzewa jego tożsamość",
+      "sprawca nie został ujawniony, a dowody są wyłącznie anonimowe",
+      "sprawca dobrowolnie zobowiązał się do zapłaty grzywny bez podstawy ustawowej"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: sprawca został schwytany na gorącym uczynku lub bezpośrednio po popełnieniu wykroczenia i nie zachodzi przeszkoda ustawowa."
+  },
+  {
+    "id": 80,
+    "q": "Wobec sprawcy wykroczenia nakłada się grzywnę w drodze mandatu karnego kredytowanego lub gotówkowego albo kieruje się wniosek o ukaranie do sądu, jeżeli nie można poprzestać na zastosowaniu środków oddziaływania wychowawczego w postaci",
+    "a": [
+      "pouczenia, zwrócenia uwagi lub ostrzeżenia",
+      "zakazu prowadzenia pojazdów",
+      "przepadku przedmiotów",
+      "aresztu jako środka oddziaływania wychowawczego"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: pouczenia, zwrócenia uwagi lub ostrzeżenia."
+  },
+  {
+    "id": 81,
+    "q": "Policjant wobec osoby, której tożsamości nie może ustalić",
+    "a": [
+      "może zatrzymać ją, jeżeli zachodzą ustawowe przesłanki zatrzymania w celu ustalenia tożsamości",
+      "może wyłącznie pouczyć osobę i nigdy nie może ustalać jej tożsamości",
+      "może zatrzymać każdą osobę bez dodatkowych przesłanek",
+      "może pobrać dane tylko za zgodą sądu"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: może zatrzymać ją, jeżeli zachodzą ustawowe przesłanki zatrzymania w celu ustalenia tożsamości."
+  },
+  {
+    "id": 82,
+    "q": "Policjant jest obowiązany powiadomić bezpośredniego przełożonego o planowanym wyjeździe zagranicznym, poza obszar Unii Europejskiej, na więcej niż",
+    "a": [
+      "3 dni",
+      "1 dzień",
+      "7 dni",
+      "14 dni"
+    ],
+    "correct": 0,
+    "explanation": "Obowiązek dotyczy planowanego wyjazdu poza obszar UE na więcej niż 3 dni."
+  },
+  {
+    "id": 83,
+    "q": "Po zakończeniu czynności legitymowania policjant ma obowiązek poinformować osobę o prawie złożenia zażalenia na",
+    "a": [
+      "sposób przeprowadzenia czynności legitymowania",
+      "zasadność nałożenia mandatu karnego",
+      "wysokość grzywny orzeczonej przez sąd",
+      "treść obowiązujących przepisów prawa"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: sposób przeprowadzenia czynności legitymowania."
+  },
+  {
+    "id": 84,
+    "q": "Prawo do urlopu w pełnym wymiarze policjant nabywa z upływem",
+    "a": [
+      "roku służby",
+      "6 miesięcy służby",
+      "2 lat służby",
+      "5 lat służby"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: roku służby."
+  },
+  {
+    "id": 85,
+    "q": "Policjant nie może podejmować zajęcia zarobkowego poza służbą bez",
+    "a": [
+      "pisemnej zgody przełożonego właściwego w sprawach osobowych",
+      "ustnej zgody dowolnego policjanta",
+      "zgody współmałżonka",
+      "zgody kolegi z jednostki"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: pisemnej zgody przełożonego właściwego w sprawach osobowych."
+  },
+  {
+    "id": 86,
+    "q": "Przed rozpoczęciem urlopu wypoczynkowego i dodatkowego policjant zobowiązany jest",
+    "a": [
+      "zawiadomić przełożonego i dopełnić wymaganych formalności",
+      "zwrócić legitymację służbową",
+      "złożyć oświadczenie o rezygnacji ze służby",
+      "uzyskać zgodę sądu na rozpoczęcie urlopu"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: zawiadomić przełożonego i dopełnić wymaganych formalności."
+  },
+  {
+    "id": 87,
+    "q": "Droga służbowa to",
+    "a": [
+      "załatwianie spraw służbowych za pośrednictwem kolejnych przełożonych oraz przekazywanie poleceń w dół hierarchii",
+      "postępowanie prowadzone bez udziału przełożonego",
+      "przekazywanie spraw wyłącznie bezpośrednio do Komendanta Głównego Policji",
+      "swobodne przekazywanie spraw między policjantami bez zachowania hierarchii"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: załatwianie spraw służbowych za pośrednictwem kolejnych przełożonych oraz przekazywanie poleceń w dół hierarchii."
+  },
+  {
+    "id": 88,
+    "q": "Dwuosobowy patrol nieumundurowanych funkcjonariuszy Policji przystąpił do legitymowania młodego mężczyzny, który w miejscu publicznym spożywał alkohol. Dowódca patrolu okazał legitymację służbową, a następnie na żądanie osoby legitymowanej okazał ją w taki sposób, by umożliwić jej odnotowanie danych zawartych w legitymacji. Postępowanie dowódcy patrolu było",
+    "a": [
+      "prawidłowe",
+      "nieprawidłowe, ponieważ policjant nieumundurowany nie może legitymować",
+      "nieprawidłowe, ponieważ legitymację okazuje się dopiero na żądanie policjanta",
+      "nieprawidłowe, ponieważ nie wolno umożliwić osobie odnotowania danych z legitymacji"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: prawidłowe."
+  },
+  {
+    "id": 89,
+    "q": "Policjantka po powrocie z urlopu macierzyńskiego zawiadomiła raportem swojego bezpośredniego przełożonego o tym, że nadal karmi piersią swoje dziecko. Za zgodą policjantki pełni ona służby w niedzielę w godzinach 22:00–06:00. Sytuacja ta",
+    "a": [
+      "prawidłowa, ponieważ policjantka wyraziła zgodę na służbę w niedzielę i w porze nocnej",
+      "nieprawidłowa, ponieważ policjantka karmiąca piersią nigdy nie może pełnić służby w tych godzinach",
+      "nieprawidłowa, ponieważ zgoda jest wymagana wyłącznie od policjanta będącego jedynym opiekunem dziecka",
+      "nieprawidłowa, ponieważ zgoda policjantki może dotyczyć tylko służby w niedzielę, ale nie pory nocnej"
+    ],
+    "correct": 0,
+    "explanation": "Policjantka karmiąca dziecko piersią może pełnić służbę w niedzielę, święto lub w porze nocnej, jeżeli wyrazi na to zgodę."
+  },
+  {
+    "id": 90,
+    "q": "Posterunkowy Wiesław K. zauważył, że kolega z patrolu post. Radosław F. w zamian za odstąpienie od czynności służbowych, przyjął od legitymowanego przez nich młodego mężczyzny banknot w wysokości 100 zł. Post. Wiesław K. o sytuacji tej niezwłocznie poinformował Biuro Spraw Wewnętrznych Policji (BSWP). Obaj pełnią służbę w komendzie powiatowej Policji. Postępowanie post. Wiesława K. było",
+    "a": [
+      "prawidłowe i zgodne z obowiązkiem przeciwdziałania korupcji",
+      "nieprawidłowe, ponieważ powinien zataić zdarzenie do czasu zakończenia służby",
+      "nieprawidłowe, ponieważ powinien poinformować wyłącznie bezpośredniego przełożonego",
+      "nieprawidłowe, ponieważ nie wolno informować BSWP o korupcji w jednostce terenowej"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: prawidłowe i zgodne z obowiązkiem przeciwdziałania korupcji."
+  },
+  {
+    "id": 91,
+    "q": "Postępowanie kwalifikacyjne w stosunku do kandydata ubiegającego się o przyjęcie do służby w Policji w charakterze członka personelu lotniczego, posiadającego uprawnienia lotnicze w określonej specjalności odbywa się z pominięciem",
+    "a": [
+      "niektórych etapów postępowania określonych w przepisach dla zwykłych kandydatów",
+      "postępowanie prowadzi się bez jakichkolwiek badań i dokumentów",
+      "postępowanie obejmuje wszystkie etapy bez wyjątków",
+      "postępowanie jest prowadzone wyłącznie przez sąd"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: niektórych etapów postępowania określonych w przepisach dla zwykłych kandydatów."
+  },
+  {
+    "id": 92,
+    "q": "Osobę przyjętą do służby w Policji mianuje się policjantem w służbie przygotowawczej na okres",
+    "a": [
+      "2 lata",
+      "5 lat",
+      "3 lata",
+      "1 rok"
+    ],
+    "correct": 2,
+    "explanation": "Prawidłowa odpowiedź: 3 lata."
+  },
+  {
+    "id": 93,
+    "q": "Przełożony może przedłużyć okres służby przygotowawczej policjanta w razie przerwy w wykonywaniu przez policjanta obowiązków służbowych, trwającej dłużej niż",
+    "a": [
+      "3 miesiące",
+      "1 miesiąca",
+      "6 miesięcy",
+      "12 miesięcy"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: 3 miesiące. Okres służby przygotowawczej może zostać przedłużony w razie przerwy w wykonywaniu obowiązków trwającej dłużej niż 3 miesiące."
+  },
+  {
+    "id": 94,
+    "q": "Policjanta zwalnia się ze służby m.in. w wypadku",
+    "a": [
+      "orzeczenia trwałej niezdolności do służby",
+      "uzyskania nagrody za wzorową służbę",
+      "zdania egzaminu zawodowego",
+      "złożenia wniosku o urlop wypoczynkowy"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: orzeczenia trwałej niezdolności do służby."
+  },
+  {
+    "id": 95,
+    "q": "Policjanta zawiesza się w czynnościach służbowych w razie wszczęcia przeciwko niemu postępowania karnego w sprawie o przestępstwo lub przestępstwo skarbowe, umyślne, ścigane z oskarżenia publicznego na okres nie dłuższy niż",
+    "a": [
+      "12 miesięcy",
+      "1 miesiąc",
+      "3 miesiące",
+      "6 miesięcy"
+    ],
+    "correct": 2,
+    "explanation": "Prawidłowa odpowiedź: 3 miesiące."
+  },
+  {
+    "id": 96,
+    "q": "W szczególnie uzasadnionych przypadkach okres zawieszenia policjanta w czynnościach służbowych można przedłużyć",
+    "a": [
+      "do 12 miesięcy łącznie, na zasadach ustawowych",
+      "do 48 godzin bez wyjątków",
+      "maksymalnie do 3 miesięcy",
+      "wyłącznie do czasu zakończenia postępowania sądowego, bez limitu"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: do 12 miesięcy łącznie, na zasadach ustawowych."
+  },
+  {
+    "id": 97,
+    "q": "Policjanci na ubiorach umundurowania oraz na nakryciach głowy noszą",
+    "a": [
+      "znaki stopni policyjnych i oznaki przynależności służbowej",
+      "wyłącznie numer PESEL policjanta",
+      "tylko nazwisko policjanta bez innych oznaczeń",
+      "wyłącznie barwy państwowe bez oznak policyjnych"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: znaki stopni policyjnych i oznaki przynależności służbowej."
+  },
+  {
+    "id": 98,
+    "q": "Policjanci i pracownicy Policji są obowiązani do zachowania",
+    "a": [
+      "tajemnicy prawnie chronionej i ochrony informacji",
+      "tajemnicy wyłącznie do końca służby",
+      "wszelkich informacji, również tych jawnych i powszechnie dostępnych",
+      "wyłącznie tajemnicy dotyczącej wynagrodzenia"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: tajemnicy prawnie chronionej i ochrony informacji."
+  },
+  {
+    "id": 99,
+    "q": "Policjanci zatrzymali osobę ujętą na gorącym uczynku popełnienia wykroczenia (ze względu na brak możliwości ustalenia jej tożsamości). Zatrzymany może złożyć zażalenie do sądu, w celu zbadania",
+    "a": [
+      "zasadności, legalności oraz prawidłowości zatrzymania",
+      "wyłącznie wysokości grzywny",
+      "winy sprawcy wykroczenia",
+      "prawomocności wyroku karnego w innej sprawie"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: zasadności, legalności oraz prawidłowości zatrzymania."
+  },
+  {
+    "id": 100,
+    "q": "Naoczny świadek przestępstwa rozboju, po bezpośrednim pościgu za sprawcą, dokonał jego ujęcia, po czym niezwłocznie oddał go w ręce Policji. Zachowanie swoje uzasadnił faktem, że istniała obawa ukrycia się sprawcy. Postępowanie obywatela, który dokonał ujęcia było",
+    "a": [
+      "prawidłowe – spełnił przesłanki ujęcia obywatelskiego i niezwłocznie przekazał osobę Policji",
+      "nieprawidłowe, ponieważ ujęcie może wykonać wyłącznie policjant",
+      "nieprawidłowe, ponieważ świadek nie może przekazać osoby Policji",
+      "nieprawidłowe, ponieważ pościg musi trwać co najmniej godzinę"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: prawidłowe – spełnił przesłanki ujęcia obywatelskiego i niezwłocznie przekazał osobę Policji."
+  },
+  {
+    "id": 101,
+    "q": "Komendant Główny Policji jest przełożonym",
+    "a": [
+      "wszystkich policjantów",
+      "wyłącznie policjantów pełniących służbę w Komendzie Głównej Policji",
+      "wyłącznie komendantów wojewódzkich Policji",
+      "wyłącznie policjantów posiadających stopień oficerski"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: wszystkich policjantów."
+  },
+  {
+    "id": 102,
+    "q": "Komendanta Głównego Policji powołuje i odwołuje na wniosek ministra właściwego do spraw wewnętrznych",
+    "a": [
+      "Prezes Rady Ministrów",
+      "minister właściwy do spraw wewnętrznych",
+      "Prezydent Rzeczypospolitej Polskiej",
+      "Minister Sprawiedliwości"
+    ],
+    "correct": 0,
+    "explanation": "Komendanta Głównego Policji powołuje i odwołuje Prezes Rady Ministrów na wniosek ministra właściwego do spraw wewnętrznych."
+  },
+  {
+    "id": 103,
+    "q": "W korpusie oficerów młodszych Policji wyróżniamy następujące stopnie policyjne:",
+    "a": [
+      "podkomisarz, komisarz, nadkomisarz",
+      "podinspektor, młodszy inspektor, inspektor",
+      "aspirant, starszy aspirant, aspirant sztabowy",
+      "posterunkowy, starszy posterunkowy, sierżant"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: podkomisarz, komisarz, nadkomisarz."
+  },
+  {
+    "id": 104,
+    "q": "Policjant może podjąć zajęcie zarobkowe poza służbą",
+    "a": [
+      "za pisemną zgodą właściwego przełożonego",
+      "bez żadnej zgody, jeżeli zajęcie nie koliduje z grafikiem",
+      "wyłącznie za zgodą Komendanta Głównego Policji",
+      "dopiero po uzyskaniu zgody sądu"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: za pisemną zgodą właściwego przełożonego."
+  },
+  {
+    "id": 105,
+    "q": "Czy policjant może być członkiem partii politycznej?",
+    "a": [
+      "nie",
+      "tak, bez ograniczeń",
+      "tak, po uzyskaniu zgody przełożonego",
+      "tak, jeżeli partia nie prowadzi działalności politycznej"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: nie."
+  },
+  {
+    "id": 106,
+    "q": "Czy policjanci mogą zrzeszać się w związkach zawodowych Policji?",
+    "a": [
+      "tak, na zasadach określonych w ustawie o Policji",
+      "nie, policjant nie może zrzeszać się w żadnym związku",
+      "tak, ale wyłącznie w związkach pracowników cywilnych",
+      "nie, chyba że uzyska zgodę Komendanta Głównego Policji"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: tak, na zasadach określonych w ustawie o Policji."
+  },
+  {
+    "id": 107,
+    "q": "Policjantowi przysługuje prawo do corocznego płatnego urlopu wypoczynkowego w wymiarze",
+    "a": [
+      "20 dni",
+      "30 dni",
+      "36 dni",
+      "26 dni"
+    ],
+    "correct": 3,
+    "explanation": "Prawidłowa odpowiedź: 26 dni."
+  },
+  {
+    "id": 108,
+    "q": "Policjantowi, który wzorowo wykonuje obowiązki, przejawia inicjatywę w służbie i doskonali kwalifikacje zawodowe, mogą być udzielane wyróżnienia m.in. w postaci",
+    "a": [
+      "pochwały",
+      "mandatu karnego",
+      "wyłącznie podwyższenia uposażenia",
+      "kary dyscyplinarnej"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: pochwały."
+  },
+  {
+    "id": 109,
+    "q": "Środkiem przymusu bezpośredniego NIE jest",
+    "a": [
+      "mandat karny",
+      "pouczenie",
+      "kajdanki",
+      "pałka służbowa"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: mandat karny."
+  },
+  {
+    "id": 110,
+    "q": "W przypadku podania przez kontrolującego polecenia lub sygnału do zatrzymania pojazdu, kierujący tym pojazdem NIE powinien",
+    "a": [
+      "zatrzymać pojazd w miejscu, w którym jest to bezpieczne i zgodne z poleceniem kontrolującego",
+      "jechać dalej bez zatrzymania się",
+      "zatrzymać pojazd w miejscu wskazanym przez kontrolującego",
+      "stosować się do sygnałów i poleceń kontrolującego"
+    ],
+    "correct": 1,
+    "explanation": "Prawidłowa odpowiedź: jechać dalej bez zatrzymania się."
+  },
+  {
+    "id": 111,
+    "q": "Legitymację służbową okazuje się w sposób umożliwiający kontrolowanemu uczestnikowi ruchu odczytanie i zanotowanie danych pozwalających na identyfikację policjanta, w szczególności dotyczących",
+    "a": [
+      "stopnia, imienia i nazwiska",
+      "numeru PESEL i adresu zamieszkania policjanta",
+      "wyłącznie numeru służbowego bez stopnia",
+      "wyłącznie nazwy jednostki Policji"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: stopnia, imienia i nazwiska."
+  },
+  {
+    "id": 112,
+    "q": "Policjant, który przystępuje do czynności służbowych związanych z legitymowaniem podaje",
+    "a": [
+      "stopień, imię i nazwisko",
+      "wyłącznie nazwę jednostki Policji",
+      "numer PESEL osoby legitymowanej",
+      "wyłącznie przyczynę legitymowania"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: stopień, imię i nazwisko."
+  },
+  {
+    "id": 113,
+    "q": "Bezpośredni przełożony, jeśli nie jest właściwy do załatwienia sprawy, przesyła wyższemu przełożonemu wniosek w sprawie osobowej wraz z opinią dotyczącą sposobu jej załatwienia w terminie",
+    "a": [
+      "30 dni",
+      "7 dni",
+      "3 dni",
+      "14 dni"
+    ],
+    "correct": 1,
+    "explanation": "Prawidłowa odpowiedź: 7 dni."
+  },
+  {
+    "id": 114,
+    "q": "O sposobie załatwienia wniosku w sprawie osobowej należy zawiadomić policjanta w terminie",
+    "a": [
+      "7 dni",
+      "14 dni",
+      "30 dni",
+      "60 dni"
+    ],
+    "correct": 2,
+    "explanation": "O sposobie załatwienia wniosku w sprawie osobowej należy zawiadomić policjanta w terminie 30 dni od dnia jego złożenia, o ile odrębne przepisy nie stanowią inaczej."
+  },
+  {
+    "id": 115,
+    "q": "Zwolnienie od zajęć służbowych w wymiarze 2 dni w ciągu roku kalendarzowego przysługuje policjantowi wychowującemu przynajmniej jedno dziecko w wieku do lat",
+    "a": [
+      "8 lat",
+      "10 lat",
+      "12 lat",
+      "14 lat"
+    ],
+    "correct": 3,
+    "explanation": "Zwolnienie od zajęć służbowych w wymiarze 2 dni w roku kalendarzowym przysługuje policjantowi wychowującemu co najmniej jedno dziecko w wieku do 14 lat."
+  },
+  {
+    "id": 116,
+    "q": "Sierżant Jan N. nie mógł przyjechać na służbę, więc poinformował swojego przełożonego wysyłając do niego list. Zachowanie policjanta było",
+    "a": [
+      "nieprawidłowe, ponieważ informację o niemożności stawienia się do służby należy przekazać niezwłocznie w sposób umożliwiający szybkie powiadomienie przełożonego",
+      "prawidłowe w każdym przypadku, ponieważ list jest zawsze wystarczającym środkiem",
+      "prawidłowe tylko wtedy, gdy list zostanie wysłany po rozpoczęciu służby",
+      "nieprawidłowe wyłącznie wtedy, gdy policjant nie posiada zgody Komendanta Głównego Policji"
+    ],
+    "correct": 0,
+    "explanation": "Samo wysłanie listu nie zapewnia niezwłocznego powiadomienia przełożonego. W sytuacji braku możliwości stawienia się do służby należy zastosować sposób zawiadomienia przewidziany przepisami."
+  },
+  {
+    "id": 117,
+    "q": "W razie braku możliwości stawienia się do służby można poinformować bezpośredniego przełożonego drogą pocztową, przy czym za datę przekazania informacji uważa się datę",
+    "a": [
+      "stempla pocztowego",
+      "sporządzenia listu",
+      "doręczenia listu przełożonemu",
+      "odbioru listu przez policjanta"
+    ],
+    "correct": 0,
+    "explanation": "Jeżeli informacja o niemożności stawienia się do służby jest przekazywana drogą pocztową, za datę jej przekazania uważa się datę stempla pocztowego."
+  },
+  {
+    "id": 118,
+    "q": "Jeżeli policjant znajdzie się w sytuacji służbowej nieuregulowanej przepisami prawa lub nieujętej w zasadach etyki zawodowej powinien",
+    "a": [
+      "kierować się wyłącznie własnym doświadczeniem",
+      "kierować się zasadami współżycia społecznego i zasadami etyki zawodowej",
+      "kierować się interesem osoby, z którą wykonuje czynność",
+      "odstąpić od działania do czasu polecenia przełożonego"
+    ],
+    "correct": 1,
+    "explanation": "Prawidłowa odpowiedź: kierować się zasadami współżycia społecznego i zasadami etyki zawodowej."
+  },
+  {
+    "id": 119,
+    "q": "Szczególną rozwagą powinien kierować się policjant podejmując decyzję o użyciu",
+    "a": [
+      "broni palnej lub środków przymusu bezpośredniego",
+      "wyłącznie legitymowania osób",
+      "wyłącznie sporządzania dokumentacji",
+      "wyłącznie czynności administracyjnych"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: broni palnej lub środków przymusu bezpośredniego."
+  },
+  {
+    "id": 120,
+    "q": "Znajomy policjanta poprosił go o sprawdzenie czy samochód, który chce zakupić nie jest kradziony. Funkcjonariusz sprawdził w policyjnej bazie wszystkie informacje o pojeździe oraz jego właścicielu i przekazał je koledze. Policjant postąpił",
+    "a": [
+      "prawidłowo, bo była to koleżeńska przysługa",
+      "nieprawidłowo – wykorzystał informacje służbowe do celu prywatnego",
+      "prawidłowo, jeśli nie otrzymał wynagrodzenia",
+      "prawidłowo, jeśli pojazd był kradziony"
+    ],
+    "correct": 1,
+    "explanation": "Prawidłowa odpowiedź: nieprawidłowo – wykorzystał informacje służbowe do celu prywatnego."
+  },
+  {
+    "id": 121,
+    "q": "Policjant w realizacji zadań służbowych powinien udzielać pomocy innym policjantom",
+    "a": [
+      "w każdym przypadku",
+      "w miarę możliwości",
+      "wyłącznie na pisemne polecenie przełożonego",
+      "tylko przy czynności procesowej"
+    ],
+    "correct": 1,
+    "explanation": "Prawidłowa odpowiedź: w miarę możliwości."
+  },
+  {
+    "id": 122,
+    "q": "Policjant podczas wykonywania zadań służbowych NIE powinien dostosować swojego zachowania do",
+    "a": [
+      "wieku, płci, narodowości i wyznania osób uczestniczących w zdarzeniu",
+      "uzasadnionych potrzeb osób uczestniczących w zdarzeniu",
+      "sytuacji i cech osób uczestniczących w zdarzeniu",
+      "interesów prywatnych przełożonego lub oczekiwań sprzecznych z prawem i etyką"
+    ],
+    "correct": 3,
+    "explanation": "§ 8 zasad etyki wskazuje sytuację, cechy osób, ich wiek, płeć, narodowość, wyznanie i uzasadnione potrzeby. Nie chodzi natomiast o podporządkowywanie zachowania prywatnym interesom przełożonego ani oczekiwaniom sprzecznym z prawem i etyką."
+  },
+  {
+    "id": 123,
+    "q": "Policjant powinien wystrzegać się",
+    "a": [
+      "wyłącznie błędów w dokumentacji",
+      "korupcji i wykorzystywania zawodu do celów prywatnych",
+      "udzielania pomocy innym policjantom",
+      "kontaktu z pokrzywdzonymi"
+    ],
+    "correct": 1,
+    "explanation": "Prawidłowa odpowiedź: korupcji i wykorzystywania zawodu do celów prywatnych."
+  },
+  {
+    "id": 124,
+    "q": "Policjanci powiadomili mężczyznę o śmierci jego matki, która zginęła w wyniku wypadku drogowego. W trakcie rozmowy jeden z funkcjonariuszy wyjął telefon i zaczął rozmawiać z żoną o wyjeździe w góry. Zachowanie policjanta było",
+    "a": [
+      "właściwe, bo rozmowa prywatna nie wpływa na służbę",
+      "naganne i sprzeczne z zasadami etyki zawodowej",
+      "właściwe, jeśli rozmowa trwała krótko",
+      "obojętne z punktu widzenia etyki"
+    ],
+    "correct": 1,
+    "explanation": "Prawidłowa odpowiedź: naganne i sprzeczne z zasadami etyki zawodowej."
+  },
+  {
+    "id": 125,
+    "q": "Przełożony oceniając podległych policjantów powinien",
+    "a": [
+      "oceniać ich zgodnie z jasno określonymi i znanymi kryteriami, zachowując sprawiedliwość i obiektywizm",
+      "oceniać według kryteriów znanych wyłącznie przełożonemu",
+      "kierować się wyłącznie stażem służby",
+      "oceniać policjantów wyłącznie na podstawie liczby mandatów"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: jasno określonymi i znanymi kryteriami oraz sprawiedliwością i obiektywizmem."
+  },
+  {
+    "id": 126,
+    "q": "Załatwianie spraw służbowych polegające na przekazywaniu informacji lub dokumentów albo rzeczy przez podwładnych za pośrednictwem wszystkich kolejnych przełożonych, aż do tego, który jest uprawniony do rozstrzygnięcia sprawy, jak również przekazywanie rozkazów, poleceń lub wytycznych od przełożonego uprawnionego do ich wydania, przez kolejnych niższych przełożonych do podwładnego to",
+    "a": [
+      "drogą służbową",
+      "drogą bezpośrednią",
+      "trybem nadzwyczajnym",
+      "postępowaniem dyscyplinarnym"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: drogą służbową."
+  },
+  {
+    "id": 127,
+    "q": "W celu ochrony praw i wolności obywatelskich stosowne polecenie jest zobowiązany wydać każdy policjant",
+    "a": [
+      "starszy stopniem",
+      "młodszy stopniem",
+      "niezależnie od stopnia",
+      "wyłącznie w przypadku, gdy jest bezpośrednim przełożonym"
+    ],
+    "correct": 0,
+    "explanation": "Stosowne polecenie w celu ochrony praw i wolności obywatelskich wydaje policjant starszy stopniem policjantowi młodszemu stopniem, na zasadach określonych w zarządzeniu."
+  },
+  {
+    "id": 128,
+    "q": "Policja ma prawo dokonać zatrzymania osoby w związku z popełnionym wykroczeniem jeżeli",
+    "a": [
+      "została ujęta na gorącym uczynku wykroczenia lub bezpośrednio potem i zachodzą przesłanki ustawowe",
+      "osoba sama poprosi o zatrzymanie",
+      "prawomocny wyrok sądu nie został jeszcze wydany",
+      "zawsze, gdy Policja dowie się o wykroczeniu, bez dodatkowych przesłanek"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: jeżeli została ujęta na gorącym uczynku wykroczenia lub bezpośrednio potem i zachodzą przesłanki ustawowe."
+  },
+  {
+    "id": 129,
+    "q": "Zatrzymanemu przysługuje zażalenie na zatrzymanie do",
+    "a": [
+      "sądu",
+      "prokuratora",
+      "Komendanta Głównego Policji",
+      "ministra właściwego do spraw wewnętrznych"
+    ],
+    "correct": 0,
+    "explanation": "Zażalenie na zatrzymanie składa się do sądu właściwego do rozpoznania zażalenia na zatrzymanie."
+  },
+  {
+    "id": 130,
+    "q": "Źródłem wszelkich wolności i praw człowieka jest",
+    "a": [
+      "stanowisko służbowe",
+      "godność człowieka",
+      "majątek człowieka",
+      "obywatelstwo człowieka"
+    ],
+    "correct": 1,
+    "explanation": "Prawidłowa odpowiedź: godność człowieka."
+  },
+  {
+    "id": 131,
+    "q": "Na mocy ustawy o Policji policjantowi za nieprzestrzeganie zasad etyki zawodowej grozi odpowiedzialność",
+    "a": [
+      "dyscyplinarna",
+      "wyłącznie cywilna",
+      "żadna",
+      "wyłącznie karna"
+    ],
+    "correct": 0,
+    "explanation": "Za nieprzestrzeganie zasad etyki zawodowej policjant ponosi odpowiedzialność dyscyplinarną."
+  },
+  {
+    "id": 132,
+    "q": "Dyskrecja zawodowa w kontekście etyki zawodowej policjanta oznacza",
+    "a": [
+      "ujawnianie informacji służbowych osobom zaufanym",
+      "zachowanie dyskrecji wobec informacji mogących zaszkodzić dobru służby lub dobremu imieniu osób",
+      "przekazywanie informacji służbowych rodzinie",
+      "zachowanie każdej informacji wyłącznie dla przełożonego"
+    ],
+    "correct": 1,
+    "explanation": "Prawidłowa odpowiedź: zachowanie dyskrecji wobec informacji mogących zaszkodzić dobru służby lub dobremu imieniu osób."
+  },
+  {
+    "id": 133,
+    "q": "Jakim aktem prawnym zostały wprowadzone zasady etyczne w Policji?",
+    "a": [
+      "rozporządzeniem ministra właściwego do spraw wewnętrznych",
+      "zarządzeniem nr 805 Komendanta Głównego Policji z 31 grudnia 2003 r.",
+      "ustawą – Prawo o ruchu drogowym",
+      "Kodeksem postępowania karnego"
+    ],
+    "correct": 1,
+    "explanation": "Prawidłowa odpowiedź: zarządzeniem nr 805 Komendanta Głównego Policji z 31 grudnia 2003 r.."
+  },
+  {
+    "id": 134,
+    "q": "Etyka zawodowa to",
+    "a": [
+      "zbiór zasad i norm właściwych dla wykonywania określonego zawodu",
+      "zbiór wyłącznie przepisów karnych dotyczących zawodu",
+      "prywatne przekonania moralne pojedynczej osoby",
+      "regulamin pracy każdej instytucji"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: zbiór zasad i norm właściwych dla wykonywania określonego zawodu."
+  },
+  {
+    "id": 135,
+    "q": "Fundamentalną zasadą etyki zawodowej policjanta poświęconą problematyce korupcji jest zasada",
+    "a": [
+      "bezstronnego wykonywania czynności",
+      "wystrzegania się korupcji i zwalczania jej przejawów",
+      "zachowania tajemnicy w każdej sytuacji",
+      "pierwszeństwa interesu prywatnego"
+    ],
+    "correct": 1,
+    "explanation": "Zasady etyki zawodowej nakazują policjantowi wystrzegać się korupcji i zwalczać jej przejawy."
+  },
+  {
+    "id": 136,
+    "q": "Tolerancja jest to",
+    "a": [
+      "postawa szacunku i tolerowania odmienności w granicach prawa",
+      "zgoda na każde zachowanie niezależnie od jego legalności",
+      "obojętność wobec innych osób",
+      "obowiązek akceptowania każdego poglądu i działania"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: postawa szacunku i tolerowania odmienności w granicach prawa."
+  },
+  {
+    "id": 137,
+    "q": "Podstawową wartość chronioną zasadami etyki zawodowej Policji stanowi",
+    "a": [
+      "dobre imię jednostki Policji",
+      "interes służbowy przełożonego",
+      "godność człowieka",
+      "sprawność fizyczna policjanta"
+    ],
+    "correct": 2,
+    "explanation": "Prawidłowa odpowiedź: godność człowieka."
+  },
+  {
+    "id": 138,
+    "q": "Policjant powinien wykonywać czynności służbowe według",
+    "a": [
+      "własnego uznania policjanta, niezależnie od przepisów",
+      "prawa, zasad etyki zawodowej oraz poszanowania godności i praw człowieka",
+      "wyłącznie poleceń przełożonego",
+      "interesu Policji nadrzędnego wobec praw człowieka"
+    ],
+    "correct": 1,
+    "explanation": "Prawidłowa odpowiedź: prawa, zasad etyki zawodowej oraz poszanowania godności i praw człowieka."
+  },
+  {
+    "id": 139,
+    "q": "Policjanci wykonując czynności służbowe mają prawo pobierania",
+    "a": [
+      "od osób odcisków linii papilarnych lub wymazu ze śluzówki policzków, w przypadkach określonych prawem",
+      "od wszystkich osób dowolnych opłat administracyjnych",
+      "od osób wyłącznie podpisów pod notatkami służbowymi",
+      "od osób dowolnych informacji finansowych niezwiązanych z czynnościami służbowymi"
+    ],
+    "correct": 0,
+    "explanation": "W ramach ustawowych uprawnień policjanci mogą pobierać od osób m.in. odciski linii papilarnych lub wymaz ze śluzówki policzków, w przypadkach określonych przepisami."
+  },
+  {
+    "id": 140,
+    "q": "Zasada, że policjanci w toku wykonywania czynności służbowych mają obowiązek respektowania godności ludzkiej oraz przestrzegania i ochrony praw człowieka, jest zapisana w",
+    "a": [
+      "art. 82 ustawy o Policji",
+      "art. 14 ust. 3 ustawy o Policji",
+      "art. 1 ust. 1 ustawy o Policji",
+      "art. 62 ustawy o Policji"
+    ],
+    "correct": 1,
+    "explanation": "Prawidłowa odpowiedź: art. 14 ust. 3 ustawy o Policji."
+  },
+  {
+    "id": 141,
+    "q": "Wobec sprawcy wykroczenia Policja kieruje wniosek o ukaranie do sądu",
+    "a": [
+      "gdy nie można poprzestać na środkach oddziaływania wychowawczego",
+      "w każdym przypadku, nawet gdy wystarczające jest pouczenie",
+      "wyłącznie po przyjęciu mandatu przez sprawcę",
+      "zawsze przed zastosowaniem jakiegokolwiek środka oddziaływania wychowawczego"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: gdy nie można poprzestać na środkach oddziaływania wychowawczego."
+  },
+  {
+    "id": 142,
+    "q": "Zgodnie z art. 244 § 1 k.p.k. policja ma prawo zatrzymać osobę podejrzaną o popełnienie przestępstwa",
+    "a": [
+      "gdy istnieje uzasadnione przypuszczenie popełnienia przestępstwa oraz ustawowe przesłanki zatrzymania",
+      "bez uzasadnionego podejrzenia popełnienia przestępstwa",
+      "wyłącznie po wydaniu wyroku skazującego",
+      "tylko na podstawie decyzji administracyjnej"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: gdy istnieje uzasadnione przypuszczenie popełnienia przestępstwa oraz ustawowe przesłanki zatrzymania."
+  },
+  {
+    "id": 143,
+    "q": "Osobę zatrzymaną przez policję na podstawie art. 244 k.p.k., należy natychmiast zwolnić w przypadku",
+    "a": [
+      "gdy ustanie przyczyna zatrzymania lub sąd uzna zatrzymanie za niezasadne albo nielegalne",
+      "gdy policjant zakończy służbę",
+      "gdy zatrzymany odmówi złożenia wyjaśnień",
+      "dopiero po upływie 48 godzin, niezależnie od przyczyny zatrzymania"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: gdy ustanie przyczyna zatrzymania lub sąd uzna zatrzymanie za niezasadne albo nielegalne."
+  },
+  {
+    "id": 144,
+    "q": "Zastępców Komendanta Głównego Policji, w tym I zastępcę, powołuje",
+    "a": [
+      "minister właściwy do spraw wewnętrznych na wniosek Komendanta Głównego Policji",
+      "Prezes Rady Ministrów na wniosek ministra właściwego do spraw wewnętrznych",
+      "Prezydent Rzeczypospolitej Polskiej",
+      "Komendant Główny Policji samodzielnie"
+    ],
+    "correct": 0,
+    "explanation": "Zastępców Komendanta Głównego Policji, w tym I zastępcę, powołuje minister właściwy do spraw wewnętrznych na wniosek Komendanta Głównego Policji."
+  },
+  {
+    "id": 145,
+    "q": "Komendanta Biura Spraw Wewnętrznych Policji powołuje, spośród oficerów Policji i odwołuje",
+    "a": [
+      "minister właściwy do spraw wewnętrznych",
+      "Prezes Rady Ministrów",
+      "Komendant Główny Policji",
+      "Prezydent Rzeczypospolitej Polskiej"
+    ],
+    "correct": 0,
+    "explanation": "Komendanta Biura Spraw Wewnętrznych Policji powołuje spośród oficerów Policji i odwołuje minister właściwy do spraw wewnętrznych."
+  },
+  {
+    "id": 146,
+    "q": "Organami administracji rządowej na obszarze województwa w sprawach ochrony bezpieczeństwa ludzi oraz utrzymania bezpieczeństwa i porządku publicznego są",
+    "a": [
+      "wojewoda oraz organy Policji działające na obszarze województwa",
+      "wyłącznie rada gminy",
+      "wyłącznie minister właściwy do spraw wewnętrznych",
+      "wyłącznie Komendant Główny Policji"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: wojewoda oraz organy Policji działające na obszarze województwa."
+  },
+  {
+    "id": 147,
+    "q": "Komendanci Policji składają roczne sprawozdania ze swojej działalności oraz informacje o stanie porządku i bezpieczeństwa publicznego",
+    "a": [
+      "właściwym wojewodom, starostom, wójtom, burmistrzom, prezydentom miast oraz radom powiatów i gmin",
+      "wyłącznie Komendantowi Głównemu Policji",
+      "wyłącznie ministrowi właściwemu do spraw wewnętrznych",
+      "wyłącznie Prezesowi Rady Ministrów"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: właściwym wojewodom, starostom, wójtom, burmistrzom, prezydentom miast oraz radom powiatów i gmin."
+  },
+  {
+    "id": 148,
+    "q": "Policja w celu rozpoznawania, zapobiegania i wykrywania przestępstw i wykroczeń wykonuje czynności",
+    "a": [
+      "operacyjno-rozpoznawcze, dochodzeniowo-śledcze i administracyjno-porządkowe",
+      "wyłącznie czynności administracyjne",
+      "wyłącznie czynności sądowe",
+      "wyłącznie czynności operacyjne, bez czynności procesowych"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: operacyjno-rozpoznawcze, dochodzeniowo-śledcze i administracyjno-porządkowe."
+  },
+  {
+    "id": 149,
+    "q": "Policjant jest obowiązany niezwłocznie, jednakże nie później niż w terminie 7 dni od zaistnienia zdarzenia, poinformować w pisemnym raporcie drogą służbową przełożonego właściwego w sprawach osobowych o",
+    "a": [
+      "zmianie stanu cywilnego, zmianie danych osobowych lub innych zdarzeniach określonych przepisami",
+      "zmianie miejsca parkowania samochodu",
+      "każdej rozmowie telefonicznej z przełożonym",
+      "planowanym urlopie wypoczynkowym"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: zmianie stanu cywilnego, zmianie danych osobowych lub innych zdarzeniach określonych przepisami."
+  },
+  {
+    "id": 150,
+    "q": "Przystępując do legitymowania osoby, umundurowany policjant zobowiązany jest podać",
+    "a": [
+      "stopień, imię i nazwisko",
+      "wyłącznie nazwę jednostki Policji",
+      "wyłącznie numer służbowy",
+      "wyłącznie przyczynę legitymowania"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: stopień, imię i nazwisko."
+  },
+  {
+    "id": 151,
+    "q": "Użyciem środka przymusu bezpośredniego jest zastosowanie środka przymusu bezpośredniego",
+    "a": [
+      "wobec osoby",
+      "wobec zwierzęcia",
+      "wobec dowolnego przedmiotu",
+      "wyłącznie wobec pojazdu"
+    ],
+    "correct": 0,
+    "explanation": "Użycie środka przymusu bezpośredniego oznacza zastosowanie środka wobec osoby. Wykorzystanie środka ma odrębne znaczenie i może dotyczyć m.in. zwierzęcia, przedmiotu lub pojazdu – zależnie od przepisu."
+  },
+  {
+    "id": 152,
+    "q": "W pierwszej kolejności przed użyciem broni palnej uprawniony powinien",
+    "a": [
+      "wezwać do zachowania zgodnego z prawem",
+      "zidentyfikować formację lub służbę i wezwać osobę do zachowania zgodnego z prawem",
+      "natychmiast użyć środka przymusu",
+      "oddać strzał ostrzegawczy bez wezwania"
+    ],
+    "correct": 1,
+    "explanation": "Prawidłowa odpowiedź: zidentyfikować formację lub służbę i wezwać osobę do zachowania zgodnego z prawem."
+  },
+  {
+    "id": 153,
+    "q": "Broń palną policjant może wykorzystać w przypadku podjęcia jednego z następujących działań",
+    "a": [
+      "zatrzymania niebezpiecznego pojazdu, pokonania przeszkody, wezwania pomocy lub innych przypadków wskazanych w ustawie",
+      "zatrzymania każdej osoby podejrzanej o wykroczenie",
+      "ukarania osoby mandatem",
+      "prowadzenia zwykłej kontroli administracyjnej"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: zatrzymania niebezpiecznego pojazdu, pokonania przeszkody, wezwania pomocy lub innych przypadków wskazanych w ustawie."
+  },
+  {
+    "id": 154,
+    "q": "Czas na przygotowanie się policjanta do służby, w tym pobranie uzbrojenia i wyposażenia nie powinien przekraczać",
+    "a": [
+      "30 minut",
+      "15 minut",
+      "60 minut",
+      "45 minut"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: 30 minut."
+  },
+  {
+    "id": 155,
+    "q": "Policjant może pełnić dyżur domowy (na polecenie przełożonego właściwego do spraw osobowych) nieprzekraczający",
+    "a": [
+      "24 godzin",
+      "16 godzin",
+      "12 godzin",
+      "48 godzin"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: 24 godzin. Jeden dyżur domowy nie może trwać dłużej niż 24 godziny; w dniu służby limit wynosi 16 godzin, a łączny limit miesięczny 48 godzin."
+  },
+  {
+    "id": 156,
+    "q": "Kontroli osobistej policjant może dokonać",
+    "a": [
+      "w przypadkach i na zasadach określonych w ustawie o Policji",
+      "zawsze, bez żadnych przesłanek",
+      "wyłącznie po uzyskaniu zgody sądu",
+      "wyłącznie na polecenie prokuratora"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: w przypadkach i na zasadach określonych w ustawie o Policji."
+  },
+  {
+    "id": 157,
+    "q": "W nagłych wypadkach o udzielenie doraźnej pomocy policjant zwraca się ustnie do",
+    "a": [
+      "przełożonego",
+      "policjanta",
+      "lekarza",
+      "każdej osoby znajdującej się w pobliżu"
+    ],
+    "correct": 3,
+    "explanation": "Prawidłowa odpowiedź: każdej osoby znajdującej się w pobliżu."
+  },
+  {
+    "id": 158,
+    "q": "Policjanci wykonujący ustawowe uprawnienia mają prawo żądać niezbędnej pomocy od",
+    "a": [
+      "innych policjantów",
+      "instytucji państwowych, organów administracji publicznej, jednostek gospodarczych i organizacji społecznych",
+      "prokuratora",
+      "sądu"
+    ],
+    "correct": 1,
+    "explanation": "Prawidłowa odpowiedź: instytucji państwowych, organów administracji publicznej, jednostek gospodarczych i organizacji społecznych."
+  },
+  {
+    "id": 159,
+    "q": "Policjanci wykonując swoje ustawowe uprawnienia mają prawo m.in. do legitymowania osób, którego celem jest",
+    "a": [
+      "ustalenie tożsamości osoby",
+      "ustalenie jej sytuacji majątkowej",
+      "sprawdzenie jej poglądów politycznych",
+      "ustalenie, czy posiada mandat karny"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: ustalenie tożsamości osoby."
+  },
+  {
+    "id": 160,
+    "q": "Policjant ma prawo wydawania osobom poleceń określonego zachowania się w granicach niezbędnych do wykonania czynności",
+    "a": [
+      "służbowych",
+      "prywatnych",
+      "wyłącznie administracyjnych",
+      "wyłącznie sądowych"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: służbowych."
+  },
+  {
+    "id": 161,
+    "q": "Policjant nieumundurowany jest uprawniony do zatrzymania kierującego pojazdem",
+    "a": [
+      "tylko w obszarze zabudowanym, poza wyjątkami przewidzianymi prawem",
+      "w każdym miejscu, także na autostradzie i poza obszarem zabudowanym bez wyjątku",
+      "wyłącznie poza obszarem zabudowanym",
+      "tylko za zgodą kierującego pojazdem"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: tylko w obszarze zabudowanym, poza wyjątkami przewidzianymi prawem."
+  },
+  {
+    "id": 162,
+    "q": "Do głównych zadań Policji należą",
+    "a": [
+      "ochrona życia i zdrowia ludzi, mienia oraz bezpieczeństwa i porządku publicznego, a także wykrywanie przestępstw i wykroczeń",
+      "wyłącznie kontrola ruchu drogowego",
+      "wyłącznie ochrona imprez masowych",
+      "wyłącznie prowadzenie postępowań administracyjnych"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: ochrona życia i zdrowia ludzi, mienia oraz bezpieczeństwa i porządku publicznego, a także wykrywanie przestępstw i wykroczeń."
+  },
+  {
+    "id": 163,
+    "q": "Do pojazdu Policji uczestnik ruchu może być wpuszczony tylko w razie konieczności",
+    "a": [
+      "w przypadkach określonych w przepisach, m.in. dla udzielenia pomocy choremu lub rannemu albo wykonania określonych czynności",
+      "zawsze, gdy policjant chce porozmawiać z uczestnikiem ruchu",
+      "wyłącznie w celu przewiezienia osoby na komisariat bez podstawy prawnej",
+      "tylko za zgodą właściciela pojazdu Policji"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: w przypadkach określonych w przepisach, m.in. dla udzielenia pomocy choremu lub rannemu albo wykonania określonych czynności."
+  },
+  {
+    "id": 164,
+    "q": "W korpusie oficerów młodszych Policji najniższym stopniem jest",
+    "a": [
+      "podkomisarz Policji",
+      "komisarz Policji",
+      "nadkomisarz Policji",
+      "podinspektor Policji"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: podkomisarz Policji."
+  },
+  {
+    "id": 165,
+    "q": "Środkami przymusu bezpośredniego są:",
+    "a": [
+      "m.in. siła fizyczna, kajdanki, pałka służbowa, przedmioty przeznaczone do obezwładniania, urządzenia elektryczne i inne środki wymienione w ustawie",
+      "wyłącznie broń palna i amunicja",
+      "wyłącznie środki stosowane przez sąd",
+      "tylko środki niewymagające podstawy prawnej"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: m.in. siła fizyczna, kajdanki, pałka służbowa, przedmioty przeznaczone do obezwładniania, urządzenia elektryczne i inne środki wymienione w ustawie."
+  },
+  {
+    "id": 166,
+    "q": "Pora nocna, w jakiej można dokonać przeszukania pomieszczeń mieszkalnych",
+    "a": [
+      "21:00–7:00",
+      "od godziny 22:00 do 6:00, z wyjątkami określonymi w KPK",
+      "20:00–6:00",
+      "23:00–5:00"
+    ],
+    "correct": 1,
+    "explanation": "Prawidłowa odpowiedź: od godziny 22:00 do 6:00, z wyjątkami określonymi w KPK."
+  },
+  {
+    "id": 167,
+    "q": "Pracownik ochrony sklepu spożywczego zauważył, że jeden z klientów usiłował wynieść towar o wartości 1000 zł, za który nie zapłacił. Następnie umieścił go w pomieszczeniu ochrony i powiadomił Policję o zdarzeniu. W tym przypadku mamy do czynienia z",
+    "a": [
+      "ujęciem obywatelskim osoby podejrzanej o popełnienie przestępstwa",
+      "zatrzymaniem przez sąd",
+      "aresztowaniem przez pracownika ochrony",
+      "dobrowolnym opuszczeniem sklepu bez kontaktu z Policją"
+    ],
+    "correct": 0,
+    "explanation": "W opisanej sytuacji pracownik ochrony ujął osobę podejrzaną o popełnienie przestępstwa na gorącym uczynku. Podstawę ujęcia obywatelskiego stanowi art. 243 KPK."
+  },
+  {
+    "id": 168,
+    "q": "W skład jednostek Policji wchodzi",
+    "a": [
+      "komenda Policji, komisariat Policji i inne jednostki organizacyjne Policji określone przepisami",
+      "wyłącznie Komenda Główna Policji",
+      "wyłącznie komisariaty Policji",
+      "wyłącznie jednostki szkoleniowe Policji"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: komenda Policji, komisariat Policji i inne jednostki organizacyjne Policji określone przepisami."
+  },
+  {
+    "id": 169,
+    "q": "Do korpusu oficerów starszych Policji, zaliczamy stopnie policyjne w następującym porządku:",
+    "a": [
+      "podinspektor, młodszy inspektor, inspektor",
+      "inspektor, młodszy inspektor, podinspektor",
+      "nadkomisarz, komisarz, podkomisarz",
+      "sierżant, starszy sierżant, sierżant sztabowy"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: podinspektor, młodszy inspektor, inspektor."
+  },
+  {
+    "id": 170,
+    "q": "Policjant NIE może",
+    "a": [
+      "wykorzystywać informacji uzyskanych w związku ze służbą do celów prywatnych",
+      "wykonywać czynności w granicach ustawowych uprawnień",
+      "chronić prawa człowieka podczas czynności służbowych",
+      "stosować środki przymusu w przypadkach przewidzianych ustawą"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: wykorzystywać informacji uzyskanych w związku ze służbą do celów prywatnych."
+  },
+  {
+    "id": 171,
+    "q": "Policjantowi przysługuje czas na bezpośrednie przygotowanie do służby i jej zdanie, który wlicza się do czasu służby. Czas ten nie powinien być dłuższy niż",
+    "a": [
+      "30 minut",
+      "15 minut",
+      "20 minut",
+      "45 minut"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: 30 minut."
+  },
+  {
+    "id": 172,
+    "q": "Do podstawowych zadań Policji należą",
+    "a": [
+      "ochrona bezpieczeństwa ludzi i utrzymanie bezpieczeństwa oraz porządku publicznego",
+      "wydawanie wyroków sądowych",
+      "ochrona granicy państwowej",
+      "prowadzenie polityki monetarnej państwa"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: ochrona bezpieczeństwa ludzi i utrzymanie bezpieczeństwa oraz porządku publicznego."
+  },
+  {
+    "id": 173,
+    "q": "Policjant jako funkcjonariusz publiczny zgodnie z zarządzeniem nr 805 Komendanta Głównego Policji z dnia 31 grudnia 2003 r. w sprawie \"Zasad etyki zawodowej policjanta\" powinien",
+    "a": [
+      "przestrzegać prawa i zasad etyki zawodowej oraz dbać o zaufanie do Policji",
+      "wykorzystywać informacje służbowe dla własnych korzyści",
+      "kierować się interesem prywatnym",
+      "unikać odpowiedzialności za działania służbowe"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: przestrzegać prawa i zasad etyki zawodowej oraz dbać o zaufanie do Policji."
+  },
+  {
+    "id": 174,
+    "q": "W przypadku gdy osoba legitymowana jest znana osobiście policjantowi",
+    "a": [
+      "może odstąpić od żądania dokumentu, jeżeli tożsamość jest mu znana osobiście",
+      "zawsze musi żądać dokumentu tożsamości",
+      "może odstąpić od ustalenia tożsamości",
+      "może zrezygnować z legitymowania wyłącznie za zgodą sądu"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: może odstąpić od żądania dokumentu, jeżeli tożsamość jest mu znana osobiście."
+  },
+  {
+    "id": 175,
+    "q": "Które ze zdań, dotyczących etyki zawodowej w Policji, jest fałszywe?",
+    "a": [
+      "policjant może wykorzystywać informacje służbowe dla prywatnych korzyści",
+      "policjant powinien dbać o zaufanie do Policji",
+      "policjant powinien przestrzegać prawa i zasad etyki zawodowej",
+      "policjant powinien szanować godność i prawa człowieka"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: policjant może wykorzystywać informacje służbowe dla prywatnych korzyści."
+  },
+  {
+    "id": 176,
+    "q": "Przestrzeganie zasad etyki zawodowej policjanta jest dla funkcjonariusza tej formacji",
+    "a": [
+      "obowiązkowe",
+      "dobrowolne i zależne od uznania",
+      "obowiązkowe wyłącznie podczas służby patrolowej",
+      "obowiązkowe tylko na polecenie przełożonego"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: obowiązkowe."
+  },
+  {
+    "id": 177,
+    "q": "Które ze zdań, dotyczących etyki zawodowej w Policji, jest prawdziwe?",
+    "a": [
+      "policjant powinien stale doskonalić wiedzę, umiejętności i sprawność fizyczną",
+      "policjant może zaniechać doskonalenia po szkoleniu podstawowym",
+      "policjant powinien rozwijać wyłącznie sprawność fizyczną",
+      "policjant powinien doskonalić wyłącznie wiedzę prawną"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: policjant powinien stale doskonalić wiedzę, umiejętności i sprawność fizyczną."
+  },
+  {
+    "id": 178,
+    "q": "Postępowanie policjanta w kontaktach z ludźmi, w myśl zasad etyki zawodowej policjanta, powinna cechować",
+    "a": [
+      "życzliwość, bezstronność, kultura osobista i poszanowanie godności",
+      "rywalizacja i dystans wobec osób spoza Policji",
+      "podporządkowanie interesowi prywatnemu",
+      "surowość niezależnie od sytuacji"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: życzliwość, bezstronność, kultura osobista i poszanowanie godności."
+  },
+  {
+    "id": 179,
+    "q": "Do wystrzegania się jakiego przestępstwa literalnie, wprost zobowiązują policjantów zasady etyki zawodowej?",
+    "a": [
+      "korupcji",
+      "kradzieży kieszonkowej",
+      "wyłącznie przestępstw przeciwko ruchowi drogowemu",
+      "każdego przestępstwa bez wskazania rodzaju"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: korupcji."
+  },
+  {
+    "id": 180,
+    "q": "Do przesłanek ujęcia obywatelskiego osoby należy obawa",
+    "a": [
+      "ukrycia się osoby albo niemożności ustalenia jej tożsamości przy ujęciu na gorącym uczynku lub bezpośrednio po nim",
+      "popełnienia przez osobę w przyszłości dowolnego przestępstwa",
+      "odmowy okazania telefonu",
+      "podejrzenia o wykroczenie bez gorącego uczynku lub bezpośredniego pościgu"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: obawa ukrycia się osoby albo niemożność ustalenia jej tożsamości przy ujęciu na gorącym uczynku lub bezpośrednio po nim."
+  },
+  {
+    "id": 181,
+    "q": "Do przesłanek zatrzymania osoby przez Policję NIE należy obawa",
+    "a": [
+      "popełnienia w przyszłości dowolnego wykroczenia, bez związku z aktualnym zdarzeniem",
+      "ucieczki lub ukrycia się osoby podejrzanej o przestępstwo",
+      "zatarcia śladów przestępstwa",
+      "niemożności ustalenia tożsamości osoby"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: obawa popełnienia w przyszłości dowolnego wykroczenia, bez związku z aktualnym zdarzeniem."
+  },
+  {
+    "id": 182,
+    "q": "Kontrolujący może kierować kontrolowanym pojazdem w zakresie posiadanych uprawnień jeżeli jest to niezbędne w celu",
+    "a": [
+      "zapewnienia bezpieczeństwa lub wykonania czynności kontrolnych",
+      "załatwienia prywatnej sprawy kontrolującego",
+      "przekazania pojazdu osobie nieuprawnionej",
+      "ominięcia obowiązujących przepisów ruchu drogowego"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: zapewnienia bezpieczeństwa lub wykonania czynności kontrolnych."
+  },
+  {
+    "id": 183,
+    "q": "Maksymalny czas pozbawienia wolności osoby w ramach ujęcia obywatelskiego",
+    "a": [
+      "do czasu niezwłocznego przekazania osoby Policji",
+      "48 godzin z mocy art. 248 k.p.k.",
+      "24 godziny niezależnie od okoliczności",
+      "7 dni na decyzję Policji"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: do czasu niezwłocznego przekazania osoby Policji."
+  },
+  {
+    "id": 184,
+    "q": "Zatrzymany przez Policję - w zażaleniu na zatrzymanie - NIE może kwestionować jego",
+    "a": [
+      "winy za czyn, który był podstawą zatrzymania – zażalenie dotyczy zatrzymania, nie rozstrzyga o winie",
+      "legalności zatrzymania",
+      "zasadności zatrzymania",
+      "prawidłowości zatrzymania"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: winy za czyn, który był podstawą zatrzymania – zażalenie dotyczy zatrzymania, nie rozstrzyga o winie."
+  },
+  {
+    "id": 185,
+    "q": "Załącznik do zarządzenia nr 805 Komendanta Głównego Policji z dnia 31 grudnia 2003 r. zawiera zasady",
+    "a": [
+      "etyki zawodowej policjanta",
+      "organizacji hierarchicznej Policji",
+      "zasad postępowania mandatowego",
+      "zasad kontroli ruchu drogowego"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: etyki zawodowej policjanta."
+  },
+  {
+    "id": 186,
+    "q": "Zgodnie z treścią załącznika do zarządzenia nr 805 Komendanta Głównego Policji z dnia 31 grudnia 2003 r. policjant, podejmując decyzję o użyciu broni palnej lub zastosowaniu środków przymusu bezpośredniego, powinien zachować",
+    "a": [
+      "szczególną rozwagę",
+      "wyłącznie zgodę przełożonego",
+      "wyłącznie szybkość działania",
+      "brak dodatkowej ostrożności"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: szczególną rozwagę."
+  },
+  {
+    "id": 187,
+    "q": "Zgodnie z treścią załącznika do zarządzenia nr 805 Komendanta Głównego Policji z dnia 31 grudnia 2003 r. policjant powinien przestrzegać zasad",
+    "a": [
+      "humanitaryzmu, poszanowania godności człowieka i minimalizacji dolegliwości",
+      "wyższości interesu służbowego nad prawami człowieka",
+      "maksymalizacji dolegliwości",
+      "całkowitej dowolności w doborze środków"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: zasad humanitaryzmu, poszanowania godności człowieka i minimalizacji dolegliwości."
+  },
+  {
+    "id": 188,
+    "q": "Zgodnie z treścią załącznika do zarządzenia nr 805 Komendanta Głównego Policji z dnia 31 grudnia 2003 r. policjant powinien zachować",
+    "a": [
+      "takt i szczególną wrażliwość w sytuacjach dotyczących osób pokrzywdzonych",
+      "wyłącznie formalny sposób komunikacji",
+      "dystans i brak zaangażowania w każdej sytuacji",
+      "swobodne ujawnianie informacji o pokrzywdzonych"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: takt i szczególną wrażliwość w sytuacjach dotyczących osób pokrzywdzonych."
+  },
+  {
+    "id": 189,
+    "q": "Zgodnie z treścią załącznika do zarządzenia nr 805 Komendanta Głównego Policji z dnia 31 grudnia 2003 r. przełożony powinien zapewnić podległym policjantom właściwe warunki wykonywania zadań i rozwoju zawodowego oraz dbać o",
+    "a": [
+      "atmosferę pracy i dobre stosunki międzyludzkie",
+      "rywalizację między podwładnymi",
+      "wyłącznie dyscyplinę i wykonywanie poleceń",
+      "przede wszystkim prywatne relacje"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: atmosferę pracy i dobre stosunki międzyludzkie."
+  },
+  {
+    "id": 190,
+    "q": "Zgodnie z treścią załącznika do zarządzenia nr 805 Komendanta Głównego Policji z dnia 31 grudnia 2003 r. przełożony kierując działaniami podległych policjantów powinien",
+    "a": [
+      "wydawać jasne i zrozumiałe polecenia oraz inspirować i motywować do działania",
+      "wydawać polecenia bez wyjaśnienia celu",
+      "unikać podejmowania decyzji za podwładnych",
+      "stosować wyłącznie sankcje jako sposób motywowania"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: wydawać jasne i zrozumiałe polecenia oraz inspirować i motywować do działania."
+  },
+  {
+    "id": 191,
+    "q": "Policja jako umundurowana i uzbrojona formacja służąca społeczeństwu przeznaczona jest do",
+    "a": [
+      "ochrony bezpieczeństwa ludzi oraz utrzymywania bezpieczeństwa i porządku publicznego",
+      "prowadzenia działalności gospodarczej",
+      "orzekania o winie i karze za przestępstwa",
+      "ochrony wyłącznie mienia państwowego"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: ochrony bezpieczeństwa ludzi oraz utrzymywania bezpieczeństwa i porządku publicznego."
+  },
+  {
+    "id": 192,
+    "q": "W granicach swych zadań Policja wykonuje czynności",
+    "a": [
+      "operacyjno-rozpoznawcze, dochodzeniowo-śledcze i administracyjno-porządkowe",
+      "wyłącznie czynności kontrolne",
+      "wyłącznie czynności sądowe",
+      "wyłącznie czynności kadrowe"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: operacyjno-rozpoznawcze, dochodzeniowo-śledcze i administracyjno-porządkowe."
+  },
+  {
+    "id": 193,
+    "q": "W korpusie podoficerów Policji stopniem policyjnym NIE jest",
+    "a": [
+      "nadkomisarz Policji",
+      "sierżant sztabowy Policji",
+      "starszy sierżant Policji",
+      "komisarz Policji"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: nadkomisarz Policji."
+  },
+  {
+    "id": 194,
+    "q": "Policjant obowiązany jest odmówić wykonania rozkazu lub polecenia służbowego, jeżeli wykonanie rozkazu lub polecenia łączyłoby się z popełnieniem",
+    "a": [
+      "przestępstwa",
+      "jakiegokolwiek wykroczenia, nawet gdy wykonanie rozkazu nie jest z nim związane",
+      "wyłącznie przewinienia dyscyplinarnego",
+      "jakiegokolwiek naruszenia zasad współżycia społecznego"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: przestępstwa."
+  },
+  {
+    "id": 195,
+    "q": "Policjantowi, który wzorowo wykonuje obowiązki, przejawia inicjatywę w służbie i doskonali kwalifikacje zawodowe nie może być udzielone wyróżnienie",
+    "a": [
+      "nagany",
+      "pochwały",
+      "krótkoterminowego dodatkowego urlopu wypoczynkowego w wymiarze do 10 dni roboczych",
+      "przedterminowego mianowania na wyższy stopień policyjny"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: nagany. Nagana jest karą dyscyplinarną, a nie wyróżnieniem."
+  },
+  {
+    "id": 196,
+    "q": "Wobec sprawcy wykroczenia",
+    "a": [
+      "stosuje środki oddziaływania wychowawczego albo nakłada grzywnę mandatem lub kieruje wniosek do sądu – zależnie od przesłanek",
+      "zawsze kieruje się wniosek do sądu",
+      "zawsze nakłada się mandat",
+      "zawsze poprzestaje się na pouczeniu"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: stosuje środki oddziaływania wychowawczego albo nakłada grzywnę mandatem lub kieruje wniosek do sądu – zależnie od przesłanek."
+  },
+  {
+    "id": 197,
+    "q": "Umundurowana i uzbrojona formacja służącą społeczeństwu i przeznaczona do ochrony bezpieczeństwa ludzi oraz do utrzymywania bezpieczeństwa i porządku publicznego, to",
+    "a": [
+      "Policja",
+      "Straż Graniczna",
+      "Państwowa Straż Pożarna",
+      "Służba Ochrony Państwa"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: Policja."
+  },
+  {
+    "id": 198,
+    "q": "Wskaż rodzaj służby, który nie wchodzi w skład rodzajów służb w Policji.",
+    "a": [
+      "logistyczna",
+      "kryminalna",
+      "śledcza",
+      "prewencyjna"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: logistyczna."
+  },
+  {
+    "id": 199,
+    "q": "W korpusie podoficerów Policji wyróżniamy następujące stopnie policyjne:",
+    "a": [
+      "sierżant, starszy sierżant i sierżant sztabowy",
+      "posterunkowy, starszy posterunkowy, sierżant",
+      "aspirant, starszy aspirant, aspirant sztabowy",
+      "podkomisarz, komisarz, nadkomisarz"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: sierżant, starszy sierżant i sierżant sztabowy."
+  },
+  {
+    "id": 200,
+    "q": "W korpusie oficerów starszych Policji, wyróżniamy następujące stopnie policyjne:",
+    "a": [
+      "podinspektor, młodszy inspektor i inspektor",
+      "podkomisarz, komisarz, nadkomisarz",
+      "sierżant, starszy sierżant, sierżant sztabowy",
+      "posterunkowy, starszy posterunkowy"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: podinspektor, młodszy inspektor i inspektor."
+  },
+  {
+    "id": 201,
+    "q": "Przed podjęciem służby policjant składa ślubowanie, w którym zobowiązuje się do przestrzegania zasad",
+    "a": [
+      "etyki zawodowej",
+      "wyłącznie prawa i Konstytucji RP",
+      "wyłącznie dyscypliny służbowej i zasad użycia broni palnej",
+      "polityki rządu oraz decyzji przełożonych bez względu na ich zgodność z prawem"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: etyki zawodowej. Rota ślubowania kończy się zobowiązaniem do przestrzegania zasad etyki zawodowej."
+  },
+  {
+    "id": 202,
+    "q": "Do zadań Policji należy",
+    "a": [
+      "m.in. ochrona życia i zdrowia ludzi, mienia oraz bezpieczeństwa i porządku publicznego",
+      "wydawanie wyroków",
+      "ochrona granicy państwowej jako podstawowe zadanie",
+      "prowadzenie polityki pieniężnej państwa"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: m.in. ochrona życia i zdrowia ludzi, mienia oraz bezpieczeństwa i porządku publicznego."
+  },
+  {
+    "id": 203,
+    "q": "Policjanci w toku wykonywania czynności służbowych",
+    "a": [
+      "mają obowiązek respektować godność ludzką oraz przestrzegać i chronić prawa człowieka",
+      "mogą ignorować godność osoby, jeżeli wykonują polecenie",
+      "nie muszą przestrzegać praw człowieka podczas interwencji",
+      "mają obowiązek wykonywać czynności wyłącznie według własnego uznania"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: mają obowiązek respektować godność ludzką oraz przestrzegać i chronić prawa człowieka."
+  },
+  {
+    "id": 204,
+    "q": "Policjanci w celu realizacji ustawowych zadań nie mają prawa",
+    "a": [
+      "nakładać dowolne obowiązki cywilne niezwiązane z czynnościami służbowymi",
+      "legitymować osób",
+      "dokonywać zatrzymań w przypadkach przewidzianych ustawą",
+      "stosować środki przymusu bezpośredniego w przypadkach przewidzianych ustawą"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: nakładać dowolne obowiązki cywilne niezwiązane z czynnościami służbowymi."
+  },
+  {
+    "id": 205,
+    "q": "Służbę w Policji może pełnić obywatel",
+    "a": [
+      "polski, o nieposzlakowanej opinii, spełniający ustawowe wymagania",
+      "dowolnego państwa UE, jeżeli ma wykształcenie średnie",
+      "polski bez wymogu nieposzlakowanej opinii",
+      "polski, który nie musi być zdolny fizycznie i psychicznie do służby"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: polski, o nieposzlakowanej opinii, spełniający ustawowe wymagania."
+  },
+  {
+    "id": 206,
+    "q": "Początek służby w Policji liczy się od dnia",
+    "a": [
+      "określonego w rozkazie o mianowaniu funkcjonariusza Policji",
+      "rozpoczęcia szkolenia podstawowego",
+      "złożenia dokumentów rekrutacyjnych",
+      "złożenia ślubowania, niezależnie od treści rozkazu o mianowaniu"
+    ],
+    "correct": 0,
+    "explanation": "Art. 28 ust. 2 ustawy o Policji stanowi, że początek służby liczy się od dnia określonego w rozkazie o mianowaniu funkcjonariusza Policji."
+  },
+  {
+    "id": 207,
+    "q": "Komendant Centralnego Biura Śledczego Policji jest organem Policji podległym",
+    "a": [
+      "Komendantowi Głównemu Policji",
+      "ministrowi właściwemu do spraw wewnętrznych",
+      "Prezesowi Rady Ministrów",
+      "Komendantowi BSWP"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: Komendantowi Głównemu Policji."
+  },
+  {
+    "id": 208,
+    "q": "Postępowanie kwalifikacyjne do Policji NIE obejmuje",
+    "a": [
+      "egzaminu państwowego niezwiązanego z wymaganiami służby w Policji",
+      "testu wiedzy",
+      "testu sprawności fizycznej",
+      "badania psychologicznego"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: egzaminu państwowego niezwiązanego z wymaganiami służby w Policji."
+  },
+  {
+    "id": 209,
+    "q": "Policja jest formacją służącą społeczeństwu i przeznaczoną do",
+    "a": [
+      "ochrony bezpieczeństwa ludzi i utrzymania bezpieczeństwa oraz porządku publicznego",
+      "prowadzenia postępowań sądowych",
+      "wydawania wyroków",
+      "prowadzenia polityki zagranicznej"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: ochrony bezpieczeństwa ludzi i utrzymania bezpieczeństwa oraz porządku publicznego."
+  },
+  {
+    "id": 210,
+    "q": "Służby w Policji NIE może pełnić obywatel polski o nieposzlakowanej opinii, który",
+    "a": [
+      "nie daje rękojmi prawidłowego wykonywania obowiązków służbowych albo nie spełnia innych ustawowych wymagań",
+      "ma nieposzlakowaną opinię i spełnia wszystkie wymagania ustawowe",
+      "posiada obywatelstwo polskie i pełnię praw publicznych",
+      "jest zdolny fizycznie i psychicznie oraz ma wymagane wykształcenie"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: nie daje rękojmi prawidłowego wykonywania obowiązków służbowych albo nie spełnia innych ustawowych wymagań."
+  },
+  {
+    "id": 211,
+    "q": "Stosunek służbowy policjanta powstaje w drodze mianowania na podstawie",
+    "a": [
+      "dobrowolnego zgłoszenia się do służby",
+      "umowy o pracę",
+      "decyzji sądu",
+      "jednostronnej zgody przełożonego bez zgłoszenia się do służby"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: mianowania na podstawie dobrowolnego zgłoszenia się do służby."
+  },
+  {
+    "id": 212,
+    "q": "Święto Policji obchodzone jest",
+    "a": [
+      "24 lipca",
+      "1 maja",
+      "11 listopada",
+      "3 maja"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: 24 lipca."
+  },
+  {
+    "id": 213,
+    "q": "Przesłanką zwolnienia policjanta ze służby w Policji, jest orzeczenie",
+    "a": [
+      "trwałej niezdolności do służby",
+      "pozytywne oceny okresowe",
+      "ukończenie szkolenia podstawowego",
+      "otrzymanie pochwały przełożonego"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: trwałej niezdolności do służby."
+  },
+  {
+    "id": 214,
+    "q": "Policjantowi skierowanemu do szkoły lub na przeszkolenie albo na studia w kraju",
+    "a": [
+      "przysługuje wyłącznie bezpłatny urlop bez prawa do uposażenia",
+      "otrzymuje uposażenie oraz inne należności pieniężne na zasadach określonych w ustawie",
+      "traci prawo do wszystkich świadczeń do czasu ukończenia nauki",
+      "otrzymuje wyłącznie zwrot kosztów dojazdu, bez innych należności"
+    ],
+    "correct": 1,
+    "explanation": "Skierowanie do szkoły, na przeszkolenie albo na studia w kraju nie pozbawia policjanta uposażenia i należności przysługujących na zasadach określonych w przepisach."
+  },
+  {
+    "id": 215,
+    "q": "Policjant w związku z wykonywaniem czynności służbowych jest uprawniony do",
+    "a": [
+      "żądania poddania się badaniu w celu ustalenia zawartości alkoholu lub środka działającego podobnie do alkoholu",
+      "wydawania wyroków w sprawach karnych",
+      "nakładania dowolnych obowiązków cywilnych niezwiązanych z czynnością służbową",
+      "pozbawiania osoby praw publicznych bez podstawy prawnej"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: żądania poddania się badaniu w celu ustalenia zawartości alkoholu lub środka działającego podobnie do alkoholu."
+  },
+  {
+    "id": 216,
+    "q": "Kierujący pojazdem uprzywilejowanym ma obowiązek stosować się do",
+    "a": [
+      "poleceń i sygnałów dawanych przez osoby kierujące ruchem lub upoważnione do jego kontroli",
+      "dowolnych kierowców",
+      "wyłącznie policjanta",
+      "wyłącznie przełożonego"
+    ],
+    "correct": 0,
+    "explanation": "Prawidłowa odpowiedź: poleceń i sygnałów dawanych przez osoby kierujące ruchem lub upoważnione do jego kontroli."
+  }
+];
+let state={mode:"menu", pool:[],pos:0,score:0,wrong:[],answered:false,history:JSON.parse(localStorage.getItem("sgWrong")||"[]"),examDeadline:0,timer:null};
+
+function save(){localStorage.setItem("sgWrong",JSON.stringify(state.history))}
+function esc(s){return s.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function stopTimer(){if(state.timer){clearInterval(state.timer);state.timer=null}}
+function updateTimer(){
+ if(state.mode!=="exam")return;
+ const left=Math.max(0,state.examDeadline-Date.now());
+ const totalSec=Math.ceil(left/1000);
+ const el=document.getElementById("timer");
+ if(el){const m=String(Math.floor(totalSec/60)).padStart(2,"0"),sec=String(totalSec%60).padStart(2,"0");el.textContent=`⏱️ ${m}:${sec}`;}
+ if(left<=0){stopTimer();finish(true)}
+}
+function menu(){
+if(state.mode!=="activation" && !currentUser) { showActivation(); return; }
+stopTimer();
+state.mode="menu";
+document.getElementById("app").innerHTML=`<div class="card">
+<div class="question-label">Centrum przygotowania</div>
+<h1>Test wiedzy do Policji</h1>
+<div class="small">216 pytań • losowanie odpowiedzi • automatyczne zapisywanie błędów</div><div class="small" style="margin-top:8px;color:#8fa1b5">Oficjalne trzony pytań: Akademia Policji 2025. Odpowiedzi A–D zostały opracowane na podstawie wskazanych aktów prawnych; nie są oficjalnym kluczem Akademii.</div>
+<div class="menu">
+<button onclick="startLearn()">📚 Nauka — 216 pytań</button>
+<button onclick="startExam()">🎯 Egzamin — 40 losowych</button>
+<button onclick="startWrong()">🔴 Tylko błędne (${state.history.length})</button>
+<button class="secondary" onclick="resetWrong()">🗑 Wyczyść błędy</button>
+</div>
+<div class="stats" style="margin-top:22px"><span>Zapamiętane błędy: <b>${state.history.length}</b></span><span>Postęp zapisuje się automatycznie.</span></div>
+</div>`}
+function startLearn(){state.mode="learn";state.pool=shuffle(QUESTIONS);state.pos=0;state.score=0;state.wrong=[];state.answered=false;render()}
+function startExam(){stopTimer();state.mode="exam";state.pool=shuffle(QUESTIONS).slice(0,40);state.pos=0;state.score=0;state.wrong=[];state.answered=false;state.examDeadline=Date.now()+40*60*1000;render();state.timer=setInterval(updateTimer,250);updateTimer()}
+function startWrong(){
+let p=state.history.map(id=>QUESTIONS.find(x=>x.id===id)).filter(Boolean);
+if(!p.length){alert("Nie masz jeszcze zapisanych błędów.");return}
+state.mode="wrong";state.pool=shuffle(p);state.pos=0;state.score=0;state.wrong=[];state.answered=false;render()
+}
+function resetWrong(){state.history=[];save();menu()}
+function render(){
+ if(state.pos>=state.pool.length){finish();return}
+ let x=state.pool[state.pos], labels=["A","B","C","D"];
+ let order=shuffle([0,1,2,3]); state.order=order;
+ let pct=Math.round((state.pos/state.pool.length)*100);
+ const topchips=document.querySelector(".topchips");
+ if(state.mode==="exam"){
+   topchips.innerHTML=`<div class="chip greenchip"><span>⏱ Pozostały czas</span><b id="topTimer">40:00</b></div><div class="chip"><span>💬 Pytanie</span><b>${state.pos+1} / ${state.pool.length}</b></div><button class="danger" onclick="finish(true)">⇥ &nbsp; ZAKOŃCZ TEST</button>`;
+ } else {
+   topchips.innerHTML=`<div class="chip greenchip"><span>Tryb</span><b>${state.mode==="wrong"?"Tylko błędne":"Nauka"}</b></div><div class="chip"><span>Pytanie</span><b>${state.pos+1} / ${state.pool.length}</b></div>`;
+ }
+ document.getElementById("app").innerHTML=`<div class="progress-wrap">
+ <div class="progress-head"><span>POSTĘP TESTU</span><b>${pct}%</b></div>
+ <div class="bar"><div class="fill" style="width:${pct}%"></div></div>
+ </div>
+ <div class="card question-card">
+ <div class="question-label">Pytanie ${state.pos+1}</div>
+ <div class="q">${esc(x.q)}</div>
+ <div class="answers">${order.map((idx,i)=>`<button class="ans" id="a${idx}" onclick="answer(${idx})"><b>${labels[i]}</b><span>${esc(x.a[idx])}</span></button>`).join("")}</div>
+ <div id="feedback"></div>
+ </div>
+ <div class="controls" style="width:min(650px,calc(100% - 32px));margin:14px auto 0">
+ <button class="secondary" onclick="previousQuestion()" ${state.pos===0?"disabled":""}>‹ &nbsp; POPRZEDNIE</button>
+ <button id="next" class="hidden" onclick="next()">NASTĘPNE &nbsp; ›</button>
+ <button class="secondary" onclick="menu()">☰ &nbsp; MENU</button>
+ </div>`}
+function previousQuestion(){
+ if(state.pos<=0)return;
+ state.pos--;
+ state.answered=false;
+ render();
+}
+function answer(idx){
+if(state.answered)return;
+if(state.mode==="exam" && Date.now()>=state.examDeadline){stopTimer();finish(true);return;}
+state.answered=true;let x=state.pool[state.pos];
+document.querySelectorAll(".ans").forEach(b=>b.classList.add("disabled"));
+let correct=idx===x.correct;
+document.getElementById("a"+x.correct).classList.add("good");
+if(!correct){document.getElementById("a"+idx).classList.add("bad");state.wrong.push(x.id);if(!state.history.includes(x.id)){state.history.push(x.id);save()}}
+else state.score++;
+let fb=document.getElementById("feedback");
+fb.innerHTML=`<div class="feedback ${correct?"goodbox":"badbox"}">${correct?"✅ DOBRZE!":"❌ ŹLE!"}<br><span style="font-weight:500">Prawidłowa odpowiedź: ${esc(x.a[x.correct])}</span>${x.explanation && !x.explanation.startsWith("Prawidłowa odpowiedź:") ? `<span style="font-weight:500;display:block;margin-top:8px">${esc(x.explanation)}</span>` : ""}</div>`;
+document.getElementById("next").classList.remove("hidden");
+}
+function next(){state.pos++;state.answered=false;render()}
+function finish(timeout=false){
+stopTimer();
+let total=state.pool.length,pct=Math.round(state.score/total*100);
+document.getElementById("app").innerHTML=`<div class="card">
+<h1>${state.mode==="exam"?(timeout?"Czas minął":"Egzamin zakończony"):"Sesja zakończona"}</h1>
+<div style="font-size:42px;font-weight:900;margin:20px 0">${state.score}/${total}</div>${timeout?`<div class="feedback badbox">⏰ Czas 40:00 został wykorzystany.</div>`:""}
+<div class="stats"><span>Wynik: <b>${pct}%</b></span><span>Błędy w tej sesji: <b>${state.wrong.length}</b></span><span>Łącznie zapisanych błędów: <b>${state.history.length}</b></span></div>
+<div class="menu"><button onclick="${state.mode==="exam"?"startExam()":"startLearn()"}">🔄 Jeszcze raz</button><button onclick="startWrong()">🔴 Przećwicz błędy</button><button class="secondary" onclick="menu()">← Menu</button></div>
+${state.wrong.length?`<div class="list">${state.wrong.map(id=>{let q=QUESTIONS.find(x=>x.id===id);return `<div class="row"><b>${id}.</b> ${esc(q.q)} <span class="tag">błąd</span></div>`}).join("")}</div>`:""}
+</div>`}
+initFirebase();
+
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js?v=3").catch(err => {
+      console.error("Service Worker registration failed:", err);
+    });
+  });
+}
+</script></body></html>
