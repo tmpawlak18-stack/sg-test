@@ -6,7 +6,8 @@
 <meta name="theme-color" content="#0b1020">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="KAS Test">
+<meta name="apple-mobile-web-app-title" content="Służba Celno-Skarbowa">
+<link rel="manifest" href="./manifest.webmanifest">
 
 
 <title>KAS / Służba Celno-Skarbowa — Test wiedzy 277 pytań</title>
@@ -16,11 +17,11 @@
 *{box-sizing:border-box}
 html{min-height:100%;background:#050c18}
 body{margin:0;min-height:100vh;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--text);background:#071321;overflow-x:hidden}
-body:before{content:"";position:fixed;inset:0;z-index:0;background-image:url('../testrekrut-sg-bg.jpg');background-size:cover;background-position:center center;background-attachment:fixed;filter:brightness(1.16) saturate(.95) contrast(1.03)}
+body:before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:none !important}
 body:after{content:"";position:fixed;inset:0;z-index:1;background:linear-gradient(180deg,rgba(3,12,24,.62) 0%,rgba(3,12,24,.10) 16%,rgba(3,12,24,.05) 66%,rgba(3,12,24,.58) 100%),linear-gradient(90deg,rgba(3,12,24,.18) 0%,rgba(3,12,24,.03) 35%,rgba(3,12,24,.10) 65%,rgba(3,12,24,.22) 100%)}
 .wrap{position:relative;z-index:2;width:100%;margin:0 auto;padding:0 0 28px}
 .top{box-sizing:border-box;width:100%;display:flex;justify-content:space-between;gap:22px;align-items:center;margin:0;padding:13px 4.3%;min-height:104px;background:rgba(4,15,28,.80);border-bottom:1px solid rgba(120,145,168,.25);backdrop-filter:blur(9px)}
-.brandbox{display:flex;align-items:center;gap:15px}.brandicon{width:62px;height:62px;border-radius:50%;object-fit:cover;border:0;box-shadow:0 5px 20px rgba(0,0,0,.35)}.brand{font-size:31px;font-weight:900;letter-spacing:-.9px}.brand .green{color:var(--green)}.small{color:#b5c2d0;font-size:14px}.subtitle{margin-top:3px;color:#edf2f7;font-size:16px}
+.brandbox{display:flex;align-items:center;gap:15px}.brandicon{width:62px;height:62px;flex:0 0 62px;border-radius:50%;object-fit:cover;border:1px solid rgba(201,223,69,.55);box-shadow:0 5px 20px rgba(0,0,0,.45);display:block}.brand{font-size:31px;font-weight:900;letter-spacing:-.9px}.brand .green{color:var(--green)}.small{color:#b5c2d0;font-size:14px}.subtitle{margin-top:3px;color:#edf2f7;font-size:16px}
 .topchips{display:flex;gap:14px;align-items:center;min-width:0;max-width:58%;justify-content:flex-end}.topchips .chip{flex:0 1 auto}.topchips button{white-space:nowrap}.chip{min-width:195px;padding:10px 17px;border:1px solid #506b84;background:rgba(7,20,35,.68);border-radius:11px;text-align:center;backdrop-filter:blur(10px)}.chip b{display:block;font-size:19px}.chip span{font-size:11px;color:#c0ccd8;text-transform:uppercase;letter-spacing:.8px}.chip.greenchip{border-color:#20c866}.chip.greenchip b{color:var(--green)}
 .card{width:min(650px,calc(100% - 32px));margin:20px auto 0;background:linear-gradient(145deg,rgba(12,27,42,.93),rgba(6,18,31,.91));border:1px solid rgba(101,128,151,.58);border-radius:21px;padding:36px;box-shadow:0 25px 80px rgba(0,0,0,.48);backdrop-filter:blur(11px)}
 h1{margin:0 0 9px;font-size:31px;letter-spacing:-.6px}h2{margin:0}.q{font-size:28px;line-height:1.28;font-weight:760;margin:24px 0 22px;letter-spacing:-.35px}.question-label{font-size:14px;color:var(--green);font-weight:850;text-transform:none;letter-spacing:.2px;margin-top:5px}
@@ -558,24 +559,353 @@ footer,
   color:#d9e3ee !important;
 }
 
-</style>
 
-<link rel="manifest" href="./manifest.webmanifest">
-<meta name="theme-color" content="#0b1f3a">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="TESTREKRUT SCS">
-<link rel="apple-touch-icon" href="./icon-192.png">
+/* ===== Służba Celno-Skarbowa — final visual theme =====
+   Based on the current official visual elements:
+   green + white + fluorescent yellow-green accent.
+   Blue is intentionally not used as the main UI color.
+*/
+:root{
+  --scs-green:#17452f;
+  --scs-green-dark:#0e2f20;
+  --scs-green-mid:#236642;
+  --scs-lime:#c9df45;
+  --scs-lime-light:#e0ed82;
+  --scs-bg:#edf2ef;
+  --scs-card:#ffffff;
+  --scs-border:#d1ddd6;
+  --scs-text:#17231c;
+  --scs-muted:#617067;
+}
 
-<style id="pwa-install-style">
-#pwaInstallBtn{display:none;position:fixed;right:16px;bottom:16px;z-index:9999;border:1px solid #e4c45a;background:#0b1f3a;color:#fff;padding:12px 16px;border-radius:12px;font-weight:800;box-shadow:0 8px 25px rgba(0,0,0,.28);cursor:pointer}
-#pwaInstallBtn:hover{background:#173f6b}
+/* Main background */
+body{
+  background-image:
+    linear-gradient(180deg,rgba(3,12,24,.50) 0%,rgba(3,12,24,.08) 28%,rgba(3,12,24,.10) 68%,rgba(3,12,24,.48) 100%),
+    url('./scs-bg.jpg') !important;
+  background-size:cover !important;
+  background-position:center center !important;
+  background-attachment:fixed !important;
+  background-repeat:no-repeat !important;
+  background-color:#071321 !important;
+  color:var(--scs-text) !important;
+}
+
+/* Header */
+header,.header,.topbar{
+  background:linear-gradient(135deg,var(--scs-green-dark),var(--scs-green)) !important;
+  border-bottom:3px solid var(--scs-lime) !important;
+}
+.brand{color:#fff !important}
+.brand .green,.green{color:var(--scs-lime-light) !important}
+.subtitle{color:#dbe8df !important}
+
+/* Top chips */
+.chip{
+  background:rgba(255,255,255,.08) !important;
+  border-color:rgba(255,255,255,.20) !important;
+  color:#fff !important;
+}
+.greenchip{
+  background:rgba(201,223,69,.14) !important;
+  border-color:rgba(201,223,69,.55) !important;
+}
+.greenchip b{color:var(--scs-lime-light) !important}
+
+/* Cards */
+.card,.panel,.box{
+  background:var(--scs-card) !important;
+  border-color:var(--scs-border) !important;
+  box-shadow:0 10px 30px rgba(14,47,32,.08) !important;
+}
+
+/* Main buttons */
+button,.btn,button.primary{
+  background:linear-gradient(135deg,var(--scs-green-dark),var(--scs-green-mid)) !important;
+  border-color:var(--scs-green-dark) !important;
+  color:#fff !important;
+  box-shadow:0 5px 14px rgba(14,47,32,.16) !important;
+}
+button:hover,.btn:hover{
+  background:linear-gradient(135deg,var(--scs-green-mid),#2d7b50) !important;
+}
+
+/* Secondary */
+button.secondary,.btn.secondary,button.ghost,.btn.ghost{
+  background:#fff !important;
+  color:var(--scs-green-dark) !important;
+  border-color:#b8c9bf !important;
+}
+
+/* Answers */
+.answer,.option,.answers button,.choice{
+  background:#fff !important;
+  border-color:#cbd7d0 !important;
+  color:var(--scs-text) !important;
+}
+.answer:hover,.option:hover,.answers button:hover,.choice:hover{
+  border-color:var(--scs-lime) !important;
+  background:#fbfdea !important;
+}
+.answer.selected,.option.selected,.choice.selected{
+  border-color:var(--scs-lime) !important;
+  background:#f8fbdc !important;
+}
+.answer.correct,.option.correct,.choice.correct{
+  border-color:#2f7a53 !important;
+  background:#e9f6ee !important;
+}
+.answer.wrong,.option.wrong,.choice.wrong{
+  border-color:#9b3441 !important;
+  background:#fbecee !important;
+}
+
+/* Progress / timer */
+.progress,.progressbar{background:#dce5df !important}
+.progress > *,.progressbar > *{
+  background:linear-gradient(90deg,var(--scs-green),var(--scs-lime)) !important;
+}
+.timer,#timer,#topTimer{color:var(--scs-green-dark) !important}
+
+/* Headings */
+h1,h2,h3{color:var(--scs-green-dark) !important}
+
+/* Inputs */
+input,select,textarea{
+  border-color:#c3d0c8 !important;
+  background:#fff !important;
+  color:var(--scs-text) !important;
+}
+input:focus,select:focus,textarea:focus{
+  outline:none !important;
+  border-color:var(--scs-lime) !important;
+  box-shadow:0 0 0 3px rgba(201,223,69,.18) !important;
+}
+
+/* Access panel */
+.access-card,#accessCard,.activation-card,.login-card{
+  background:linear-gradient(145deg,#123a27 0%,#0e2f20 100%) !important;
+  color:#f4f8f5 !important;
+  border:1px solid rgba(201,223,69,.40) !important;
+  box-shadow:0 14px 35px rgba(14,47,32,.22) !important;
+}
+.access-card h1,.access-card h2,.access-card h3,
+#accessCard h1,#accessCard h2,#accessCard h3,
+.activation-card h1,.activation-card h2,.activation-card h3,
+.login-card h1,.login-card h2,.login-card h3{
+  color:#fff !important;
+}
+.access-card .small,.access-card .muted,.access-card .hint,
+#accessCard .small,#accessCard .muted,#accessCard .hint{
+  color:#d8e6dd !important;
+}
+
+/* Feature text */
+.feature,.features,.feature-card,.feature-item,.stat-card{
+  color:#e8f0eb !important;
+}
+.feature h3,.feature h4,.feature strong,
+.feature-card h3,.feature-card h4,.feature-card strong,
+.feature-item h3,.feature-item h4,.feature-item strong,
+.stat-card h3,.stat-card h4,.stat-card strong{
+  color:#f2f7f3 !important;
+}
+.feature p,.feature-card p,.feature-item p,.stat-card p{
+  color:#cbd9d0 !important;
+}
+.feature strong,.feature-card strong,.feature-item strong,.stat-card strong{
+  color:var(--scs-lime-light) !important;
+}
+
+/* Footer TESTREKRUT */
+footer .brand,.footer .brand,
+footer .green,.footer .green,
+footer .brand .green,.footer .brand .green,
+footer b,.footer b{
+  color:var(--scs-lime-light) !important;
+}
+footer,.footer{color:#d8e6dd !important}
+
+/* Links / warnings */
+a{color:var(--scs-green-mid) !important}
+a:hover{color:#315f45 !important}
+.error{color:#9b3441 !important}
+hr{border-color:#d8e2dc !important}
+
+
+/* ===== SCS — grafit / czerwień / srebro ===== */
+:root{
+  --scs-green:#24282d;
+  --scs-green-dark:#111418;
+  --scs-green-mid:#343a40;
+  --scs-lime:#c51f2b;
+  --scs-lime-light:#f04a55;
+  --scs-bg:#101318;
+  --scs-card:#12171d;
+  --scs-border:#4b535c;
+  --scs-text:#f2f4f6;
+  --scs-muted:#aeb5bd;
+}
+
+body{
+  color:var(--scs-text) !important;
+  background-image:
+    linear-gradient(180deg,rgba(4,7,10,.68) 0%,rgba(4,7,10,.34) 30%,rgba(4,7,10,.42) 70%,rgba(4,7,10,.76) 100%),
+    url('./scs-bg.jpg') !important;
+  background-color:#0b0e12 !important;
+}
+
+header,.header,.topbar{
+  background:linear-gradient(135deg,#0b0e12 0%,#1c2228 100%) !important;
+  border-bottom:2px solid #c51f2b !important;
+}
+
+.brand .green,.green{
+  color:#f04a55 !important;
+}
+
+.brandicon{
+  border:2px solid rgba(197,31,43,.75) !important;
+  box-shadow:0 5px 20px rgba(0,0,0,.55),0 0 0 2px rgba(255,255,255,.06) !important;
+}
+
+.subtitle{color:#d8dde2 !important}
+
+.chip{
+  background:rgba(12,16,21,.78) !important;
+  border-color:rgba(185,192,199,.30) !important;
+}
+.greenchip{
+  background:rgba(197,31,43,.13) !important;
+  border-color:rgba(240,74,85,.62) !important;
+}
+.greenchip b{color:#ff6a73 !important}
+
+.card,.panel,.box{
+  background:rgba(16,21,27,.93) !important;
+  border-color:#3f474f !important;
+  color:#f2f4f6 !important;
+  box-shadow:0 14px 40px rgba(0,0,0,.42) !important;
+}
+
+button,.btn,button.primary{
+  background:linear-gradient(135deg,#9f1722,#d52a36) !important;
+  border-color:#e0444f !important;
+  color:#fff !important;
+  box-shadow:0 6px 16px rgba(0,0,0,.28) !important;
+}
+button:hover,.btn:hover{
+  background:linear-gradient(135deg,#bf202b,#ed3e4a) !important;
+}
+
+button.secondary,.btn.secondary,button.ghost,.btn.ghost{
+  background:#171c22 !important;
+  color:#eef1f4 !important;
+  border-color:#59626b !important;
+}
+
+.answer,.option,.answers button,.choice{
+  background:#171c22 !important;
+  border-color:#4a535d !important;
+  color:#edf0f3 !important;
+}
+.answer:hover,.option:hover,.answers button:hover,.choice:hover{
+  border-color:#d93642 !important;
+  background:#20262d !important;
+}
+.answer.selected,.option.selected,.choice.selected{
+  border-color:#e0444f !important;
+  background:rgba(197,31,43,.16) !important;
+}
+.answer.correct,.option.correct,.choice.correct{
+  border-color:#7b8d99 !important;
+  background:#263038 !important;
+}
+.answer.wrong,.option.wrong,.choice.wrong{
+  border-color:#d93642 !important;
+  background:rgba(197,31,43,.18) !important;
+}
+
+.progress,.progressbar{background:#343b42 !important}
+.progress > *,.progressbar > *{
+  background:linear-gradient(90deg,#a71925,#ef4b56) !important;
+}
+.timer,#timer,#topTimer{color:#ff6570 !important}
+
+h1,h2,h3{color:#f3f5f7 !important}
+.q{color:#f3f5f7 !important}
+.question-label{color:#f05a64 !important}
+
+input,select,textarea{
+  border-color:#4b545d !important;
+  background:#171c22 !important;
+  color:#f2f4f6 !important;
+}
+input::placeholder,select::placeholder,textarea::placeholder{
+  color:#8f99a3 !important;
+}
+input:focus,select:focus,textarea:focus{
+  border-color:#d93642 !important;
+  box-shadow:0 0 0 3px rgba(197,31,43,.18) !important;
+}
+
+.access-card,#accessCard,.activation-card,.login-card{
+  background:linear-gradient(145deg,#171d23 0%,#0e1217 100%) !important;
+  color:#f4f6f8 !important;
+  border:1px solid rgba(197,31,43,.62) !important;
+  box-shadow:0 18px 45px rgba(0,0,0,.48) !important;
+}
+.access-card h1,.access-card h2,.access-card h3,
+#accessCard h1,#accessCard h2,#accessCard h3,
+.activation-card h1,.activation-card h2,.activation-card h3,
+.login-card h1,.login-card h2,.login-card h3{
+  color:#fff !important;
+}
+.access-card .small,.access-card .muted,.access-card .hint,
+#accessCard .small,#accessCard .muted,#accessCard .hint{
+  color:#c2c9d0 !important;
+}
+
+.featurebar{
+  background:rgba(10,14,19,.88) !important;
+  border-color:#46505a !important;
+}
+.feature{
+  color:#e6eaee !important;
+  border-color:#3b444d !important;
+}
+.feature .ico{color:#ef4a55 !important}
+.feature h3,.feature h4,.feature strong,
+.feature-card h3,.feature-card h4,.feature-card strong,
+.feature-item h3,.feature-item h4,.feature-item strong,
+.stat-card h3,.stat-card h4,.stat-card strong{
+  color:#f0f2f4 !important;
+}
+.feature p,.feature-card p,.feature-item p,.stat-card p{
+  color:#aeb7c0 !important;
+}
+.feature strong,.feature-card strong,.feature-item strong,.stat-card strong{
+  color:#f05a64 !important;
+}
+
+footer .brand,.footer .brand,
+footer .green,.footer .green,
+footer .brand .green,.footer .brand .green,
+footer b,.footer b{
+  color:#ef4a55 !important;
+}
+footer,.footer{color:#b8c0c8 !important}
+
+a{color:#ef5963 !important}
+a:hover{color:#ff7a82 !important}
+.error{color:#ff6570 !important}
+hr{border-color:#394149 !important}
+
 </style>
 </head>
 <body><div class="wrap">
 <div class="top">
-  <div class="brandbox"><img class="brandicon" src="../icon-512.png" alt="TESTREKRUT"><div><div class="brand">TEST<span class="green">REKRUT</span></div><div class="subtitle">Test wiedzy • Służba Celno-Skarbowa</div></div></div>
+  <div class="brandbox"><img class="brandicon" src="./scs-icon.png" alt="Służba Celno-Skarbowa"><div><div class="brand">TEST<span class="green">REKRUT</span></div><div class="subtitle">Test wiedzy • Służba Celno-Skarbowa</div></div></div>
   <div class="topchips"><div class="chip greenchip"><span>Baza</span><b>277 pytań</b></div><div class="chip"><span>Egzamin</span><b>30 min / 30 pytań</b></div></div>
 </div>
 <div id="app"></div>
@@ -927,29 +1257,10 @@ ${state.wrong.length?`<div class="list">${state.wrong.map(id=>{let q=QUESTIONS.f
 </div>`}
 initFirebase();
 
-</script>
-<button id="pwaInstallBtn" type="button">📲 Zainstaluj aplikację</button>
-<script>
-(function(){
-  let deferredPrompt=null;
-  const btn=document.getElementById('pwaInstallBtn');
-  window.addEventListener('beforeinstallprompt',function(e){
-    e.preventDefault(); deferredPrompt=e; btn.style.display='block';
-  });
-  btn.addEventListener('click',async function(){
-    if(!deferredPrompt) return;
-    deferredPrompt.prompt();
-    try{ await deferredPrompt.userChoice; }catch(e){}
-    deferredPrompt=null; btn.style.display='none';
-  });
-  window.addEventListener('appinstalled',function(){btn.style.display='none'; deferredPrompt=null;});
-})();
-</script>
-
-<script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', function(){
-    navigator.serviceWorker.register('./sw.js').catch(function(err){ console.warn('Service Worker registration failed:', err); });
+</script><script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js", { scope: "./" }).catch(err => console.error("SCS SW:", err));
   });
 }
 </script>
