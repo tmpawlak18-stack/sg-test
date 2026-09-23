@@ -643,7 +643,7 @@ async function ensureSCSEntitlement(code, uid) {
     const codeData = codeSnap.data();
     if (codeData.active !== true || codeData.product !== "celno-skarbowa" || codeData.userId !== uid) return false;
 
-    const ref = db.collection("scsAccess").doc(uid);
+    const ref = db.collection("userAccess").doc(uid);
     const snap = await ref.get();
     const payload = { product: "celno-skarbowa", active: true, code: normalized };
     if (!snap.exists) await ref.set(payload);
