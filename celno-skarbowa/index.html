@@ -544,6 +544,7 @@ a:hover{color:#ff7180!important}
         if(btn.dataset.correct === "true"){
           btn.classList.add("correct");
           result.textContent = "✓ Prawidłowa odpowiedź.";
+          result.style.color = "#49e28b";
         }else{
           btn.classList.add("wrong");
           var correct = box.querySelector('.sample-option[data-correct="true"]');
