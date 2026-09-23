@@ -660,7 +660,7 @@ async function loadSCSQuestions() {
     const snap = await db.collection("scsQuestions").get();
     if (snap.empty) throw new Error("Kolekcja scsQuestions jest pusta.");
     QUESTIONS.splice(0, QUESTIONS.length, ...snap.docs.map(doc => doc.data()).sort((a,b) => Number(a.id)-Number(b.id)));
-    if (QUESTIONS.length !== 277) console.warn("SCS: oczekiwano 277 pytań, znaleziono:", QUESTIONS.length);
+    if (QUESTIONS.length !== 300) console.warn("SCS: oczekiwano 300 pytań, znaleziono:", QUESTIONS.length);
     return true;
   } catch (e) {
     console.error(e);
