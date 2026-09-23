@@ -548,7 +548,8 @@ a:hover{color:#ff7180!important}
           btn.classList.add("wrong");
           var correct = box.querySelector('.sample-option[data-correct="true"]');
           if(correct) correct.classList.add("correct");
-          result.textContent = "✕ Nie tym razem. Prawidłowa odpowiedź: B — Szef Krajowej Administracji Skarbowej.";
+          result.textContent = "✕ Nie tym razem. Prawidłowa odpowiedź: B — Szef Krajowej Administracji Skarbowej."; 
+          result.style.color = "#ff4d5a";
         }
       });
     });
