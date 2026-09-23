@@ -735,7 +735,7 @@ function showActivation(errorText = "") {
     <h1>🔐 Aktywacja dostępu</h1>
     <div class="small" style="margin-bottom:18px">Wpisz kod dostępu otrzymany do aplikacji.</div>
     ${errorText ? `<div class="feedback badbox" style="margin-bottom:15px">${esc(errorText)}</div>` : ""}
-    <input id="accessCodeInput" autocomplete="off" autocapitalize="characters" placeholder="np. KAS-XXXX-XXXX" style="width:100%;padding:15px;border-radius:12px;border:1px solid #33415f;background:#1b2540;color:white;font-size:18px;box-sizing:border-box;text-transform:uppercase">
+    <input id="accessCodeInput" autocomplete="off" autocapitalize="characters" placeholder="np. SCS-XXXX-XXXX" style="width:100%;padding:15px;border-radius:12px;border:1px solid #33415f;background:#1b2540;color:white;font-size:18px;box-sizing:border-box;text-transform:uppercase">
     <button onclick="activateAccess()" style="width:100%;margin-top:12px">🔓 Aktywuj dostęp</button>
     <div style="margin-top:18px;text-align:center"><button class="secondary" onclick="showLoginRecovery()">Mam już konto — zaloguj się</button></div>
     <div id="activationMsg" class="small" style="margin-top:15px"></div>
