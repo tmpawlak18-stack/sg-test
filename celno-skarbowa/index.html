@@ -850,7 +850,11 @@ function updateTimer(){
   const top=document.getElementById("topTimer"); if(top){const m=String(Math.floor(totalSec/60)).padStart(2,"0"),sec=String(totalSec%60).padStart(2,"0");top.textContent=`${m}:${sec}`;}
  if(left<=0){stopTimer();finish(true)}
 }
-function updateQuestionCount(){
+function setMarketingVisibility(show){
+  const el = document.querySelector(".seo-content");
+  if(el) el.style.display = show ? "" : "none";
+}
+  function updateQuestionCount(){
   const el=document.getElementById("questionCount");
   if(el) el.textContent = QUESTIONS.length ? `${QUESTIONS.length} pytań` : "Aktualne pytania";
 }
@@ -859,6 +863,7 @@ if(QUESTIONS.length===0){ showActivation("Brak załadowanej bazy pytań. Zaloguj
 if(state.mode!=="activation" && !currentUser) { showActivation(); return; }
 stopTimer();
 state.mode="menu";
+setMarketingVisibility(true);
 document.getElementById("app").innerHTML=`<div class="card">
 <div class="question-label">Centrum przygotowania</div>
 <h1>Test wiedzy do Służby Celno-Skarbowej</h1>
@@ -886,7 +891,8 @@ state.mode="wrong";state.pool=shuffle(p);state.pos=0;state.score=0;state.wrong=[
 }
 function resetWrong(){state.history=[];save();menu()}
 function render(){
- if(state.pos>=state.pool.length){finish();return}
+  setMarketingVisibility(false);
+  if(state.pos>=state.pool.length){finish();return}
  let x=state.pool[state.pos], labels=["A","B","C","D"];
  let order=shuffle([0,1,2,3]); state.order=order;
  let pct=Math.round((state.pos/state.pool.length)*100);
