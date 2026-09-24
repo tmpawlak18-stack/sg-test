@@ -1,5 +1,5 @@
 
-const CACHE = "testrekrut-scs-static-v3";
+const CACHE = "testrekrut-scs-static-v2";
 
 const STATIC = [
   "./",
