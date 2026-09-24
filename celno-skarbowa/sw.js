@@ -1,4 +1,4 @@
-const CACHE = "testrekrut-scs-static-v2";
+const CACHE = "testrekrut-scs-static-v3";
 
 const STATIC = [
   "./",
@@ -35,7 +35,6 @@ self.addEventListener("fetch", event => {
 
   const url = new URL(req.url);
 
-  // Nie cache'ujemy Firebase ani innych zewnętrznych zasobów.
   if (url.origin !== self.location.origin) return;
 
   event.respondWith(
@@ -43,9 +42,9 @@ self.addEventListener("fetch", event => {
       if (cached) return cached;
 
       return fetch(req).then(res => {
-        const copy = res.clone();
+        if (res && res.ok) {
+          const copy = res.clone();
 
-        if (res.ok) {
           caches.open(CACHE).then(cache => {
             cache.put(req, copy);
           });
