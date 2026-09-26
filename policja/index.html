@@ -2241,7 +2241,7 @@ document.getElementById("app").innerHTML=`<div class="card">
 <button onclick="startWrong()">🔴 Tylko błędne (${state.history.length})</button>
 <button class="secondary" onclick="resetWrong()">🗑 Wyczyść błędy</button>
 </div>
-<div class="stats" style="margin-top:22px"><span>Zapamiętane błędy: <b>${state.history.length}</b></span><span>Postęp zapisuje się automatycznie.</span></div>
+<div class="stats" style="margin-top:22px"><span>Zapamiętane błędy: <b>${state.history.length}</b></span><span style="margin-left:20px">Postęp zapisuje się automatycznie.</span></div>
 </div>`}
 async function ensureQuestionsReady(){
   if(QUESTIONS.length>0) return true;
