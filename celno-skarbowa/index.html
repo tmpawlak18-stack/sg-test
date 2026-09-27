@@ -939,7 +939,63 @@ width:100%;
   .action-icon-svg svg{width:17px;height:17px}
 }
 
+/* ===== DESKTOP TEST STATUS — LICZNIK EGZAMINU ===== */
+body.test-active .compact-top{
+  flex-wrap:wrap!important;
+  align-items:center!important;
+}
 
+body.test-active .compact-top .top-actions,
+body.test-active .compact-top .social-mini{
+  display:none!important;
+}
+
+body.test-active .compact-top .mobile-test-status{
+  display:flex!important;
+  flex:0 0 100%!important;
+  width:100%!important;
+  margin-top:8px!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:12px!important;
+  padding:9px 12px!important;
+  border:1px solid rgba(90,119,146,.55)!important;
+  border-radius:10px!important;
+  background:rgba(5,16,27,.78)!important;
+  box-sizing:border-box!important;
+}
+
+body.test-active .compact-top .mts-mode{
+  font-size:11px;
+  font-weight:850;
+  color:#9fb3c5;
+  text-transform:uppercase;
+  letter-spacing:.4px;
+}
+
+body.test-active .compact-top .mts-question{
+  font-size:13px;
+  font-weight:850;
+  color:#f2f6fa;
+}
+
+body.test-active .compact-top .mts-timer{
+  font-size:18px;
+  font-weight:900;
+  color:#7cf3a8;
+  white-space:nowrap;
+}
+
+body.test-active .compact-top .mts-end{
+  border:1px solid rgba(224,52,73,.8)!important;
+  background:rgba(100,20,35,.65)!important;
+  color:#ffb4bd!important;
+  border-radius:8px!important;
+  padding:7px 12px!important;
+  font-size:11px!important;
+  font-weight:850!important;
+  box-shadow:none!important;
+}
 /* ===== MOBILE TEST VIEW V24 ===== */
 .mobile-test-status{display:none}
 @media(max-width:800px){
