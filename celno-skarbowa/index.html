@@ -1790,7 +1790,7 @@ async function updateAccessTile(){
   if(!currentUser || currentUser.isAnonymous) return;
 
   try{
-    const snap = await db.collection("userAccess").doc(currentUser.uid).get();
+    const snap = await db.collection("scsAccess").doc(currentUser.uid).get();
     const data = snap.exists ? (snap.data() || {}) : {};
 
     if(data.product === "celno-skarbowa" && data.active === true){
@@ -1878,7 +1878,7 @@ async function ensureSCSEntitlement(code, uid) {
       return false;
     }
 
-    const ref = db.collection("userAccess").doc(uid);
+    const ref = db.collection("scsAccess").doc(uid);
     const payload = {
       product: "celno-skarbowa",
       active: true,
@@ -1892,7 +1892,7 @@ async function ensureSCSEntitlement(code, uid) {
     } else {
       const existing = snap.data() || {};
       if (existing.product && existing.product !== "celno-skarbowa") {
-        console.error("SCS entitlement: userAccess należy do innego produktu:", existing.product);
+        console.error("SCS entitlement: scsAccess należy do innego produktu:", existing.product);
         return false;
       }
       await ref.set(payload, { merge: true });
@@ -1900,7 +1900,7 @@ async function ensureSCSEntitlement(code, uid) {
 
     const verifySnap = await ref.get();
     if (!verifySnap.exists) {
-      console.error("SCS entitlement: brak userAccess po zapisie.");
+      console.error("SCS entitlement: brak scsAccess po zapisie.");
       return false;
     }
 
