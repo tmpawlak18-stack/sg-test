@@ -14,7 +14,7 @@
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="googlebot" content="index,follow">
 <meta name="author" content="TESTREKRUT">
-<link rel="canonical" href="https://testrekrut.pl/SG/">
+<link rel="canonical" href="https://testrekrut.pl/straz-graniczna/">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="icon-180.png">
 
@@ -23,13 +23,13 @@
 <meta property="og:site_name" content="TESTREKRUT">
 <meta property="og:title" content="Test do Straży Granicznej 2026 | TESTREKRUT">
 <meta property="og:description" content="Przygotuj się do testu wiedzy Straży Granicznej. Nauka, test egzaminacyjny 10 pytań / 15 minut i analiza błędów.">
-<meta property="og:url" content="https://testrekrut.pl/SG/">
-<meta property="og:image" content="https://testrekrut.pl/SG/icon-header.png">
+<meta property="og:url" content="https://testrekrut.pl/straz-graniczna/">
+<meta property="og:image" content="https://testrekrut.pl/straz-graniczna/icon-header.png">
 <meta property="og:image:alt" content="TESTREKRUT — Straż Graniczna">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Test do Straży Granicznej 2026 | TESTREKRUT">
 <meta name="twitter:description" content="Nauka i tryb egzaminacyjny 10 pytań / 15 minut. Przygotowanie do rekrutacji do Straży Granicznej.">
-<meta name="twitter:image" content="https://testrekrut.pl/SG/icon-header.png">
+<meta name="twitter:image" content="https://testrekrut.pl/straz-graniczna/icon-header.png">
 
 <title>SG — Test wiedzy 200 pytań | TESTREKRUT</title>
 <meta name="app-version" content="2026-09-27-sg-v45-logout-v1">
@@ -38,8 +38,8 @@
 {
   "@context":"https://schema.org",
   "@type":"WebPage",
-  "@id":"https://testrekrut.pl/SG/#webpage",
-  "url":"https://testrekrut.pl/SG/",
+  "@id":"https://testrekrut.pl/straz-graniczna/#webpage",
+  "url":"https://testrekrut.pl/straz-graniczna/",
   "name":"Test do Straży Granicznej 2026 | TESTREKRUT",
   "description":"Test do Straży Granicznej 2026. Nauka, tryb egzaminacyjny i analiza błędów.",
   "inLanguage":"pl-PL",
@@ -1135,80 +1135,6 @@ a{color:#ff4b5f!important} a:hover{color:#ff7180!important}
 </style>
 
 
-
-<style id="sg-landing-center">
-/* ===== SG — CENTRUM PRZYGOTOWANIA PRZED AKTYWACJĄ ===== */
-.sg-landing-center{
-  width:min(900px,calc(100% - 40px));
-  margin:20px auto 0;
-  padding:30px 28px 27px;
-  text-align:center;
-  background:rgba(5,20,13,.62);
-  border:1px solid rgba(34,211,107,.28);
-  border-radius:18px;
-  backdrop-filter:blur(7px);
-  -webkit-backdrop-filter:blur(7px);
-  box-shadow:0 18px 55px rgba(0,0,0,.22);
-}
-.sg-landing-brand{
-  margin:0 0 9px;
-  font-size:48px;
-  line-height:1;
-  font-weight:900;
-  letter-spacing:-1.8px;
-  text-transform:uppercase;
-  text-shadow:0 5px 22px rgba(0,0,0,.28);
-}
-.sg-landing-brand .test{color:#fff!important}
-.sg-landing-brand .rekrut{color:#22d36b!important}
-.sg-landing-center h1{
-  margin:0;
-  font-size:34px;
-  line-height:1.08;
-  letter-spacing:-.8px;
-  color:#fff!important;
-}
-.sg-landing-lead{
-  max-width:700px;
-  margin:11px auto 0;
-  color:#d7e7dd;
-  font-size:16px;
-  line-height:1.5;
-}
-.sg-landing-points{
-  display:flex;
-  justify-content:center;
-  gap:9px;
-  flex-wrap:wrap;
-  margin-top:18px;
-}
-.sg-landing-point{
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  padding:8px 11px;
-  border:1px solid rgba(82,142,105,.48);
-  border-radius:999px;
-  background:rgba(5,30,17,.48);
-  color:#eef8f2;
-  font-size:11px;
-  font-weight:750;
-}
-.sg-landing-point i{
-  width:7px;height:7px;border-radius:50%;
-  background:#22d36b;
-  box-shadow:0 0 10px rgba(34,211,107,.34);
-}
-@media(max-width:700px){
-  .sg-landing-center{width:calc(100% - 28px);margin-top:14px;padding:24px 17px 21px;border-radius:16px}
-  .sg-landing-brand{font-size:37px;letter-spacing:-1.3px}
-  .sg-landing-center h1{font-size:27px}
-  .sg-landing-lead{font-size:14px;line-height:1.42}
-  .sg-landing-points{gap:7px;margin-top:14px}
-  .sg-landing-point{font-size:10px;padding:7px 9px}
-}
-</style>
-
 <style id="top-action-text-clarity-v20">
 /* V20 — wyraźniejszy tekst na kafelkach górnych */
 .action-copy b{
@@ -1956,9 +1882,11 @@ async function initFirebase() {
       localStorage.removeItem("sgAccessCode");
     }
 
-    // Przed aktywacją pokazujemy stronę startową z informacjami o bazie i egzaminie.
-    // Formularz aktywacji otwiera się dopiero po kliknięciu kafelka „Aktywuj dostęp”.
-    showLanding();
+    if (currentUser && !currentUser.isAnonymous) {
+      showLoginRecovery();
+    } else {
+      showActivation();
+    }
   } catch (e) {
     console.error(e);
     showActivation("Nie udało się połączyć z systemem aktywacji. Sprawdź konfigurację Firebase.");
@@ -2139,28 +2067,6 @@ async function activateAccess() {
     input.disabled = false;
     msg.textContent = "❌ Nie udało się aktywować kodu. Sprawdź konfigurację Firebase.";
   }
-}
-
-function showLanding(){
-  document.body.classList.remove("test-active");
-  const mts=document.getElementById("mobileTestStatus");
-  if(mts)mts.innerHTML="";
-  stopTimer();
-  state.mode="landing";
-  document.getElementById("app").innerHTML=`
-    <section class="sg-landing-center" aria-labelledby="sg-landing-title">
-      <div class="sg-landing-brand" aria-label="TESTREKRUT"><span class="test">TEST</span><span class="rekrut">REKRUT</span></div>
-      <h1 id="sg-landing-title">Centrum przygotowania do rekrutacji</h1>
-      <div class="sg-landing-lead">
-        Przygotuj się do testu wiedzy Straży Granicznej. Ucz się, rozwiązuj pytania i sprawdzaj swoje przygotowanie przed rekrutacją.
-      </div>
-      <div class="sg-landing-points" aria-label="Najważniejsze funkcje">
-        <span class="sg-landing-point"><i></i>200 pytań</span>
-        <span class="sg-landing-point"><i></i>10 pytań na egzaminie</span>
-        <span class="sg-landing-point"><i></i>10 minut</span>
-        <span class="sg-landing-point"><i></i>Analiza błędów</span>
-      </div>
-    </section>`;
 }
 
 function showActivation(errorText = "") {
@@ -2378,10 +2284,10 @@ async function logoutSG(){
   try{
     const result=await auth.signInAnonymously();
     currentUser=result.user;
-    showLanding();
+    showActivation();
   }catch(e){
     console.error("SG: nie udało się uruchomić sesji anonimowej po wylogowaniu:",e);
-    showLanding();
+    showActivation("Wylogowano. Odśwież stronę, aby ponownie rozpocząć aktywację.");
   }
 }
 function resetWrong(){state.history=[];save();menu()}
