@@ -2282,6 +2282,12 @@ async function logoutSCS(){
   if(mts) mts.innerHTML="";
   activationCode="";
   localStorage.removeItem("scsAccessCode");
+  const tile = document.getElementById("accessTile");
+if(tile){
+  tile.setAttribute("aria-label","Aktywuj dostęp");
+  const title = tile.querySelector(".action-copy b");
+  if(title) title.textContent = "Aktywuj dostęp";
+}
   state.mode="activation";
   try{ await auth.signOut(); }catch(e){ console.warn("SCS: błąd podczas wylogowania:",e); }
   currentUser=null;
