@@ -2365,6 +2365,20 @@ async function logoutSG(){
 
   activationCode="";
   localStorage.removeItem("sgAccessCode");
+  const tile = document.getElementById("accessTile");
+if(tile){
+  tile.classList.remove("access-active");
+  tile.disabled = false;
+  tile.setAttribute("aria-label","Aktywuj dostęp");
+
+  const title = tile.querySelector(".action-copy b");
+  const sub = tile.querySelector(".action-copy small");
+
+  if(title) title.textContent = "Aktywuj dostęp";
+  if(sub) sub.textContent = "Pełna baza pytań";
+
+  setAccessTileIcon(false);
+}
   state.mode="activation";
 
   try{
