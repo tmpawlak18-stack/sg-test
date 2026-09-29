@@ -1558,6 +1558,73 @@ a{color:var(--green)!important}
 
 </style>
 
+
+<style>
+/* ===== STS-01 EXAM FIX ===== */
+/* The general green button theme must not override exam controls. */
+.exam-answer-grid .exam-option{
+  width:100%;
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  min-height:55px;
+  padding:13px;
+  border-radius:10px;
+  text-align:left;
+  cursor:pointer;
+  font-size:15px;
+  color:#f3f6fa !important;
+  background:rgba(14,27,40,.88) !important;
+  border:1px solid rgba(75,96,116,.72) !important;
+  box-shadow:none !important;
+  transform:none !important;
+}
+.exam-answer-grid .exam-option:hover{
+  background:rgba(20,36,51,.94) !important;
+  border-color:#8b9caf !important;
+  filter:none !important;
+}
+.exam-answer-grid .exam-option.selected{
+  background:rgba(111,12,27,.42) !important;
+  border-color:#d96a76 !important;
+  box-shadow:0 0 0 1px rgba(217,106,118,.16) !important;
+}
+.exam-answer-grid .exam-option b{
+  width:34px !important;
+  height:34px !important;
+  min-width:34px !important;
+  flex:0 0 34px !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  border-radius:8px !important;
+  background:rgba(5,14,24,.92) !important;
+  color:#dfe6ed !important;
+}
+.exam-nav button{
+  background:rgba(9,18,29,.92) !important;
+  border:1px solid #415468 !important;
+  color:#dce5ed !important;
+  box-shadow:none !important;
+}
+.exam-nav button:hover{
+  background:rgba(20,36,51,.94) !important;
+  border-color:#8b9caf !important;
+}
+.exam-nav button.active{
+  background:rgba(184,59,75,.25) !important;
+  border-color:#d96a76 !important;
+  color:#fff !important;
+}
+.exam-nav button.done{
+  background:rgba(9,92,52,.28) !important;
+  border-color:#25c96a !important;
+}
+.exam-bottom button{
+  min-height:44px;
+}
+</style>
 </head>
 
 /* ===== STS-01 FREE ACCESS / 250 QUESTIONS ===== */
