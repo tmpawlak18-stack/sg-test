@@ -2552,7 +2552,7 @@ function render(){
  const mts=document.getElementById("mobileTestStatus");
  if(mts){
    const modeLabel=state.mode==="exam"?"EGZAMIN":(state.mode==="wrong"?"BŁĘDNE ODPOWIEDZI":"NAUKA");
-   mts.innerHTML=`<span class="mts-mode">${modeLabel}</span><span class="mts-question">Pytanie ${state.pos+1} / ${state.pool.length}</span>${state.mode==="exam"?`<span class="mts-timer" id="topTimerMobile">35:00</span>`:""}<button class="mts-end" type="button" onclick="finish(state.mode===\"exam\")">ZAKOŃCZ</button>`;
+   mts.innerHTML=`<span class="mts-mode">${modeLabel}</span><span class="mts-question">Pytanie ${state.pos+1} / ${state.pool.length}</span>${state.mode==="exam"?`<span class="mts-timer" id="topTimerMobile">35:00</span>`:""}<button class="mts-end" type="button" onclick="finish(${state.mode==="exam" ? "true" : "false"})">ZAKOŃCZ</button>`;
  }
  if(state.pos>=state.pool.length){finish();return}
  let x=state.pool[state.pos], labels=["A","B","C","D"];
