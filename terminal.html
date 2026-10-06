@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TESTREKRUT – Testy wiedzy do służb mundurowych</title>
+<meta name="description" content="TESTREKRUT to centrum przygotowania do rekrutacji do Straży Granicznej, Służby Więziennej, Służby Celno-Skarbowej i Policji. Ucz się, rozwiązuj pytania, ćwicz przed egzaminem i analizuj wyniki.">
+<link rel="canonical" href="https://testrekrut.pl/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TESTREKRUT – Testy wiedzy do służb mundurowych">
+<meta property="og:description" content="Przygotuj się do testów wiedzy do Straży Granicznej, Służby Więziennej, Służby Celno-Skarbowej i Policji.">
+<meta property="og:url" content="https://testrekrut.pl/">
+<meta name="theme-color" content="#06111f">
+<style>
+:root{--bg:#030b15;--panel:rgba(5,19,33,.90);--line:rgba(119,166,211,.25);--text:#f4f8fc;--muted:#aab8c8;--blue:#42a5ff;--sg:#19c987;--sw:#378dff;--scs:#ef4050;--pol:#2498ff;--max:1500px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif;line-height:1.55}a{color:inherit;text-decoration:none}
+.site-header{position:sticky;top:0;z-index:20;height:76px;background:rgba(3,13,24,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08)}
+.header-inner{height:100%;max-width:var(--max);margin:auto;padding:0 30px;display:flex;align-items:center;gap:34px}
+.brand{display:flex;align-items:center;gap:13px;min-width:260px}.brand-mark{width:46px;height:46px;border-radius:12px}.brand-mark-css{display:grid;place-items:center;border:1px solid rgba(66,165,255,.55);background:linear-gradient(145deg,#0c3154,#06111f);color:#fff;font-weight:950;font-size:17px;box-shadow:inset 0 0 18px rgba(66,165,255,.16)}
+.brand-name{font-size:27px;font-weight:900;letter-spacing:-1.4px}.brand-name span{color:var(--blue)}.brand-sub{font-size:12px;color:#b5c0cc;margin-top:-2px}
+.nav{display:flex;gap:30px;margin-left:auto}.nav a{font-size:14px;color:#c6d1dd}.nav a:hover{color:#fff}
+.hero{position:relative;min-height:720px;overflow:hidden;background-image:linear-gradient(90deg,rgba(3,12,22,.88) 0%,rgba(3,12,22,.48) 48%,rgba(3,12,22,.72) 100%),url('testrekrut-hero-bg.jpg');background-size:cover;background-position:center;background-repeat:no-repeat}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,12,22,.82) 0%,rgba(3,12,22,.36) 48%,rgba(3,12,22,.72) 100%)}
+.hero:after{content:"";position:absolute;inset:0;opacity:.15;background:linear-gradient(90deg,transparent 49.8%,rgba(255,255,255,.12) 50%,transparent 50.2%),linear-gradient(0deg,transparent 49.8%,rgba(255,255,255,.08) 50%,transparent 50.2%);background-size:110px 110px}
+.hero-inner{position:relative;z-index:2;max-width:var(--max);margin:auto;padding:82px 30px 36px}
+.coordinates{font-size:12px;letter-spacing:3px;color:#5eb4ff;text-transform:uppercase;margin-bottom:18px}
+h1{font-size:clamp(42px,5vw,76px);line-height:.98;letter-spacing:-3px;max-width:850px;margin:0 0 22px;font-weight:950;text-transform:uppercase}h1 span{color:var(--blue)}
+.hero-copy{max-width:650px;font-size:17px;color:#d0d9e3;margin:0 0 30px}.hero-rule{width:55px;height:3px;background:var(--blue);margin-bottom:38px}
+.services{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;width:100%;max-width:1440px;margin:0 auto;position:relative;z-index:4}
+.service{position:relative;min-height:330px;padding:30px 24px 22px;border:1px solid rgba(119,166,211,.34);border-radius:14px;background:linear-gradient(180deg,rgba(4,18,32,.70),rgba(2,10,19,.91));backdrop-filter:blur(10px);display:flex;flex-direction:column;align-items:stretch;overflow:hidden;transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease,background .22s ease}
+.service:before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:currentColor;opacity:.8}.service:hover{transform:translateY(-7px);box-shadow:0 24px 65px rgba(0,0,0,.46);background:linear-gradient(180deg,rgba(7,27,45,.78),rgba(2,10,19,.94))}
+.service.sg{color:var(--sg);border-color:rgba(25,201,135,.52)}.service.sw{color:var(--sw);border-color:rgba(55,141,255,.52)}.service.scs{color:var(--scs);border-color:rgba(239,64,80,.52)}.service.pol{color:var(--pol);border-color:rgba(36,152,255,.52)}
+.crest{width:112px;height:112px;object-fit:contain;align-self:center;opacity:.82;filter:saturate(.72) brightness(.98) contrast(.96) drop-shadow(0 8px 18px rgba(0,0,0,.48));margin:0 auto 13px;transition:transform .22s ease,opacity .22s ease,filter .22s ease}.service:hover .crest{transform:scale(1.045);opacity:.95;filter:saturate(.82) brightness(1.03) contrast(.98) drop-shadow(0 10px 22px rgba(0,0,0,.55))}
+.service h2{color:#f4f8fc;font-size:23px;line-height:1.02;margin:0;text-align:center;letter-spacing:-.7px}.service p{text-align:center;color:#aebdcb;font-size:13px;line-height:1.4;margin:11px 0 19px}.enter{margin-top:auto;text-align:center;padding:12px;border-radius:8px;font-weight:850;border:1px solid currentColor;background:rgba(2,11,20,.30);font-size:14px;letter-spacing:.2px;transition:background .2s ease,color .2s ease}.service:hover .enter{background:currentColor;color:#06111f}
+.sg .enter{color:var(--sg)}.sw .enter{color:var(--sw)}.scs .enter{color:var(--scs)}.pol .enter{color:var(--pol)}
+.section{max-width:var(--max);margin:auto;padding:70px 30px}.panel{background:rgba(5,19,33,.9);border:1px solid var(--line);border-radius:14px}
+.features{display:grid;grid-template-columns:260px repeat(4,1fr);overflow:hidden}.feature-intro{padding:30px;border-right:1px solid var(--line)}
+.eyebrow{font-size:12px;letter-spacing:2px;color:var(--blue);font-weight:800;text-transform:uppercase}.feature-intro h2{font-size:29px;line-height:1.05;margin:8px 0}
+.feature{padding:30px 24px;border-right:1px solid var(--line)}.feature:last-child{border:0}.feature-icon{font-size:28px;color:var(--blue);margin-bottom:10px}.feature h3{font-size:15px;margin:0 0 7px}.feature p{font-size:13px;color:var(--muted);margin:0}
+.seo{display:grid;grid-template-columns:1.05fr .95fr;gap:25px}.seo-copy,.faq{padding:34px}.seo h2{font-size:31px;line-height:1.1;margin:5px 0 16px}.seo p{color:#b6c2ce;font-size:15px}.seo strong{color:#fff}.faq h2{margin:5px 0 15px}.faq details{border-top:1px solid var(--line);padding:14px 0}.faq details:last-child{border-bottom:1px solid var(--line)}summary{cursor:pointer;font-weight:700}.faq p{color:var(--muted);font-size:14px}
+.cta{max-width:var(--max);margin:0 auto 70px;padding:55px 60px;border:1px solid rgba(66,165,255,.35);border-radius:14px;background:linear-gradient(110deg,rgba(7,30,52,.95),rgba(4,16,28,.93));display:flex;align-items:center;justify-content:space-between;gap:30px}.cta h2{font-size:38px;line-height:1.05;margin:5px 0}.cta p{color:var(--muted);margin:0}.cta a{background:var(--blue);padding:14px 24px;border-radius:8px;font-weight:900;white-space:nowrap}
+footer{border-top:1px solid rgba(255,255,255,.08);background:#020a13}.footer-inner{max-width:var(--max);margin:auto;padding:30px;display:flex;justify-content:space-between;gap:30px;align-items:center}.footer-links{display:flex;gap:24px;color:#aeb9c5;font-size:13px}.copyright{color:#748596;font-size:12px}
+@media(max-width:1050px){.features{grid-template-columns:1fr 1fr}.feature-intro{grid-column:1/-1;border-right:0;border-bottom:1px solid var(--line)}.nav{display:none}}
+@media(max-width:1180px){.services{grid-template-columns:repeat(2,1fr)}.service{min-height:310px}}
+@media(max-width:640px){.site-header{height:68px}.header-inner{padding:0 16px}.brand{min-width:0}.brand-mark{width:40px;height:40px}.brand-name{font-size:22px}.brand-sub{font-size:10px}.hero{min-height:auto}.hero-inner{padding:60px 16px 22px}h1{font-size:43px;letter-spacing:-2px}.hero-copy{font-size:15px}.services{grid-template-columns:1fr;padding:0 16px}.service{min-height:285px;padding:25px 20px 20px}.crest{width:100px;height:100px}.service h2{font-size:22px}.section{padding:45px 16px}.features{grid-template-columns:1fr}.feature-intro,.feature{border-right:0;border-bottom:1px solid var(--line)}.cta{margin:0 16px 45px;padding:35px 25px;display:block}.cta h2{font-size:30px}.cta a{display:inline-block;margin-top:22px}.footer-inner{display:block;padding:25px 16px}.footer-links{flex-wrap:wrap;margin:18px 0}.seo-copy,.faq{padding:25px}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"TESTREKRUT","url":"https://testrekrut.pl/","description":"Platforma przygotowująca kandydatów do testów wiedzy w rekrutacji do służb mundurowych.","inLanguage":"pl-PL"}</script>
+<style id="stage3">
+:root{--max:1680px}
+.site-header{height:82px}
+.header-inner{max-width:1680px;padding:0 38px}
+.hero{min-height:calc(100vh - 82px);display:flex;align-items:flex-start;background-position:center 42%}
+.hero:before{background:linear-gradient(90deg,rgba(2,10,19,.94) 0%,rgba(2,10,19,.68) 38%,rgba(2,10,19,.42) 68%,rgba(2,10,19,.72) 100%)}
+.hero-inner{width:100%;max-width:1680px;padding:clamp(62px,7vh,96px) 38px 42px}
+.coordinates{margin-bottom:20px}
+h1{font-size:clamp(48px,5.2vw,82px);max-width:930px;margin-bottom:25px}
+.hero-copy{max-width:760px;font-size:18px;margin-bottom:26px}
+.hero-rule{margin-bottom:32px}
+.services{max-width:none;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.service{min-height:345px;padding:28px 24px 22px;border-radius:16px;background:linear-gradient(180deg,rgba(3,15,27,.70),rgba(2,9,17,.94))}
+.crest{width:122px;height:122px;margin-bottom:12px;opacity:.9;filter:saturate(.78) brightness(1.06) contrast(.97) drop-shadow(0 10px 22px rgba(0,0,0,.55))}
+.service h2{font-size:24px}
+.service p{font-size:13px;margin:10px 0 17px}
+.enter{padding:13px}
+@media(max-width:1180px){.hero{min-height:auto}.services{grid-template-columns:repeat(2,1fr)}.hero-inner{padding-top:65px}.service{min-height:320px}}
+@media(max-width:640px){.site-header{height:68px}.header-inner{padding:0 16px}.hero-inner{padding:48px 16px 24px}.hero{background-position:58% center}.hero-copy{font-size:15px}.services{grid-template-columns:1fr;padding:0}.service{min-height:285px}.crest{width:104px;height:104px}}
+</style></head>
+<body>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="/"><div class="brand-mark brand-mark-css" aria-hidden="true">TR</div><div><div class="brand-name">TEST<span>REKRUT</span></div><div class="brand-sub">Testy wiedzy • Służby mundurowe</div></div></a>
+<nav class="nav" aria-label="Główna nawigacja"><a href="/">Strona główna</a><a href="#o-projekcie">O projekcie</a><a href="#jak-to-dziala">Jak to działa</a><a href="#kontakt">Kontakt</a></nav>
+</div></header>
+<main>
+<section class="hero" aria-labelledby="hero-title"><div class="hero-inner">
+<div class="coordinates">POLSKA · PRZYGOTOWANIE DO REKRUTACJI</div>
+<h1 id="hero-title">PRZYGOTOWANIE<br>ZACZYNA SIĘ <span>TUTAJ.</span></h1>
+<p class="hero-copy">Testy wiedzy dla kandydatów do służb mundurowych. Wybierz interesującą Cię formację, ucz się na pytaniach i sprawdź swoją wiedzę przed rekrutacją.</p>
+<div class="hero-rule"></div>
+<div class="services" aria-label="Wybierz służbę">
+<a class="service sg" href="/straz-graniczna/"><img class="crest" src="crest-sg.png" alt="Herb Straży Granicznej"><h2>STRAŻ<br>GRANICZNA</h2><p>Testy wiedzy • Nauka • Egzamin</p><span class="enter">WEJDŹ →</span></a>
+<a class="service sw" href="/sluzba-wiezienna/"><img class="crest" src="crest-sw.png" alt="Herb Służby Więziennej"><h2>SŁUŻBA<br>WIĘZIENNA</h2><p>Testy wiedzy • Nauka • Egzamin</p><span class="enter">WEJDŹ →</span></a>
+<a class="service scs" href="/celno-skarbowa/"><img class="crest" src="crest-scs.png" alt="Herb Służby Celno-Skarbowej"><h2>SŁUŻBA<br>CELNO-SKARBOWA</h2><p>Testy wiedzy • Nauka • Egzamin</p><span class="enter">WEJDŹ →</span></a>
+<a class="service pol" href="/policja/"><img class="crest" src="crest-pol.png" alt="Herb Policji"><h2>POLICJA</h2><p>Testy wiedzy • Nauka • Egzamin</p><span class="enter">WEJDŹ →</span></a>
+</div></div></section>
+
+<section class="section" id="o-projekcie"><div class="panel features">
+<div class="feature-intro"><div class="eyebrow">Platforma TESTREKRUT</div><h2>DLACZEGO<br><span style="color:var(--blue)">TESTREKRUT?</span></h2></div>
+<article class="feature"><div class="feature-icon">▣</div><h3>AKTUALNA BAZA PYTAŃ</h3><p>Pytania przygotowane z myślą o wymaganiach i materiałach związanych z rekrutacją.</p></article>
+<article class="feature"><div class="feature-icon">▤</div><h3>TRYB NAUKI</h3><p>Poznawaj odpowiedzi, powtarzaj materiał i pracuj nad pytaniami, które sprawiają trudność.</p></article>
+<article class="feature"><div class="feature-icon">◷</div><h3>TRYB EGZAMINACYJNY</h3><p>Sprawdź się w warunkach testowych z ograniczeniem czasu i losowym zestawem pytań.</p></article>
+<article class="feature"><div class="feature-icon">▥</div><h3>ANALIZA WYNIKÓW</h3><p>Sprawdzaj wynik, skuteczność oraz błędne odpowiedzi i wracaj do wymagających zagadnień.</p></article>
+</div></section>
+
+<section class="section" id="jak-to-dziala"><div class="seo">
+<article class="panel seo-copy"><div class="eyebrow">Przygotowanie do rekrutacji</div><h2>Testy wiedzy do służb mundurowych</h2>
+<p><strong>TESTREKRUT</strong> to platforma przeznaczona dla osób przygotowujących się do rekrutacji i testów wiedzy do służb mundurowych. W jednym miejscu możesz wybrać materiały dotyczące <strong>Straży Granicznej, Służby Więziennej, Służby Celno-Skarbowej lub Policji</strong>.</p>
+<p>Każdy moduł został zaprojektowany tak, aby umożliwić naukę pytań, sprawdzanie wiedzy w trybie egzaminacyjnym oraz analizę błędnych odpowiedzi. Dzięki temu możesz systematycznie powtarzać materiał i skupić się na zagadnieniach, które wymagają dodatkowej pracy.</p>
+<p>Jeżeli szukasz miejsca do <strong>nauki przed testem rekrutacyjnym</strong>, chcesz rozwiązywać pytania w warunkach zbliżonych do egzaminu albo sprawdzić swoje przygotowanie przed rekrutacją, wybierz odpowiednią służbę powyżej.</p>
+</article>
+<aside class="panel faq"><div class="eyebrow">Najczęstsze pytania</div><h2>Jak działa TESTREKRUT?</h2>
+<details open><summary>Czy mogę najpierw uczyć się pytań?</summary><p>Tak. Poszczególne moduły oferują tryb nauki, w którym możesz poznawać odpowiedzi i utrwalać materiał przed rozpoczęciem egzaminu.</p></details>
+<details><summary>Czy dostępne są egzaminy próbne?</summary><p>Tak. Po wejściu do wybranego modułu możesz skorzystać z trybu egzaminacyjnego zgodnego z jego ustawieniami.</p></details>
+<details><summary>Jakie służby są dostępne?</summary><p>TESTREKRUT obejmuje materiały dla Straży Granicznej, Służby Więziennej, Służby Celno-Skarbowej oraz Policji.</p></details>
+<details><summary>Czy system zapamiętuje błędne odpowiedzi?</summary><p>Moduły TESTREKRUT mogą zapisywać błędne odpowiedzi i pozwalać na późniejsze powtórzenie trudniejszych pytań.</p></details>
+</aside></div></section>
+
+<section class="cta"><div><div class="eyebrow">Twój cel. Twoje przygotowanie.</div><h2>MASZ CEL.<br>TERAZ SIĘ PRZYGOTUJ.</h2><p>Wybierz służbę i rozpocznij naukę.</p></div><a href="#hero-title">WYBIERZ SŁUŻBĘ →</a></section>
+</main>
+<footer id="kontakt"><div class="footer-inner"><div><div class="brand-name">TEST<span>REKRUT</span></div><div class="copyright">© 2026 TESTREKRUT · Testy wiedzy dla kandydatów do służb mundurowych</div></div><nav class="footer-links" aria-label="Stopka"><a href="/">Strona główna</a><a href="#o-projekcie">O projekcie</a><a href="#jak-to-dziala">Jak to działa</a><a href="/regulamin">Regulamin</a><a href="/polityka-prywatnosci">Polityka prywatności</a></nav></div></footer>
+</body></html>
