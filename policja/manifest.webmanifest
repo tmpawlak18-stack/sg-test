@@ -1,6 +1,6 @@
 {
   "name": "TESTREKRUT — Policja",
-  "short_name": "TESTREKRUT Policja",
+  "short_name": "Policja Test",
   "description": "Test wiedzy do rekrutacji do Policji — 40 pytań w 40 minut.",
   "start_url": "/policja/",
   "scope": "/policja/",
