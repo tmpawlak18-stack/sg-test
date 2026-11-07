@@ -1,6 +1,6 @@
 {
   "name": "TESTREKRUT — Służba Celno-Skarbowa",
-  "short_name": "TESTREKRUT SCS",
+  "short_name": "SCS Test",
   "lang": "pl",
   "start_url": "/celno-skarbowa/",
   "scope": "/celno-skarbowa/",
