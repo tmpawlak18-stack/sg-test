@@ -1,0 +1,11 @@
+{
+  "name": "testrekrut-order-backend",
+  "private": true,
+  "engines": {"node": "20"},
+  "main": "index.js",
+  "scripts": {"serve": "firebase emulators:start --only functions,firestore", "deploy": "firebase deploy --only functions"},
+  "dependencies": {
+    "firebase-admin": "^13.0.0",
+    "firebase-functions": "^6.3.0"
+  }
+}
