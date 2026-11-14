@@ -147,7 +147,7 @@ exports.confirmPayment = onCall({ secrets: [RESEND_API_KEY] }, async request => 
     tx.create(codeRef, {
       active: true,
       product: product.accessProduct,
-      userId: null,
+      userId: "",
       createdAt: admin.firestore.FieldValue.serverTimestamp(),
       orderId,
       orderNumber: order.number,
