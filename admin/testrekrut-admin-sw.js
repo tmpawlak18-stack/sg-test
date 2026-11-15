@@ -1,5 +1,10 @@
-const CACHE='testrekrut-admin-v1';
-const CORE=['./','./index.html','./testrekrut-admin.webmanifest','./testrekrut-admin-192.png','./testrekrut-admin-512.png'];
+importScripts('https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js');
+importScripts('https://www.gstatic.com/firebasejs/10.14.1/firebase-messaging-compat.js');
+const firebaseConfig={apiKey:"AIzaSyDhF58VCYjnZh9nTP8jX2yEUAjLkvy2oCo",authDomain:"test-wiedzy-sg.firebaseapp.com",projectId:"test-wiedzy-sg",storageBucket:"test-wiedzy-sg.firebasestorage.app",messagingSenderId:"505553329961",appId:"1:505553329961:web:f9f0d18a0953136204e138"};
+firebase.initializeApp(firebaseConfig);const messaging=firebase.messaging();
+const CACHE='testrekrut-admin-v2';const CORE=['./','./index.html','./testrekrut-admin.webmanifest','./testrekrut-admin-192.png','./testrekrut-admin-512.png'];
 self.addEventListener('install',event=>{event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(CORE)).then(()=>self.skipWaiting()));});
 self.addEventListener('activate',event=>{event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim()));});
 self.addEventListener('fetch',event=>{const u=new URL(event.request.url);if(event.request.method!=='GET'||u.origin!==self.location.origin)return;event.respondWith(fetch(event.request).then(response=>{if(response.ok){const copy=response.clone();caches.open(CACHE).then(cache=>cache.put(event.request,copy));}return response;}).catch(()=>caches.match(event.request).then(r=>r||caches.match('./index.html'))));});
+messaging.onBackgroundMessage(payload=>{const title=payload.notification?.title||'TESTREKRUT — nowe zamówienie';const options={body:payload.notification?.body||'W panelu pojawiło się nowe zamówienie.',icon:'./testrekrut-admin-192.png',badge:'./testrekrut-admin-192.png',data:{url:payload.data?.url||'./index.html'},tag:payload.data?.orderId||'testrekrut-new-order'};self.registration.showNotification(title,options);});
+self.addEventListener('notificationclick',event=>{event.notification.close();const target=new URL(event.notification.data?.url||'./index.html',self.location.href).href;event.waitUntil(clients.matchAll({type:'window',includeUncontrolled:true}).then(list=>{for(const client of list){if(client.url.startsWith(self.location.origin)&&'focus' in client){client.navigate(target);return client.focus();}}return clients.openWindow(target);}));});
