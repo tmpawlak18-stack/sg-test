@@ -2455,7 +2455,7 @@ document.addEventListener("submit",async function(e){
   }catch(err){
     console.error("Tworzenie zamówienia SW:",err);
     status.textContent=err?.message||"Nie udało się utworzyć zamówienia. Spróbuj ponownie.";
-    submit.disabled=false;submit.textContent="Utwórz zamówienie – 49,99 zł";
+    submit.disabled=false;submit.textContent="Utwórz zamówienie";
   }
 });
 
