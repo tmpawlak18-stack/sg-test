@@ -42,12 +42,26 @@ async function enablePush(){
  try{
   $('enablePushBtn').disabled=true;setPushStatus('Trwa rejestracja powiadomień…');
   const permission=await Notification.requestPermission();if(permission!=='granted'){setPushStatus('Nie udzielono zgody na powiadomienia.',true);return}
-  // Rejestrujemy jawnie Service Workera panelu administratora.
-  // Nie używamy navigator.serviceWorker.ready, bo może zwrócić SW z zakresu głównej strony.
+  // Rejestrujemy jawnie Service Workera panelu administratora (zakres /admin/).
+  // Nie używamy navigator.serviceWorker.ready, bo może zwrócić inną rejestrację,
+  // np. Service Workera obejmującego całą domenę.
   const swUrl=new URL('./testrekrut-admin-sw.js',window.location.href);
   const swScope=new URL('./',window.location.href).pathname;
-  const reg=adminSwRegistration || await navigator.serviceWorker.register(swUrl.href,{scope:swScope,updateViaCache:'none'});
-  await navigator.serviceWorker.ready;
+  const reg=await navigator.serviceWorker.register(swUrl.href,{scope:swScope});
+
+  // Poczekaj, aż wskazany Service Worker będzie aktywny.
+  if(!reg.active){
+   const worker=reg.installing||reg.waiting;
+   if(!worker)throw new Error('Nie udało się uruchomić Service Workera panelu administratora.');
+   await new Promise((resolve,reject)=>{
+    const check=()=>{
+     if(reg.active){resolve();return}
+     if(worker.state==='redundant'){reject(new Error('Service Worker panelu administratora nie został aktywowany.'));return}
+    };
+    worker.addEventListener('statechange',check);
+    check();
+   });
+  }
   const token=await messaging.getToken({vapidKey:VAPID_PUBLIC_KEY,serviceWorkerRegistration:reg});
   if(!token)throw new Error('Firebase nie zwrócił tokenu urządzenia.');
   await call('registerAdminPushToken',{token});
@@ -57,14 +71,5 @@ async function enablePush(){
 $('enablePushBtn').onclick=enablePush;
 if(messaging){messaging.onMessage(payload=>{const title=payload.notification?.title||'TESTREKRUT — nowe zamówienie';const body=payload.notification?.body||'W panelu pojawiło się nowe zamówienie.';if(Notification.permission==='granted')new Notification(title,{body,icon:'./testrekrut-admin-192.png'});setPushStatus(body);});}
 auth.onAuthStateChanged(async user=>{if(!user){$('loginView').classList.remove('hidden');$('appView').classList.add('hidden');return}if(user.email!==ADMIN||!user.emailVerified){await auth.signOut();$('loginMsg').textContent='To konto nie ma uprawnień administratora.';$('loginMsg').style.display='block';return}$('loginView').classList.add('hidden');$('appView').classList.remove('hidden');$('adminEmail').textContent=user.email;await load()});
-let adminSwRegistration=null;
-if('serviceWorker' in navigator){
- window.addEventListener('load',async()=>{
-  try{
-   const swUrl=new URL('./testrekrut-admin-sw.js',window.location.href);
-   const swScope=new URL('./',window.location.href).pathname;
-   adminSwRegistration=await navigator.serviceWorker.register(swUrl.href,{scope:swScope,updateViaCache:'none'});
-  }catch(err){console.warn('Admin SW:',err);}
- });
-}
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./testrekrut-admin-sw.js').catch(err=>console.warn('SW:',err)));}
 </script></body></html>
