@@ -1,0 +1,25 @@
+{
+  "id": "./",
+  "name": "TESTREKRUT – Straż Graniczna",
+  "short_name": "TESTREKRUT SG",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b1020",
+  "theme_color": "#0b1020",
+  "description": "Test wiedzy do Straży Granicznej. Nauka, egzamin i powtórka błędów.",
+  "icons": [
+    {
+      "src": "./icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
