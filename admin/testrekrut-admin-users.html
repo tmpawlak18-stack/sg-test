@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#071426"><link rel="manifest" href="./testrekrut-admin.webmanifest"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><link rel="apple-touch-icon" href="./testrekrut-admin-192.png"><title>Panel administratora — TESTREKRUT</title>
+<style>
+:root{color-scheme:dark;--bg:#071426;--panel:#10243a;--line:#29435f;--text:#edf4fb;--muted:#a7b8ca;--blue:#168df0;--green:#19bd76;--amber:#e7a83c;--red:#e15d68}
+*{box-sizing:border-box}html{min-height:100%;background:var(--bg)}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 15% 0%,#12345a 0,transparent 42%),var(--bg);font:15px system-ui,-apple-system,Segoe UI,Arial;color:var(--text)}
+button,input,select{font:inherit}button{cursor:pointer;border:1px solid #328bd4;background:linear-gradient(135deg,#126fbd,#168df0);color:#fff;border-radius:11px;padding:11px 16px;font-weight:750;min-height:44px}button:disabled{opacity:.5;cursor:wait}.secondary{background:#142b43;border-color:#3a5570}.danger{background:#54232b;border-color:#a84b57}
+.wrap{max-width:1180px;margin:auto;padding:26px}.top{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-bottom:22px}.brand{font-size:24px;font-weight:900;letter-spacing:-.5px}.brand span{color:#45b2ff}.muted{color:var(--muted)}.panel{background:rgba(13,31,50,.96);border:1px solid var(--line);border-radius:17px;padding:20px;box-shadow:0 15px 45px #0004}
+.login{max-width:430px;margin:12vh auto;text-align:center}.login p{line-height:1.6;color:var(--muted)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}.stat{min-width:0}.stat b{display:block;font-size:30px;margin-top:6px;overflow-wrap:anywhere}.stat span{color:var(--muted);font-size:13px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:14px}.toolbar select{background:#0a1b2d;color:#fff;border:1px solid var(--line);border-radius:10px;padding:11px;min-height:44px}.table-wrap{overflow:auto;border-radius:10px}table{width:100%;border-collapse:collapse;min-width:800px}th,td{text-align:left;padding:13px 10px;border-bottom:1px solid #243d56;vertical-align:middle}th{font-size:12px;color:#9fb4c8;text-transform:uppercase;letter-spacing:.06em}.status{display:inline-block;padding:5px 9px;border-radius:99px;font-size:12px;font-weight:800}.pending{background:#4a3818;color:#ffd37d}.paid{background:#123f31;color:#8af0c2}.actions{display:flex;gap:7px;flex-wrap:wrap}.actions button{font-size:12px;padding:8px 10px;min-height:38px}.message{margin:12px 0;padding:12px;border-radius:9px;background:#132e49;color:#cce7ff;display:none}.message.error{background:#4a2028;color:#ffc2c7}.hidden{display:none!important}.right{display:flex;align-items:center;gap:12px}.email{font-size:13px;color:var(--muted)}
+.install-hint{display:none;margin:0 0 16px;padding:12px 14px;border:1px solid #315574;border-radius:12px;background:#0e2943;color:#cce7ff;font-size:13px}
+.user-status{display:inline-block;padding:5px 9px;border-radius:99px;font-size:12px;font-weight:800}.user-status.active{background:#123f31;color:#8af0c2}.user-status.blocked{background:#4a2028;color:#ffc2c7}.user-access{font-size:12px;line-height:1.5;color:#c7d7e7}.user-actions{display:flex;gap:6px;flex-wrap:wrap}.user-actions button{font-size:11px;padding:7px 9px;min-height:36px}
+@media(max-width:760px){
+ body{background:var(--bg)}.wrap{padding:14px 12px 28px}.top{align-items:flex-start;flex-direction:column;gap:12px;margin-bottom:16px}.top .right{width:100%;justify-content:space-between}.brand{font-size:21px}.stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;margin-bottom:12px}.panel{padding:14px;border-radius:14px}.stat b{font-size:25px}.stat span{font-size:12px}.toolbar{display:grid;grid-template-columns:1fr 1fr;gap:8px}.toolbar h2{grid-column:1/-1;margin-bottom:4px!important}.toolbar select,.toolbar button{width:100%}.table-wrap{overflow:visible}table,tbody{display:block;width:100%;min-width:0}thead{display:none}tbody tr{display:grid;grid-template-columns:1fr 1fr;gap:8px 12px;margin:0 0 10px;padding:13px;border:1px solid #29435f;border-radius:13px;background:#0b1d30}tbody td{display:block;padding:0;border:0;min-width:0;overflow-wrap:anywhere;font-size:13px}tbody td:before{content:attr(data-label);display:block;color:#8fa7bd;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:3px}tbody td:first-child{grid-column:1/-1;font-size:15px}tbody td:nth-child(3){grid-column:1/-1}tbody td:last-child{grid-column:1/-1;margin-top:5px}tbody td:last-child:before{margin-bottom:6px}.actions{display:grid;grid-template-columns:1fr}.actions button{width:100%;font-size:13px;min-height:44px}.email{font-size:11px;overflow-wrap:anywhere}.login{margin:9vh auto}.install-hint{display:block}
+}
+@media(max-width:360px){.wrap{padding-left:9px;padding-right:9px}.stat b{font-size:22px}.top .right{gap:7px}.top .right button{padding:9px 11px}}
+</style></head><body><main class="wrap">
+<section id="loginView" class="panel login"><div class="brand">TEST<span>REKRUT</span></div><h1>Panel administratora</h1><p>Logowanie wyłącznie przez konto Google administratora.</p><button id="loginBtn">Zaloguj przez Google</button><div id="loginMsg" class="message"></div></section>
+<section id="appView" class="hidden"><div class="install-hint">Panel jest przygotowany do instalacji na ekranie głównym telefonu. Użyj opcji „Zainstaluj aplikację” lub „Dodaj do ekranu początkowego” w menu przeglądarki.</div><header class="top"><div><div class="brand">TEST<span>REKRUT</span> / ADMIN</div><div class="muted">Zarządzanie zamówieniami i dostępami</div></div><div class="right"><span id="adminEmail" class="email"></span><button id="logoutBtn" class="secondary">Wyloguj</button></div></header>
+<section class="panel" style="margin-bottom:14px"><div style="display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap"><div><b>Powiadomienia o zamówieniach</b><div id="pushStatus" class="muted" style="font-size:13px;margin-top:4px">Powiadomienia nie są jeszcze skonfigurowane.</div></div><button id="enablePushBtn" type="button">Włącz powiadomienia</button></div></section><div class="stats"><div class="panel stat"><span>Wszystkie zamówienia</span><b id="total">—</b></div><div class="panel stat"><span>Oczekujące</span><b id="pending">—</b></div><div class="panel stat"><span>Opłacone</span><b id="paid">—</b></div><div class="panel stat"><span>Przychód brutto</span><b id="revenue">—</b></div></div>
+<section class="panel"><div class="toolbar"><h2 style="margin:0;margin-right:auto">Zamówienia</h2><select id="filter"><option value="all">Wszystkie</option><option value="pending">Oczekujące</option><option value="paid">Opłacone</option></select><button id="refreshBtn" class="secondary">Odśwież</button></div><div id="notice" class="message"></div><div class="table-wrap"><table><thead><tr><th>Numer</th><th>Data</th><th>Klient</th><th>Formacja</th><th>Kwota</th><th>Status</th><th>Akcje</th></tr></thead><tbody id="ordersBody"><tr><td colspan="7" class="muted">Ładowanie…</td></tr></tbody></table></div></section>
+<section class="panel" style="margin-top:14px">
+  <div class="toolbar">
+    <h2 style="margin:0;margin-right:auto">Użytkownicy i sesje</h2>
+    <button id="usersRefreshBtn" class="secondary" type="button">Odśwież listę</button>
+  </div>
+  <div class="toolbar">
+    <input id="userSearch" type="email" autocomplete="off" placeholder="Wpisz dokładny adres e-mail użytkownika" aria-label="Adres e-mail użytkownika" style="flex:1;min-width:220px;background:#0a1b2d;color:#fff;border:1px solid var(--line);border-radius:10px;padding:11px;min-height:44px">
+    <button id="userSearchBtn" type="button">Szukaj użytkownika</button>
+    <button id="usersListBtn" class="secondary" type="button">Pokaż listę kont</button>
+  </div>
+  <div id="usersNotice" class="message"></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>E-mail</th><th>Status</th><th>Weryfikacja</th><th>Dostępy</th><th>Ostatnie logowanie</th><th>Operacje</th></tr></thead>
+      <tbody id="usersBody"><tr><td colspan="6" class="muted">Wybierz „Pokaż listę kont” lub wyszukaj użytkownika.</td></tr></tbody>
+    </table>
+  </div>
+  <div class="toolbar" style="margin-top:12px;margin-bottom:0">
+    <span id="usersPageInfo" class="muted" style="margin-right:auto;font-size:13px"></span>
+    <button id="usersMoreBtn" class="secondary" type="button" hidden>Załaduj kolejne konta</button>
+  </div>
+  <p class="muted" style="font-size:12px;line-height:1.5;margin:14px 0 0">Wylogowanie kończy aktywne sesje, ale nie usuwa zakupionych dostępów. Blokada uniemożliwia ponowne logowanie; odblokowanie przywraca możliwość korzystania z konta.</p>
+</section>
+</section></main>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-functions-compat.js"></script><script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-messaging-compat.js"></script>
+<script>
+const firebaseConfig={apiKey:"AIzaSyDhF58VCYjnZh9nTP8jX2yEUAjLkvy2oCo",authDomain:"test-wiedzy-sg.firebaseapp.com",projectId:"test-wiedzy-sg",storageBucket:"test-wiedzy-sg.firebasestorage.app",messagingSenderId:"505553329961",appId:"1:505553329961:web:f9f0d18a0953136204e138"};
+firebase.initializeApp(firebaseConfig);const auth=firebase.auth();const fn=firebase.app().functions('europe-central2');
+const VAPID_PUBLIC_KEY='BNt4XqQiS3cLrHHJPAlNSG83g2txOAIhC93jENZmVOFebtmMJD0I7Oyh6d6x8b2W-bTNLDXmW2rt5B5sF11TXxQ';let messaging=null;try{if(firebase.messaging.isSupported())messaging=firebase.messaging();}catch(e){console.warn('FCM niedostępne',e)}
+const $=id=>document.getElementById(id);const ADMIN='testrekrut.pl@gmail.com';
+function notice(message,error=false){$('notice').textContent=message;$('notice').className='message'+(error?' error':'');$('notice').style.display='block'}
+function money(g){return (Number(g||0)/100).toLocaleString('pl-PL',{style:'currency',currency:'PLN'})}
+function safe(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+async function call(name,data={}){return (await fn.httpsCallable(name)(data)).data}
+async function load(){ $('ordersBody').innerHTML='<tr><td colspan="7">Ładowanie…</td></tr>';try{const [d,o]=await Promise.all([call('getDashboard'),call('listOrders',{status:$('filter').value,limit:200})]);$('total').textContent=d.total;$('pending').textContent=d.pending;$('paid').textContent=d.paid;$('revenue').textContent=money(d.revenueGrosz);$('ordersBody').innerHTML=o.orders.length?o.orders.map(x=>`<tr><td data-label="Numer"><b>${safe(x.number)}</b></td><td data-label="Data">${x.createdAt?new Date(x.createdAt).toLocaleString('pl-PL'):'—'}</td><td data-label="Klient">${safe(x.email)}</td><td data-label="Formacja">${safe(x.productLabel)}</td><td data-label="Kwota">${money(x.amountGrosz)}</td><td data-label="Status"><span class="status ${x.status==='paid'?'paid':'pending'}">${x.status==='paid'?'Opłacone':'Oczekuje'}</span></td><td data-label="Akcje"><div class="actions">${x.status==='pending'?`<button data-confirm="${safe(x.id)}">Potwierdź wpłatę</button>`:`<button class="secondary" data-resend="${safe(x.id)}">Wyślij kod ponownie</button>`}</div></td></tr>`).join(''):'<tr><td colspan="7" class="muted">Brak zamówień.</td></tr>';}catch(e){notice(e.message||'Nie udało się pobrać zamówień.',true)}}
+$('loginBtn').onclick=async()=>{try{const p=new firebase.auth.GoogleAuthProvider();p.setCustomParameters({prompt:'select_account'});await auth.signInWithPopup(p)}catch(e){$('loginMsg').textContent=e.message;$('loginMsg').style.display='block'}};
+$('logoutBtn').onclick=()=>auth.signOut();$('refreshBtn').onclick=load;$('filter').onchange=load;
+$('ordersBody').onclick=async e=>{const b=e.target.closest('button');if(!b)return;const id=b.dataset.confirm||b.dataset.resend;if(!id)return;b.disabled=true;try{if(b.dataset.confirm){if(!confirm('Czy potwierdzasz, że płatność rzeczywiście wpłynęła?'))return;const r=await call('confirmPayment',{orderId:id});notice(`Płatność potwierdzona. Kod: ${r.code}. E-mail wysłany.`)}else{const r=await call('resendAccessEmail',{orderId:id});notice(`Ponownie wysłano istniejący kod: ${r.code}`)}await load()}catch(err){notice(err.message||'Operacja nie powiodła się.',true)}finally{b.disabled=false}};
+
+let usersNextPageToken=null;
+let usersSearchMode=false;
+function usersNotice(message,error=false){
+ const el=$('usersNotice');el.textContent=message;el.className='message'+(error?' error':'');el.style.display='block';
+}
+function formatDate(value){
+ if(!value)return '—';
+ const d=new Date(value);return Number.isNaN(d.getTime())?'—':d.toLocaleString('pl-PL');
+}
+function renderUser(u){
+ const entitlements=Array.isArray(u.entitlements)?u.entitlements:[];
+ const access=entitlements.filter(x=>x.active).map(x=>{
+  const labels={sg:'Straż Graniczna',policja:'Policja','celno-skarbowa':'Służba Celno-Skarbowa',sw:'Służba Więzienna'};
+  return safe(labels[x.product]||x.product);
+ });
+ const status=u.status==='blocked'||u.disabled?'blocked':'active';
+ const statusLabel=status==='blocked'?'Zablokowane':'Aktywne';
+ const accessHtml=access.length?access.join('<br>'):'<span class="muted">Brak aktywnych dostępów</span>';
+ const buttons=status==='blocked'
+  ? `<button data-unblock-user="${safe(u.uid)}">Odblokuj konto</button>`
+  : `<button class="secondary" data-revoke-user="${safe(u.uid)}">Wyloguj</button><button class="danger" data-block-user="${safe(u.uid)}">Zablokuj</button>`;
+ return `<tr>
+  <td data-label="E-mail"><b>${safe(u.email||'—')}</b><div class="muted" style="font-size:10px;margin-top:3px">UID: ${safe(u.uid)}</div></td>
+  <td data-label="Status"><span class="user-status ${status}">${statusLabel}</span></td>
+  <td data-label="Weryfikacja">${u.emailVerified?'Potwierdzony':'Niepotwierdzony'}</td>
+  <td data-label="Dostępy"><div class="user-access">${accessHtml}</div></td>
+  <td data-label="Ostatnie logowanie">${formatDate(u.lastSignInAt)}</td>
+  <td data-label="Operacje"><div class="user-actions">${buttons}</div></td>
+ </tr>`;
+}
+function renderUsers(users,append=false){
+ const body=$('usersBody');
+ if(!append)body.innerHTML='';
+ if(!users.length&&!append){body.innerHTML='<tr><td colspan="6" class="muted">Nie znaleziono kont.</td></tr>';return}
+ body.insertAdjacentHTML('beforeend',users.map(renderUser).join(''));
+}
+async function loadUsers(append=false){
+ const more=$('usersMoreBtn');more.disabled=true;
+ if(!append){usersNextPageToken=null;usersSearchMode=false;$('usersBody').innerHTML='<tr><td colspan="6" class="muted">Ładowanie kont…</td></tr>'}
+ try{
+  const result=await call('adminListUsersV2',{limit:25,...(append&&usersNextPageToken?{pageToken:usersNextPageToken}:{})});
+  renderUsers(result.users||[],append);
+  usersNextPageToken=result.nextPageToken||null;
+  more.hidden=!usersNextPageToken;
+  $('usersPageInfo').textContent=`Wyświetlono ${$('usersBody').querySelectorAll('tr').length} kont${usersNextPageToken?' — dostępne są kolejne strony':''}.`;
+  if(!append)usersNotice('Lista kont została pobrana.');
+ }catch(e){$('usersBody').innerHTML='<tr><td colspan="6" class="muted">Nie udało się pobrać listy kont.</td></tr>';usersNotice(e.message||'Nie udało się pobrać kont.',true)}
+ finally{more.disabled=false}
+}
+async function findUser(){
+ const email=$('userSearch').value.trim().toLowerCase();
+ if(!email){usersNotice('Wpisz adres e-mail użytkownika.',true);return}
+ $('userSearchBtn').disabled=true;$('usersBody').innerHTML='<tr><td colspan="6" class="muted">Wyszukiwanie…</td></tr>';
+ try{
+  const result=await call('adminFindUserV2',{email});
+  usersSearchMode=true;usersNextPageToken=null;$('usersMoreBtn').hidden=true;
+  renderUsers([result.user]);
+  $('usersPageInfo').textContent='Wynik wyszukiwania dokładnego adresu e-mail.';
+  usersNotice('Znaleziono konto użytkownika.');
+ }catch(e){$('usersBody').innerHTML='<tr><td colspan="6" class="muted">Nie znaleziono użytkownika.</td></tr>';usersNotice(e.message||'Wyszukiwanie nie powiodło się.',true)}
+ finally{$('userSearchBtn').disabled=false}
+}
+async function userAction(button){
+ const uid=button.dataset.revokeUser||button.dataset.blockUser||button.dataset.unblockUser;
+ if(!uid)return;
+ let fnName='',question='';
+ if(button.dataset.revokeUser){fnName='adminRevokeUserSessionsV2';question='Zakończyć wszystkie aktywne sesje tego użytkownika? Zakupione dostępy pozostaną bez zmian.'}
+ if(button.dataset.blockUser){fnName='adminBlockUserV2';question='Zablokować konto? Użytkownik nie będzie mógł się ponownie zalogować. Zakupione dostępy zostaną zachowane.'}
+ if(button.dataset.unblockUser){fnName='adminUnblockUserV2';question='Odblokować konto użytkownika?'}
+ if(!confirm(question))return;
+ button.disabled=true;
+ try{
+  const result=await call(fnName,{uid});
+  const messages={
+   adminRevokeUserSessionsV2:'Sesje użytkownika zostały unieważnione. Aplikacja wykryje zmianę przy najbliższej kontroli sesji.',
+   adminBlockUserV2:'Konto zostało zablokowane. Zakupione dostępy zostały zachowane.',
+   adminUnblockUserV2:'Konto zostało odblokowane. Zakupione dostępy zostały zachowane.'
+  };
+  usersNotice(messages[fnName]||'Operacja zakończona.');
+  if(usersSearchMode)await findUser();else await loadUsers(false);
+ }catch(e){usersNotice(e.message||'Operacja nie powiodła się.',true)}
+ finally{button.disabled=false}
+}
+$('usersRefreshBtn').onclick=()=>loadUsers(false);
+$('usersListBtn').onclick=()=>loadUsers(false);
+$('userSearchBtn').onclick=findUser;
+$('userSearch').addEventListener('keydown',e=>{if(e.key==='Enter')findUser()});
+$('usersMoreBtn').onclick=()=>loadUsers(true);
+$('usersBody').addEventListener('click',e=>{const b=e.target.closest('button');if(b)userAction(b)});
+
+function setPushStatus(text,isError=false){const el=$('pushStatus');if(el){el.textContent=text;el.style.color=isError?'#ffb6bd':''}}
+function urlBase64ToUint8Array(base64String){const padding='='.repeat((4-base64String.length%4)%4);const base64=(base64String+padding).replace(/-/g,'+').replace(/_/g,'/');const raw=atob(base64);return Uint8Array.from([...raw].map(c=>c.charCodeAt(0)));}
+async function enablePush(){
+ const user=auth.currentUser;
+ if(!user){setPushStatus('Najpierw zaloguj się jako administrator.',true);return}
+ if(!('serviceWorker' in navigator)||!('Notification' in window)||!messaging){setPushStatus('Ta przeglądarka nie obsługuje wymaganej funkcji powiadomień.',true);return}
+ if(VAPID_PUBLIC_KEY.startsWith('UZUPELNIJ_')){setPushStatus('Brakuje klucza VAPID. Trzeba go pobrać z ustawień Firebase i wkleić do pliku panelu.',true);return}
+ try{
+  $('enablePushBtn').disabled=true;setPushStatus('Trwa rejestracja powiadomień…');
+  const permission=await Notification.requestPermission();if(permission!=='granted'){setPushStatus('Nie udzielono zgody na powiadomienia.',true);return}
+  // Rejestrujemy jawnie Service Workera panelu administratora (zakres /admin/).
+  // Nie używamy navigator.serviceWorker.ready, bo może zwrócić inną rejestrację,
+  // np. Service Workera obejmującego całą domenę.
+  const swUrl=new URL('./testrekrut-admin-sw.js',window.location.href);
+  const swScope=new URL('./',window.location.href).pathname;
+  const reg=await navigator.serviceWorker.register(swUrl.href,{scope:swScope});
+
+  // Poczekaj, aż wskazany Service Worker będzie aktywny.
+  if(!reg.active){
+   const worker=reg.installing||reg.waiting;
+   if(!worker)throw new Error('Nie udało się uruchomić Service Workera panelu administratora.');
+   await new Promise((resolve,reject)=>{
+    const check=()=>{
+     if(reg.active){resolve();return}
+     if(worker.state==='redundant'){reject(new Error('Service Worker panelu administratora nie został aktywowany.'));return}
+    };
+    worker.addEventListener('statechange',check);
+    check();
+   });
+  }
+  const token=await messaging.getToken({vapidKey:VAPID_PUBLIC_KEY,serviceWorkerRegistration:reg});
+  if(!token)throw new Error('Firebase nie zwrócił tokenu urządzenia.');
+  await call('registerAdminPushToken',{token});
+  setPushStatus('Powiadomienia włączone na tym urządzeniu.');
+ }catch(e){console.error(e);setPushStatus(e.message||'Nie udało się włączyć powiadomień.',true)}finally{$('enablePushBtn').disabled=false}
+}
+$('enablePushBtn').onclick=enablePush;
+if(messaging){messaging.onMessage(payload=>{const title=payload.notification?.title||'TESTREKRUT — nowe zamówienie';const body=payload.notification?.body||'W panelu pojawiło się nowe zamówienie.';if(Notification.permission==='granted')new Notification(title,{body,icon:'./testrekrut-admin-192.png'});setPushStatus(body);});}
+auth.onAuthStateChanged(async user=>{if(!user){$('loginView').classList.remove('hidden');$('appView').classList.add('hidden');return}if(user.email!==ADMIN||!user.emailVerified){await auth.signOut();$('loginMsg').textContent='To konto nie ma uprawnień administratora.';$('loginMsg').style.display='block';return}$('loginView').classList.add('hidden');$('appView').classList.remove('hidden');$('adminEmail').textContent=user.email;await load()});
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./testrekrut-admin-sw.js').catch(err=>console.warn('SW:',err)));}
+</script></body></html>
